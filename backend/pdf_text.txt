@@ -1,0 +1,3712 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                                                                                                 
+                                                                
+
+ 
+SRM INSTITUTE OF SCIENCE AND TECHNOLOGY 
+CAMPUS ADMINISTRATION / KATTANKULATHUR 
+ 
+Sl. No 
+Name of Campus 
+Area in Sq. Ft 
+Remarks 
+1 
+Main Campus 
+483303 
+ 
+2 
+Annexure – I 
+694566 
+ 
+3 
+Annexure – II 
+483670 
+ 
+4 
+Road (Common Area) 
+27235 
+ 
+ 
+Total Area 
+1688774 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Area Details - Main Campus 
+Sl. No 
+Name of Building 
+Floor 
+Area in Sq.Ft 
+Remarks 
+1 
+Canteen Block 
+G+4 
+8374 
+  
+2 
+PG Block 
+G+3 
+7487 
+  
+
+ 
+3 
+Aarush Block 
+G+2 
+780 
+  
+4 
+Hi-Tech Block 
+G+6 
+103345 
+  
+5 
+Mech 'A' Block 
+G+3 
+18212 
+  
+6 
+Mech 'B' Block 
+G+3 
+29201 
+  
+7 
+Mech 'C' Block 
+G+3 
+18998 
+  
+8 
+Mech 'D' Block 
+G+2 
+9948 
+  
+9 
+Mech 'E' Block 
+G 
+7866 
+  
+10 
+Mechanical Hanger 
+G+1 
+28554 
+  
+11 
+Aerospace Hanger 
+G+1 
+28238 
+  
+12 
+Structural Lab & 
+Structural Testing Lab 
+G+1 
+21329 
+  
+13 
+ES Block 
+G+3 
+55483 
+  
+14 
+Automobile Block 
+G+2 
+33963 
+  
+15 
+Main Block 
+G+3 
+41127 
+  
+16 
+Old Library Block (Civil 
+Engineering block) 
+G+3 
+17736 
+  
+17 
+Admin Block 
+G+3 
+5666 
+  
+18 
+CRC Block 
+G+8 
+40018 
+  
+19 
+Estate Office 
+G+2 
+1628 
+  
+20 
+Dr.Abdul Kalam Block 
+G+1 
+4470 
+  
+21 
+Police Out post building 
+G 
+880 
+  
+TOTAL 
+483303 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Annexure – I 
+ 
+Sl. No 
+Name of the Building 
+Floor 
+Area in Sq.Ft 
+Remarks 
+1 
+Basic Engineering Lab 
+G+5 
+80842.22  
+2 
+MBA 
+G+4 
+66933.34  
+3 
+B.Arch 
+G+5 
+23787.62  
+4 
+B.Arch – A 
+G+5 
+20726  
+5 
+B.Arch – B 
+G+4 
+24364  
+
+ 
+6 
+Bio Tech 
+G+6 
+120554  
+7 
+Tech park 
+G+15 
+271076  
+8 
+Raman Research park 
+G+9 
+81727  
+9 
+Chemistry research (MCA & MBA) 
+G 
+4556  
+ 
+Total Area 
+694566.00  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Administrative Block 
+ 
+Sl. No 
+Name of the Building 
+Floor 
+Area in Sq.Ft 
+Remarks 
+1 
+University Building 
+G+15 
+466418.63  
+2 
+Chemical Block 
+G+2 
+17252.20  
+ 
+Total Area 
+483670.83  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Road and Sports Area 
+ 
+ 
+Sl. No 
+Name of Building 
+Floor 
+Area in Sq. Ft 
+Remarks 
+1 
+Director Sports 
+G+1 
+5901  
+2 
+Transport Service Station 
+G 
+3082  
+3 
+Fab Lab  
+G+1 
+7290  
+4 
+Indoor Game Studio 
+G 
+10962  
+ 
+Total             27235  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Class Room Abstracts 
+Sl.No 
+Campus 
+No of Class Rooms 
+Remarks 
+1 
+Main Campus 
+106 
+ 
+2 
+Administrative Block (UB) 
+74 
+ 
+3 
+Annexure – I  
+163 
+ 
+ 
+Total 
+343 
+ 
+ 
+Class Room Details 
+Main Campus  
+Sl. 
+No 
+Room No 
+Room Size  
+in Sq.ft 
+Seating 
+Capacity 
+Projector 
+Wi-Fi 
+Any additional information 
+HI-TECH BLOCK - Ground Floor 
+1st Floor 
+1 
+H111 
+420 
+30 
+1 
+1 
+Desk Bench 3 Seater = 11,              
+2 Seater = 2 No 
+2 
+H 112 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+3 
+H 113 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 22 Nos 
+2nd Floor 
+4 
+H 213 SS 
+810 
+60 
+1 
+1 
+Desk = 10 Nos,  Chair = 60 Nos 
+5 
+H214 SS 
+810 
+60 
+1 
+1 
+Desk = 10 Nos,  Chair = 60 Nos 
+6 
+H216 SS 
+840 
+60 
+1 
+1 
+Desk = 10 Nos,  Chair = 60 Nos 
+7 
+H217 SS 
+810 
+60 
+1 
+1 
+Desk = 10 Nos,  Chair = 60 Nos 
+8 
+H218 SS 
+810 
+60 
+1 
+1 
+Desk = 10 Nos,  Chair = 60 Nos 
+3rd Floor 
+9 
+H301F 
+870 
+60 
+1 
+1 
+Desk = 15 Nos,  Chair = 60 Nos 
+10 
+H301B 
+840 
+60 
+1 
+1 
+Desk = 15 Nos,  Chair = 60 Nos 
+11 
+H302F 
+780 
+60 
+1 
+1 
+Desk = 15 Nos,  Chair = 60 Nos 
+12 
+H302B 
+980 
+60 
+1 
+1 
+Desk = 15 Nos,  Chair = 60 Nos 
+13 
+H303F 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+
+ 
+14 
+H303B 
+840 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+15 
+H306 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+16 
+H307 
+840 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+17 
+H308 
+900 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+18 
+H309 
+900 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+19 
+H310 
+870 
+60 
+1 
+1 
+Desk Bench 2 Seater = 25 Nos,             3 
+Seater = 3 No 
+20 
+H311 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+4th Floor 
+21 
+H407 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+22 
+H408 
+900 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+23 
+H409 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+24 
+H410 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+25 
+H411 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+5th Floor 
+26 
+ H 505 / 1 
+620 
+45 
+1 
+1 
+Desk Bench 3 Seater = 14 Nos 
+27 
+H505/2 
+870 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+28 
+H 506/1 
+620 
+36 
+1 
+1 
+Desk Bench 3 Seater = 13 Nos 
+29 
+H506/2 
+810 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+30 
+H508 
+840 
+60 
+1 
+1 
+Desk Bench 2 Seater = 30 Nos 
+31 
+H511 
+1300 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 68 
+32 
+H512/1 
+1100 
+60 
+1 
+1 
+Desk Bench 4 Seater = 15 Nos 
+33 
+H513 
+900 
+60 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+34 
+H514 
+1060 
+60 
+1 
+1 
+Desk Bench 4 Seater = 15 Nos 
+35 
+H515 
+870 
+60 
+1 
+1 
+Desk Bench 4 Seater = 15 Nos 
+6th Floor 
+36 
+H601 
+870 
+60 
+1 
+1 
+Table = 16 Nos    Chair = 72 
+37 
+H603 
+750 
+60 
+1 
+1 
+Table = 16 Nos    Chair = 64 
+38 
+H604 
+725 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 59 
+39 
+H605 
+810 
+60 
+1 
+1 
+Table = 18 Nos    Chair = 72 
+40 
+H606 
+870 
+60 
+1 
+1 
+Table = 16 Nos    Chair = 64 
+41 
+H608 
+1700 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 68 
+42 
+H610 
+1050 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 64 
+43 
+H611 
+870 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 72 
+44 
+H612 
+870 
+60 
+1 
+1 
+Table = 17 Nos    Chair = 58 
+MAIN BLOCK  
+1st Floor 
+45 
+MB21 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+46 
+MB22 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+47 
+MB27/B 
+750 
+60 
+1 
+1 
+Desk Bench 2 Seater X 30 = 60 Nos 
+48 
+MB28 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+2nd Floor 
+49 
+MB37 
+750 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+50 
+MB38 
+870 
+60 
+1 
+1 
+Table 15 Nos Cushion chair 60 Nos 
+51 
+MB39 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+3rd Floor 
+52 
+MB41 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+53 
+MB42 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+54 
+MB43 
+750 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+55 
+MB44 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+56 
+MB46 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+57 
+MB47 
+750 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+58 
+MB48 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+59 
+MB49 
+840 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+MECHANICAL 'A' BLOCK  
+2nd Floor 
+
+ 
+60 
+M8 
+900 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+61 
+M9 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+62 
+M10 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+63 
+M11 
+900 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+3rd Floor 
+64 
+M12 
+900 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+65 
+M13 
+870 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+66 
+M14 
+900 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+67 
+M15 
+900 
+75 
+1 
+1 
+Desk Bench 3 Seater = 25 Nos 
+  
+ELEC.SCIENCE BLOCK 
+  
+2nd Floor 
+68 
+ESB311 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+69 
+ESB312 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+70 
+ESB313 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+3rd Floor 
+71 
+ESB404 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+72 
+ESB405 
+1020 
+75 
+1 
+1 
+Desk Bench 3 Seater X 25 = 75 Nos 
+73 
+ESB406 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+74 
+ESB408 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+75 
+ESB409 
+1020 
+60 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+OLD LIBRARY BUILDING 
+2nd Floor 
+76 
+L201 
+870 
+75 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+77 
+L202 
+870 
+75 
+1 
+1 
+Desk Bench 4 Seater X 15 = 60 Nos 
+78 
+L203 
+870 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+79 
+L204 
+870 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+3rd Floor 
+80 
+L301 
+870 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+81 
+L302 
+870 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+82 
+L303 
+900 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+83 
+L304 
+870 
+75 
+1 
+1 
+Steel Desk Bench 3 Seat X 25 = 75 Nos 
+CRC BUILDING 
+Ground Floor 
+84 
+CRC 101 
+700 
+60 
+1 
+1 
+Table = 15 Nos, Chair 60 Nos 
+85 
+CRC 102 
+700 
+60 
+1 
+1 
+Table = 15 Nos, Chair 60 Nos 
+86 
+CRC 103  
+700 
+60 
+1 
+1 
+Table = 15 Nos, Chair 60 Nos 
+1st Floor 
+87 
+CRC 202 
+700 
+60 
+1 
+1 
+Table = 15 Nos, Chair 60 Nos 
+3rd Floor 
+88 
+CRC 401 
+810 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+89 
+CRC 402 
+700 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+90 
+CRC 403 
+404 
+1400 
+120 
+1 
+1 
+Galary type CRC 403 & 404 Table = 30 
+Nos Chair = 120 
+4th Floor 
+91 
+CRC 501 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+92 
+CRC 502 
+700 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+93 
+CRC 503 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+94 
+CRC 504 
+700 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+5th Floor 
+95 
+CRC 601 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+96 
+CRC 602 
+700 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+6th Floor 
+97 
+CRC 701 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+98 
+CRC 702 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+99 
+CRC 703 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+100 
+CRC 704 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+
+ 
+7th Floor 
+101 
+CRC 801 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+102 
+CRC 802 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+103 
+CRC 803 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+104 
+CRC 804 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+8th Floor 
+105 
+CRC 903 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+106 
+CRC 904 
+730 
+60 
+1 
+1 
+Table - 15 Nos, Chair - 60 Nos 
+ 
+Administrative Block (University Building) 
+Sl.No 
+Room 
+Room 
+Size Sq.Ft 
+Seating 
+Capacity 
+Projector 
+Wi-
+Fi 
+Any additional information 
+5th Floor 
+1 
+501 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+2 
+502 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+3 
+503 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+4 
+504 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+5 
+505 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+6 
+506 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+7 
+507 
+988 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+8 
+508 
+1040 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+9 
+509 
+1040 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+10 
+510 
+1014 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+11 
+511 
+1000 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+12 
+512 
+1000 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+13 
+513 
+1456 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+14 
+514 
+1275 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+15 
+515 
+1275 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+6th Floor 
+16 
+601 
+1332 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+17 
+602 
+1072 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+18 
+603 
+1072 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+19 
+604 
+1072 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+20 
+605 
+1072 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+21 
+606 
+1072 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+22 
+607 
+1332 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+23 
+609 
+930 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+24 
+611 
+971 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+25 
+620 
+733 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+8th  Floor 
+26 
+822 
+963 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+9th  Floor 
+27 
+901 
+1243 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+28 
+902 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+29 
+903 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+30 
+904 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+31 
+905 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+32 
+906 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+33 
+907 
+1286 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+34 
+919 
+984 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+10th  Floor 
+35 
+1001 
+1243 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+36 
+1002 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+37 
+1003 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+
+ 
+38 
+1004 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+39 
+1005 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+40 
+1006 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+41 
+1007 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+42 
+1009 
+1273 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+43 
+1010 
+1300 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+44 
+1011 
+930 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+45 
+1012 
+971 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+46 
+1013 
+971 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+47 
+1014 
+1537 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+48 
+1015 
+1311 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+49 
+1016 
+1311 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+50 
+1019 
+984 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+11th  Floor 
+51 
+1103 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+52 
+1109 
+1273 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+12th  Floor 
+53 
+1205 
+1156 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+54 
+1206 
+1156 
+62 
+1 
+1 
+Desk Bench 2 Seater = 31 Nos Chair - 62 
+55 
+1207 
+1156 
+72 
+1 
+1 
+Desk Bench 3 Seater = 24 Nos Chair - 72 
+56 
+1211 
+930 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+57 
+1212 
+971 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+58 
+1216 
+1311 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+59 
+1219 
+984 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+FS&H CLASS ROOM 
+60 
+620 
+733 
+45 
+1 
+1 
+Desk Bench 3 Seater = 15 Nos Chair - 45 
+61 
+702 
+1150.25 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+62 
+717/A 
+790 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+63 
+718 
+448 
+16 
+1 
+1 
+Desk Bench 4 Seater = 4 Nos Chair - 16 
+64 
+719 
+733 
+48 
+1 
+1 
+Desk Bench 4 Seater = 12 Nos Chair - 48 
+65 
+808 
+581 
+40 
+1 
+1 
+Desk Bench 3 Seater = 10 Nos Desk 
+Bench 2 Seater =5Nos 
+66 
+810 
+650 
+44 
+1 
+1 
+Desk Bench 4 Seater = 11 Nos Chair - 44 
+67 
+811 
+650 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+68 
+818 
+1272 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+69 
+819 
+1272 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+70 
+823 
+669 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+71 
+909 
+650 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+72 
+920 
+676 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+73 
+1101 
+1243 
+72 
+1 
+1 
+Desk Bench 4 Seater = 18 Nos Chair - 72 
+74 
+1119 
+984 
+40 
+1 
+1 
+Desk Bench 4 Seater = 10 Nos Chair - 40 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+Annexure – I 
+Sl. 
+No 
+Room No 
+Room Size  
+in Sq.ft 
+Seating 
+Capacity 
+Projector 
+Wi-Fi 
+Any additional information 
+1st Floor 
+1 
+TP 101 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+2 
+TP 102 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+3 
+TP 103 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+4 
+TP 105 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+2nd Floor 
+5 
+TP 201 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+6 
+TP 202 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+7 
+TP 203 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+8 
+TP 204 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+9 
+TP 205 
+900 
+60 
+Nil 
+1 
+LT-10 CH-60 
+10 
+TP 206 
+900 
+60 
+1 
+Nil 
+LT-10 CH-60 
+ 3rd Floor 
+11 
+TP 301 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+12 
+TP 302 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+13 
+TP 303 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+14 
+TP 304 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+15 
+TP 305 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+16 
+TP 306 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+4th Floor 
+17 
+TP 401, TP 
+402 
+1800 
+120 
+1 
+1 
+LT-18 CH-110 
+18 
+TP 403 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+19 
+TP404,  TP 
+405 
+1800 
+120 
+1 
+1 
+LT-18 CH-110 
+20 
+TP 406 
+900 
+60 
+1 
+1 
+LT-10 CH-60 
+5th Floor 
+21 
+TP 501, TP 
+502 
+1800 
+120 
+1 
+1 
+LT-18 CH-110 
+22 
+TP 503 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+23 
+TP 504 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+24 
+TP 505 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+25 
+TP 506 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+6th  Floor 
+26 
+TP 601 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+27 
+TP 602 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+28 
+TP 603 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+29 
+TP 605 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+30 
+TP 606 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+7th Floor 
+31 
+TP 701 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+32 
+TP 702 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+33 
+TP 703 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+34 
+TP 704 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+35 
+TP 705 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+36 
+TP 706 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+8th Floor 
+37 
+TP 801 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+38 
+TP 802 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+39 
+TP 803 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+40 
+TP 804 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+
+ 
+41 
+TP 805 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+42 
+TP 806 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+9th Floor 
+43 
+TP 901 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+44 
+TP 902 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+45 
+TP 903 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+46 
+TP 904 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+47 
+TP 905 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+48 
+TP 906 
+900 
+60 
+1 
+ 
+LT -10 CH -60 
+10th Floor 
+49 
+TP 1001 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+50 
+TP 1002 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+51 
+TP 1003 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+52 
+TP 1004 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+53 
+TP 1005 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+54 
+TP 1006 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+11th Floor 
+55 
+TP 1101 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+56 
+TP 1102 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+57 
+TP 1103 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+58 
+TP 1104 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+59 
+TP 1105 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+60 
+TP 1106 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+12th Floor 
+61 
+TP 1201 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+62 
+TP 1202 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+63 
+TP 1203 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+64 
+TP 1204 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+65 
+TP 1205 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+66 
+TP 1206 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+13th Floor 
+67 
+TP 1301 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25  
+68 
+TP 1302 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+69 
+TP 1303 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+70 
+TP 1304 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+71 
+TP 1305 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+72 
+TP 1306 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+14th Floor 
+73 
+TP 1401 
+900 
+60 
+1 
+1 
+DB 3 Seat – 25 
+74 
+TP 1402 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+75 
+TP 1403 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+76 
+TP 1404 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+77 
+TP 1405 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+78 
+TP 1406 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+15th Floor 
+79 
+TP 1501 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+80 
+TP 1502 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+81 
+TP 1503 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+82 
+TP 1504 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+83 
+TP 1505 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+84 
+TP 1506 
+900 
+60 
+1 
+1 
+LT -10 CH -60 
+BIO TECH 
+Ground Floor 
+85 
+B 101 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+86 
+B 102 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+87 
+B 103 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+
+ 
+88 
+B 104 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+1st Floor 
+89 
+B 201 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+90 
+B 202 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+91 
+B 203 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+92 
+B 204 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+2nd Floor 
+93 
+B 301 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+94 
+B 302 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+95 
+B 303 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+96 
+B 304 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+3rd Floor 
+97 
+B 401 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+98 
+B 402 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+99 
+B 403 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+100 
+B 404 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+4th Floor 
+101 
+B 501 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+102 
+B 502 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+103 
+B 503 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+104 
+B 504 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+5th Floor 
+105 
+B 601 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+106 
+B 602 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+107 
+B 603 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+108 
+B 604 
+1140 
+84 
+1 
+1 
+LT-12 CH-84 
+6th Floor 
+109 
+B 701B 
+570 
+42 
+Nil 
+Nil 
+LT-6 BE-6 
+110 
+B 702A 
+570 
+42 
+Nil 
+1 
+LT-6 BE-6 
+111 
+B 702B 
+570 
+42 
+Nil 
+Nil 
+LT-6 BE-6 
+112 
+B 703A 
+570 
+42 
+Nil 
+1 
+LT-6 BE-6 
+113 
+B 703B 
+570 
+42 
+Nil 
+Nil 
+LT-6 BE-6 
+114 
+B 704A 
+570 
+42 
+Nil 
+1 
+LT-6 BE-6 
+115 
+B 704B 
+570 
+42 
+Nil 
+Nil 
+LT-6 BE-6 
+B.ARCH ANNEX 
+Ground Floor 
+116 
+A 001 
+1800 
+120 
+1 
+Nil 
+DT - 40 ST -40 2Seat - 20 
+117 
+A 002 
+900 
+60 
+1 
+Nil 
+2 Seat - 20 
+1st Floor 
+118 
+A 101 
+1800 
+120 
+1 
+Nil 
+DT - 40 ST -40 2Seat - 20 
+119 
+A 102 
+900 
+60 
+1 
+Nil 
+2 Seat - 16           3 Seat - 3 
+2nd Floor 
+120 
+A 201 
+1800 
+120 
+1 
+Nil 
+DT - 40 ST -40 3Seat - 12 
+121 
+A 202 
+900 
+60 
+1 
+Nil 
+2 Seat -20 
+4th Floor 
+122 
+A 401 
+1800 
+120 
+1 
+Nil 
+DT- 40 ST-40 2Seat -6 3Seat 
+- 9 
+123 
+A 402 
+900 
+60 
+1 
+Nil 
+2 Seat -20 
+5th Floor 
+124 
+A 502 
+1800 
+120 
+1 
+Nil 
+DT- 40 ST-40 2Seat -16 
+3Seat -3 
+B.ARCH ANNEX - A ( Ayush ) 
+Ground Floor 
+
+ 
+125 
+AA 002  
+1800 
+120 
+1 
+Nil 
+LT-10 CH-60 
+1st Floor 
+126 
+AA 101 
+900 
+60 
+1 
+Nil 
+LT-10 CH-60 
+127 
+AA 102  
+900 
+60 
+1 
+Nil 
+LT-10 CH-60 
+128 
+AA 103  
+900 
+60 
+1 
+Nil 
+LT-10 CH-60 
+4th Floor 
+129 
+AA 401 
+1800 
+120 
+1 
+Nil 
+DT- 40 ST-40  3Seat DB -10 
+130 
+AA 402 
+900 
+60 
+1 
+Nil 
+2 Seat DB - 25 
+5th Floor 
+131 
+AA 501 
+1800 
+120 
+1 
+Nil 
+DT -40 ST-40 3Seat -2 2Seat 
+-17 
+132 
+AA 502 
+900 
+60 
+1 
+Nil 
+2Seat DB -25 
+B.ARCH ANNEX - B ( Canteen Old ) 
+1st Floor 
+134 
+MA 102 
+1800 
+120 
+1 
+Nil 
+DT -40 ST-40 2Seat DB -20 
+2nd Floor 
+135 
+MA 201 
+1800 
+120 
+1 
+Nil 
+DT -40 ST -40 
+136 
+MA 202 
+900 
+60 
+1 
+Nil 
+DT -15  ST -15 
+137 
+MA 203 
+900 
+60 
+1 
+Nil 
+DT -20 ST -20 3Seat -8 
+3rd Floor 
+138 
+MA 301 
+1800 
+120 
+Nil 
+Nil 
+DT -40 ST -40    2Seat -20 
+139 
+MA 302 
+1800 
+120 
+Nil 
+Nil 
+DT -40 ST -40    2Seat -20 
+FACULTY OF MANAGEMENT 
+Ground Floor 
+140 
+M 003 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+141 
+M 004 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+2nd Floor 
+142 
+M 201 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+143 
+M 202 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+144 
+M 203 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+145 
+M 204 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+146 
+M 205 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+147 
+M 206 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+148 
+M 207 
+800 
+60 
+Nil 
+Nil 
+LT-10 CH-60 
+3rd Floor 
+149 
+M 301 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+150 
+M 302 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+151 
+M 303 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+152 
+M 304 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+153 
+M 305 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+154 
+M 306 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+4th Floor 
+155 
+M 401 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+156 
+M 402 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+157 
+M 403 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+158 
+M 404 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+159 
+M 405/A 
+625 
+30 
+Nil 
+Nil 
+LT-10 CH-60 
+160 
+M 405/B  
+590 
+30 
+1 
+1 
+LT-10 CH-60 
+161 
+M 407 
+1200 
+60 
+1 
+1 
+LT-10 CH-60 
+162 
+M 409 
+400 
+20 
+Nil 
+Nil 
+LT-10 CH-60 
+163 
+M 410 
+370 
+20 
+Nil 
+Nil 
+LT-10 CH-60 
+ 
+Details of Over Head Tank  
+ 
+
+ 
+Sl. 
+No 
+Name of 
+Campus 
+Name of Block 
+No of 
+Tank 
+Type of 
+Tank 
+Capacity 
+In Liters  
+Size in Meter 
+Total 
+Capacity 
+in Liters  
+Remarks 
+Length Breadth Depth 
+1 
+Main 
+Campus 
+CRC  
+2 No 
+Sintex 
+5000 
+- 
+- 
+- 
+10000 
+ 
+Behind CRC 
+1 No 
+Circular 
+Masonry 
+Tank 
+- 
+4.80 
+Dia. 
+1.35 
+24500 
+ 
+Old Library 
+Block 
+1 No 
+Masonry 
+- 
+2.50 
+3.10 
+0.90 
+7000 
+ 
+Main Block 
+1 No 
+Masonry 
+- 
+8.50 
+2.90 
+0.90 
+22000 
+ 
+ 
+1 No 
+Masonry 
+- 
+9.00 
+3.00 
+1.05 
+28000 
+ 
+E.S.Block 
+1 No 
+Masonry 
+- 
+4.90 
+4.50 
+0.90 
+20000 
+ 
+ 
+1 No 
+Masonry 
+- 
+5.00 
+4.50 
+0.90 
+20000 
+ 
+Mech. “C” Block 
+1 No 
+Masonry 
+- 
+4.60 
+3.70 
+0.75 
+12500 
+ 
+Mech. “B” Block  2 No 
+Sintex 
+5000 
+- 
+- 
+- 
+10000 
+ 
+Mech. “A” Block 
+1 No 
+Masonry 
+- 
+8.70 
+1.60 
+0.75 
+10500 
+ 
+P.G. Block 
+1 No 
+Masonry 
+- 
+8.00 
+3.35 
+1.80 
+48000 
+ 
+Canteen Block 
+1 No  Circular 
+Masonry  
+- 
+4.80 
+Dia 
+1.35 
+24800 
+ 
+High Tech  
+1 No 
+Masonry 
+- 
+11.00 
+4.40 
+1.20 
+58000 
+ 
+2 
+Annexure -
+II 
+University 
+Building 
+1 No 
+Masonry 
+- 
+8.00 
+7.70 
+0.90 
+55400 
+ 
+1 No 
+Masonry 
+- 
+8.00 
+7.90 
+0.90 
+57000 
+ 
+Chemical Block 
+1 No 
+Sintex 
+5000 
+- 
+- 
+- 
+5000 
+ 
+3 
+Annexure- 
+I 
+MBA Annexure  
+2 No 
+Sintex  
+5000 
+- 
+- 
+- 
+10000 
+ 
+MBA Block 
+1 No 
+Masonry 
+- 
+11.50 
+3.40 
+1.25 
+49000 
+ 
+New MBA Block 
+(Law) 
+2 No 
+Sintex  
+5000  
+- 
+- 
+- 
+10000 
+ 
+B.Arch 
+Annexure 
+1 No  Sintex  
+2000  
+- 
+- 
+- 
+2000 
+ 
+Bio Tech 
+1 No 
+Masonry 
+- 
+10.65 
+4.65 
+1.25 
+62000 
+ 
+Tech Park 
+8 No 
+Sintex  
+5000  
+- 
+- 
+- 
+40000 
+ 
+Basic Eng. Lab 
+3 No 
+Sintex  
+5000  
+- 
+- 
+- 
+15000 
+ 
+4 
+Old 
+Engineering 
+Staff Qtrs. 
+A Block 
+1 No 
+Sintex 
+5000 
+- 
+- 
+- 
+5000 
+ 
+B Block 
+1 No 
+Sintex 
+5000 
+- 
+- 
+- 
+5000 
+ 
+5 
+Green 
+Pearl 
+Apartment  
+A Block 
+1 No 
+Masonry 
+- 
+14.00 
+1.90 
+1.50 
+40000 
+ 
+B Block 
+1 No 
+Masonry 
+- 
+14.00 
+1.90 
+1.50 
+40000 
+ 
+C Block 
+1 No 
+Masonry 
+- 
+14.00 
+1.90 
+1.50 
+40000 
+ 
+D Block 
+1 No 
+Masonry 
+- 
+3.00 
+3.00 
+1.50 
+13500 
+ 
+1 No 
+Masonry 
+- 
+3.00 
+2.50 
+1.50 
+11200 
+ 
+
+ 
+1 No 
+Masonry 
+- 
+3.00 
+3.00 
+1.50 
+13500 
+ 
+1 No 
+Masonry 
+- 
+3.00 
+3.00 
+1.50 
+13500 
+ 
+1 No 
+Masonry 
+- 
+3.00 
+3.00 
+1.50 
+13500 
+ 
+E Block 
+1 No 
+Masonry 
+- 
+8.00 
+5.00 
+1.50 
+60000 
+ 
+ 
+1 No 
+Masonry 
+- 
+2.00 
+2.00 
+1.50 
+6000 
+ 
+ 
+Rain Water Harvesting Details  
+Sl. No 
+Campus 
+No of Pits 
+1 
+Main Campus 
+4 
+2 
+Annexure – I 
+4 
+Total 
+8 
+ 
+Sl. No 
+Locations 
+Measurement 
+Remarks 
+Annex - I 
+1 
+B.Arch  West side 
+8’0’x6’0”x8’0” 
+1 
+2 
+MBA West side 
+8’0’x6’0”x8’0” 
+1 
+3 
+Law College south side 
+7’9”x6’6”x8’0” 
+1 
+4 
+Tech park west side 
+10’0”x6’0”x8’0” 
+1 
+Main Campus 
+5 
+CRC Block 
+4’X6’X10’ 
+1 
+6 
+Hi - Tech Block 
+4’X6’X10’ 
+2 
+7 
+Automobile Block 
+5’X7’X10’ 
+1 
+Total No of Pits 
+8 
+ 
+Details of R.O Plant in Kattankulathur Campus 
+Sl. 
+No 
+Campus 
+Name of the Building 
+Number 
+of Plant 
+Capacity Remark 
+1 
+Main Campus 
+High Tech Block 
+1 
+1000 Lit 
+ 
+Class Room Complex 
+Block 
+1 
+1000 Lit 
+ 
+2 
+Annexure 
+Campus 
+University Building 
+2 
+1000 Lit 
+ 
+Basic Engineering Block 
+1 
+1000 Lit 
+ 
+Bio Tech Block 
+1 
+1000 Lit 
+ 
+Tech Park  
+2 
+1000 Lit 
+ 
+Sir C.V.Raman 
+Research Park 
+1 
+1000 Lit 
+ 
+3 
+Green Pearl 
+Apartment  
+“A” Block 
+1 
+1000 Lit 
+ 
+
+ 
+Total No of Plants  
+10 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+All campus Bores and open well details Kattankulathur Campus 
+ 
+Sl. No 
+Place 
+Details 
+No of Bores 
+/open well 
+1 
+EO Office Block 
+EO-Office Bore Well 200’ Depth 3 HP Motor 2” X 2” 
+Pipe (6 Hrs) 
+1 
+2 
+Main Block 
+Main Block Bore Well 200’ Depth 3 HP Motor 2” X 
+2” Pipe (6 Hrs) 
+1 
+3 
+PG Block 
+Car Parking Bore Well Near Royal Café Bore Well / 
+300’ Depth 2” X 2” Pipe (5 Hrs) 
+1 
+4 
+Royal Café 
+Check Post Back Side Bore Well 300’ Depth 2” X 
+2” Pipe (5 Hrs.) 
+1 
+ 
+5 
+Back gate 
+Near Backgate Well 25’ dia / 30’ Depth 7 HP motor 
+2”x2” Pipe (7 Hrs) 
+1 
+6 
+Mech-B Block 
+Thermal Lab Well 20; Dia / 30’ Depth 7.5 HP Motor 2” X 
+2” Pipe (5 Hrs) 
+1 
+7 
+Back gate 
+Near Back gate Well 25’ dia / 30 Depth 7 HP motor 2” 
+x@ Pipe (7 Hrs) 
+1 
+ 
+8 
+BEL 
+PG, Tech Park Wells (PG Well 28’ Dia 36 Depth 10 HP Motor 
+2” Outlet Pipe 
+1 
+9 
+Tech park 
+Tech Park Well 36’ Dia 40’ Depth 10 HP Motor 2” 
+Outlet Pipe 4 Hrs 
+1 
+
+ 
+10 
+University Block Play Ground Open Well 36’0” Dia and 46’0” Depth 
+1 
+ 
+ 
+Total 
+10 Nos 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+All Campus Water Cooler Details 
+Sl. No 
+Location 
+No of 
+Coolers 
+Size 
+Remark 
+1 
+Main Campus 
+52 
+40 / 80 
+ 
+2 
+Annexure - I  
+39 
+40 / 80 
+200/200 - (4 Nos) 
+3 
+Annexure - II 
+25 
+40 / 80 
+ 
+4 
+Auditorium  
+4 
+40 / 80 
+ 
+ 
+Total 
+120 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

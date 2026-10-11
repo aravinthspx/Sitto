@@ -1,0 +1,159 @@
+/* src/styles/interactions.css */
+
+/* Core Tilt */
+.tilt-card {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  position: relative;
+  will-change: transform;
+}
+
+.tilt-content {
+  transform: translateZ(20px);
+  transform-style: preserve-3d;
+  backface-visibility: hidden; /* Keep crisp text */
+}
+
+/* Glare overlay */
+.tilt-glare::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--px, 50%) var(--py, 50%), rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+  opacity: 0;
+  transition: opacity 250ms ease-out;
+  transform: translateZ(1px);
+}
+.tilt-card:hover .tilt-glare::after {
+  opacity: 1;
+}
+
+/* Hover Lift */
+.hover-lift {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+.hover-lift:hover, .hover-lift:focus-visible {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(12px);
+  box-shadow: 0 12px 24px rgba(23, 20, 58, 0.15);
+  outline: none;
+}
+.hover-lift:focus-visible {
+  outline: 2px solid #8B6BFF;
+  outline-offset: 4px;
+}
+
+/* Touch Fallbacks */
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Stats Flip Animation */
+@keyframes stats-flip {
+  0% { transform: perspective(400px) rotateX(-90deg); opacity: 0; }
+  100% { transform: perspective(400px) rotateX(0deg); opacity: 1; }
+}
+.stat-flip {
+  animation: stats-flip 600ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-origin: bottom center;
+}
+.stat-hover {
+  transition: transform 200ms ease-out;
+}
+.stat-hover:hover {
+  transform: translateZ(10px) scale(1.05);
+}
+
+/* Ticket Flip-in */
+@keyframes ticket-flip {
+  0% { transform: perspective(1200px) rotateY(90deg); opacity: 0; }
+  100% { transform: perspective(1200px) rotateY(0deg); opacity: 1; }
+}
+.ticket-flip-in {
+  animation: ticket-flip 600ms ease-out forwards;
+  transform-origin: center;
+}
+
+/* Primary Button Press */
+.btn-press {
+  transition: transform 100ms ease-out, box-shadow 100ms ease-out;
+}
+.btn-press:active {
+  transform: translateY(2px);
+  box-shadow: none !important;
+}
+
+/* Page Transition */
+@keyframes page-fade-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.page-transition {
+  animation: page-fade-up 400ms ease-out forwards;
+}
+
+/* Seat Map Container Perspective */
+@media (min-width: 640px) {
+  .seat-grid-perspective {
+    transform: perspective(1200px) rotateX(4deg); /* Static, small tilt */
+    transform-style: flat; /* preserve-3d causes hit-area issues sometimes */
+    padding: 20px;
+    margin: -20px;
+  }
+}
+
+/* Seat Interactions */
+.seat-inner {
+  transition: transform 100ms ease-out, box-shadow 100ms ease-out, background-color 100ms ease-out, border-color 100ms ease-out;
+  will-change: transform;
+}
+.seat-wrapper:hover .seat-inner[data-status="AVAILABLE"] {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.seat-wrapper:active .seat-inner[data-status="AVAILABLE"] {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.seat-inner[data-status="SELECTED"] {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(107, 61, 245, 0.4);
+}
+.seat-wrapper:hover .seat-inner[data-status="SELECTED"] {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 15px rgba(107, 61, 245, 0.6);
+}
+.seat-inner[data-status="OCCUPIED"],
+.seat-inner[data-status="RESERVED"],
+.seat-inner[data-status="UNVERIFIED"] {
+  /* No interaction */
+}
+.seat-wrapper[data-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Reduced Motion Override */
+@keyframes shake-card {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.animate-shake {
+  animation: shake-card 400ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card, .hover-lift, .hover-lift:hover, .hover-lift:focus-visible, 
+  .stat-flip, .stat-hover, .stat-hover:hover, .ticket-flip-in, 
+  .btn-press, .btn-press:active, .page-transition, .seat-grid-perspective,
+  .seat-btn, .seat-btn:hover, .seat-btn:active, .seat-btn[aria-pressed="true"],
+  .animate-shake {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

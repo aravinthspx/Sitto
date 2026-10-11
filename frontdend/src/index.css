@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "./styles/interactions.css";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-heading: "Sora", sans-serif;
+
+  --color-brand-ink: #0F0D26;
+  --color-brand-ink-light: #17143A;
+  --color-brand-violet: #6B3DF5;
+  --color-brand-violet-light: #8B6BFF;
+  --color-brand-lavender: #F6F5FB;
+
+  --color-background: var(--color-brand-lavender);
+  --color-foreground: var(--color-brand-ink);
+  
+  --color-card: #ffffff;
+  --color-card-foreground: var(--color-brand-ink);
+
+  --color-primary: var(--color-brand-violet);
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: var(--color-brand-ink);
+
+  --color-muted: #e2e8f0;
+  --color-muted-foreground: #64748b;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: var(--color-brand-violet-light);
+
+  --color-status-available: #10b981;
+  --color-status-reserved: #eab308;
+  --color-status-occupied: #ef4444;
+  --color-status-unverified: #f59e0b;
+  --color-status-selected: #3b82f6;
+
+  --radius-lg: 1.375rem; /* ~22px for cards */
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
