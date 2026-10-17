@@ -13,6 +13,8 @@ import { NotificationsPage } from '../pages/NotificationsPage';
 import { AdminRoute } from '../components/layout/AdminRoute';
 import { CheckInPage } from '../pages/CheckInPage';
 import { AdminDashboardPage } from '../pages/AdminDashboardPage';
+import { PrivacyPolicyPage } from '../legal/PrivacyPolicyPage';
+import { CookiePolicyPage } from '../legal/CookiePolicyPage';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
@@ -29,6 +31,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/update-password" element={<UpdatePasswordPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
+      <Route path="/cookies" element={<CookiePolicyPage />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<AppShell />}>
           <Route path="/" element={<HomeRedirect />} />
@@ -44,6 +48,7 @@ export function AppRoutes() {
           </Route>
         </Route>
       </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

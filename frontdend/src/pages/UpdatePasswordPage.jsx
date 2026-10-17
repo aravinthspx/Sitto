@@ -26,6 +26,8 @@ export function UpdatePasswordPage() {
       const refresh_token = params.get('refresh_token');
       if (access_token && refresh_token) {
         setTokens({ access_token, refresh_token });
+        // Remove the tokens from the address bar and browser history straight away
+        window.history.replaceState(null, '', window.location.pathname);
       } else {
         setError('Invalid or expired reset link. Please try again.');
       }
@@ -34,7 +36,7 @@ export function UpdatePasswordPage() {
     }
   }, []);
 
-  const isValid = password.length >= 6 && password === confirmPassword && tokens.access_token;
+  const isValid = password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password) && password === confirmPassword && tokens.access_token;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,7 +92,7 @@ export function UpdatePasswordPage() {
                     required
                   />
                   <label htmlFor="password" className="absolute left-4 top-2 text-xs font-medium text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-xs peer-focus:font-medium peer-focus:text-[#6B3DF5] cursor-text">
-                    New Password (min 6 chars)
+                    New Password (8+ chars, letters & numbers)
                   </label>
                   <button
                     type="button"

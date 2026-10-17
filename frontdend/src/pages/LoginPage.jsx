@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { signup, resetPassword } from '../services/authService';
-import { USE_MOCK } from '../services/config';
 import { Button } from '../components/common/Button';
 import SITTOLogo from '../components/common/SITTOLogo';
+import { LegalLinks } from '../legal/LegalLinks';
+import { Link } from 'react-router-dom';
 import { 
   Eye, 
   EyeOff, 
@@ -35,6 +36,7 @@ export function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [rememberEmail, setRememberEmail] = useState(!!localStorage.getItem('remembered_email'));
 
   // Feedback & Validation States
@@ -88,7 +90,8 @@ export function LoginPage() {
   };
 
   const isValidLogin = email && isEmailValid(email) && password;
-  const isValidSignup = email && isEmailValid(email) && password.length >= 6 && password === confirmPassword && name;
+  const passwordStrongEnough = password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
+  const isValidSignup = email && isEmailValid(email) && passwordStrongEnough && password === confirmPassword && name.trim() && acceptedPrivacy;
   const isValidForgot = email && isEmailValid(email);
 
   const handleSubmit = async (e) => {
@@ -102,7 +105,7 @@ export function LoginPage() {
     try {
       if (mode === 'signup') {
         if (!isValidSignup) return;
-        const res = await signup({ email, password, name });
+        const res = await signup({ email, password, name, acceptedPrivacy });
         setSuccessMsg(res.message || 'Signup successful. Check your email to verify your account.');
         modeTimer.current = setTimeout(() => setMode('login'), 3000);
       } else if (mode === 'forgot') {
@@ -149,18 +152,6 @@ export function LoginPage() {
   if (user && !loading) {
     return <Navigate to={user.role === 'admin' ? '/admin' : '/'} replace />;
   }
-
-  const handleMockLogin = (mockRole) => {
-    if (mockRole === 'admin') {
-      setEmail('admin@sitto.edu');
-      setPassword('admin123');
-      handleRoleSwitch('admin');
-    } else {
-      setEmail('student@sitto.edu');
-      setPassword('student123');
-      handleRoleSwitch('student');
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
@@ -278,6 +269,8 @@ export function LoginPage() {
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        autoComplete="name"
+                        maxLength={100}
                         placeholder="e.g. Maya Sharma"
                         required
                         className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
@@ -301,7 +294,8 @@ export function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onBlur={handleEmailBlur}
-                      placeholder={role === 'admin' ? 'admin@srmist.edu.in' : 'student@srmist.edu.in'}
+                      placeholder={role === 'admin' ? 'staff@srmist.edu.in' : 'you@srmist.edu.in'}
+                      autoComplete="email"
                       required
                       className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
                     />
@@ -340,6 +334,7 @@ export function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         onKeyUp={handleKeyUp}
+                        autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
                         placeholder="••••••••"
                         required
                         className="w-full h-11 pl-10 pr-11 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
@@ -353,6 +348,11 @@ export function LoginPage() {
                         {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
+                    {mode === 'signup' && password && !passwordStrongEnough && (
+                      <p className="text-xs font-medium text-[#4B4670] mt-1 ml-1">
+                        Use at least 8 characters with letters and numbers.
+                      </p>
+                    )}
                     {capsLock && (
                       <p className="text-xs font-medium text-amber-600 mt-1 ml-1">
                         ⚠️ Caps Lock is on
@@ -376,11 +376,35 @@ export function LoginPage() {
                         type={showPassword ? 'text' : 'password'}
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        autoComplete="new-password"
                         placeholder="••••••••"
                         required
                         className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
                       />
                     </div>
+                  </div>
+                )}
+
+                {mode === 'signup' && confirmPassword && password !== confirmPassword && (
+                  <p className="text-xs font-medium text-red-500 -mt-2 ml-1">Passwords do not match</p>
+                )}
+
+                {/* Privacy consent (Signup only) */}
+                {mode === 'signup' && (
+                  <div className="flex items-start gap-2 pt-0.5">
+                    <input
+                      id="privacy-checkbox"
+                      type="checkbox"
+                      checked={acceptedPrivacy}
+                      onChange={(e) => setAcceptedPrivacy(e.target.checked)}
+                      required
+                      className="mt-0.5 w-4 h-4 rounded border-gray-300 cursor-pointer accent-[#6B3DF5]"
+                    />
+                    <label htmlFor="privacy-checkbox" className="text-xs font-medium text-gray-600 cursor-pointer">
+                      I have read the{' '}
+                      <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#6B3DF5] underline">Privacy Policy</Link>{' '}
+                      and agree to SITTO processing my data as described there.
+                    </label>
                   </div>
                 )}
 
@@ -457,38 +481,11 @@ export function LoginPage() {
                 )}
               </div>
 
-              {/* Quick Demo Credentials (Mock Mode Only) */}
-              {USE_MOCK && mode === 'login' && (
-                <div className="mt-4 pt-3 border-t border-white/50">
-                  <p className="text-[10px] text-center text-gray-400 mb-2 uppercase tracking-wider font-bold">
-                    Demo Quick-Fill
-                  </p>
-                  <div className="flex gap-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 text-xs h-8 rounded-lg border-white/60 bg-white/40 text-[#3B3568] hover:bg-white/70 hover:text-[#0F0D26]"
-                      onClick={() => handleMockLogin('student')}
-                    >
-                      Student Demo
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 text-xs h-8 rounded-lg border-white/60 bg-white/40 text-[#3B3568] hover:bg-white/70 hover:text-[#0F0D26]"
-                      onClick={() => handleMockLogin('admin')}
-                    >
-                      Admin Demo
-                    </Button>
-                  </div>
-                </div>
-              )}
-
             </div>
           </div>
         </div>
+
+        <LegalLinks className="mt-5 justify-center" />
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
-import uuid
+import secrets
 from datetime import datetime, timedelta, timezone
 from flask import Blueprint, jsonify, request, g
 from app.database.connection import supabase
+from app.security import server_error
 from app.middleware.auth import require_auth
 
 reservations_bp = Blueprint('reservations', __name__, url_prefix='/api/reservations')
@@ -38,13 +39,55 @@ def _notify(user_id, notif_type, title, message, reservation_id=None, expires_at
 
 
 def generate_qr_token():
-    return f"QR_{uuid.uuid4().hex}"
+    # 256 bits of randomness — the QR token is the proof of a booking at check-in
+    return f"QR_{secrets.token_hex(32)}"
+
+
+def _parse_iso(value):
+    if not isinstance(value, str) or len(value) > 40:
+        return None
+    try:
+        dt = datetime.fromisoformat(value.replace('Z', '+00:00'))
+    except ValueError:
+        return None
+    # Naive timestamps are ambiguous — require an explicit offset
+    return dt if dt.tzinfo else None
+
+
+def validate_booking_window(start_dt, end_dt, now=None):
+    """Return an error message if the requested slot breaks booking rules, else None."""
+    from app.config import Config
+    now = now or datetime.now(timezone.utc)
+    campus_tz = timezone(timedelta(minutes=Config.CAMPUS_UTC_OFFSET_MINS))
+
+    if end_dt <= start_dt:
+        return "End time must be after start time."
+    duration = end_dt - start_dt
+    if duration < timedelta(minutes=30):
+        return "Bookings must be at least 30 minutes long."
+    if duration > timedelta(hours=Config.MAX_BOOKING_HOURS):
+        return f"Bookings can be at most {Config.MAX_BOOKING_HOURS} hours long."
+    if start_dt < now - timedelta(minutes=5):
+        return "You can't book a time slot that has already started."
+    if start_dt > now + timedelta(days=Config.MAX_BOOKING_DAYS_AHEAD + 1):
+        return f"Bookings open at most {Config.MAX_BOOKING_DAYS_AHEAD} days in advance."
+
+    local_start = start_dt.astimezone(campus_tz)
+    local_end = end_dt.astimezone(campus_tz)
+    if local_start.date() != local_end.date():
+        return "Bookings must start and end on the same day."
+    open_at = local_start.replace(hour=Config.BOOKING_START_HOUR, minute=0, second=0, microsecond=0)
+    close_at = local_start.replace(hour=Config.BOOKING_END_HOUR, minute=0, second=0, microsecond=0)
+    if local_start < open_at or local_end > close_at:
+        return (f"Seats can only be booked between {Config.BOOKING_START_HOUR:02d}:00 "
+                f"and {Config.BOOKING_END_HOUR:02d}:00.")
+    return None
 
 
 @reservations_bp.route('', methods=['POST'])
 @require_auth
 def create_reservation():
-    data = request.json or {}
+    data = request.get_json(silent=True) or {}
     space_id = data.get('space_id')
     seat_label = data.get('seat_id')  # Frontend sends label as ID
     start = data.get('start')
@@ -52,6 +95,19 @@ def create_reservation():
 
     if not all([space_id, seat_label, start, end]):
         return jsonify({"message": "Missing required fields"}), 400
+    if not all(isinstance(v, str) and len(v) <= 64 for v in (space_id, seat_label)):
+        return jsonify({"message": "Invalid space or seat"}), 400
+
+    start_dt = _parse_iso(start)
+    end_dt = _parse_iso(end)
+    if not start_dt or not end_dt:
+        return jsonify({"message": "Start and end must be ISO-8601 timestamps with a timezone."}), 400
+    window_error = validate_booking_window(start_dt, end_dt)
+    if window_error:
+        return jsonify({"message": window_error}), 400
+    # Store normalised UTC timestamps
+    start = start_dt.astimezone(timezone.utc).isoformat()
+    end = end_dt.astimezone(timezone.utc).isoformat()
 
     try:
         # 1. Validate space type
@@ -88,8 +144,7 @@ def create_reservation():
             return jsonify({"message": f"You can select up to {Config.MAX_SEATS_PER_STUDENT} seats per session"}), 400
 
         # 4. Create reservation
-        res_id = f"RES{str(uuid.uuid4().int)[:8]}"
-        start_dt = datetime.fromisoformat(start.replace('Z', '+00:00'))
+        res_id = f"RES{secrets.token_hex(5).upper()}"
         deadline = (start_dt + timedelta(minutes=15)).isoformat()
 
         new_res = {
@@ -109,7 +164,6 @@ def create_reservation():
 
         # 5. F1 — Booking confirmed notification
         start_local = start_dt.astimezone(timezone(timedelta(hours=5, minutes=30)))
-        end_dt = datetime.fromisoformat(end.replace('Z', '+00:00'))
         end_local = end_dt.astimezone(timezone(timedelta(hours=5, minutes=30)))
         date_str = start_local.strftime('%d %b %Y')
         start_str = start_local.strftime('%I:%M %p')
@@ -137,10 +191,10 @@ def create_reservation():
         }), 201
 
     except Exception as e:
-        err = str(e)
-        if "overlapping" in err.lower() or "exclude" in err.lower():
+        err = str(e).lower()
+        if "overlapping" in err or "exclude" in err or "23p01" in err:
             return jsonify({"message": "Seat is no longer available for the selected time."}), 409
-        return jsonify({"message": err}), 500
+        return server_error(e)
 
 
 @reservations_bp.route('/me', methods=['GET'])
@@ -169,7 +223,7 @@ def get_my_reservations():
             })
         return jsonify(output), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 
 @reservations_bp.route('/<res_id>', methods=['GET'])
@@ -201,9 +255,7 @@ def get_reservation(res_id):
             "qrToken": r['qr_token']
         }), 200
     except Exception as e:
-        import traceback
-        traceback.print_exc()
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 
 @reservations_bp.route('/<res_id>/checkin', methods=['POST'])
@@ -213,7 +265,7 @@ def check_in(res_id):
         return jsonify({"message": "Admin access required for check-in"}), 403
 
     try:
-        data = request.json or {}
+        data = request.get_json(silent=True) or {}
         qr_token = data.get('qr_token')
 
         res = supabase.table('reservations').select('*').eq('id', res_id).execute()
@@ -262,7 +314,7 @@ def check_in(res_id):
         return jsonify(r), 200
 
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 
 @reservations_bp.route('/<res_id>/checkout', methods=['POST'])
@@ -310,7 +362,7 @@ def check_out(res_id):
         return jsonify(r), 200
 
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 
 @reservations_bp.route('/<res_id>/cancel', methods=['POST'])
@@ -348,4 +400,4 @@ def cancel(res_id):
         return jsonify(r), 200
 
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)

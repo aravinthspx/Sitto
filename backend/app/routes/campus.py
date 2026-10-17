@@ -1,9 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.database.connection import supabase
+from app.middleware.auth import require_auth
+from app.security import server_error
 
 campus_bp = Blueprint('campus', __name__, url_prefix='/api')
 
 @campus_bp.route('/buildings', methods=['GET'])
+@require_auth
 def get_buildings():
     try:
         include_all = request.args.get('include_all')
@@ -23,9 +26,10 @@ def get_buildings():
                     
         return jsonify(buildings), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @campus_bp.route('/floors', methods=['GET'])
+@require_auth
 def get_floors():
     building_id = request.args.get('building_id')
     try:
@@ -52,9 +56,10 @@ def get_floors():
                     
         return jsonify(floors), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @campus_bp.route('/spaces', methods=['GET'])
+@require_auth
 def get_spaces():
     floor_id = request.args.get('floor_id')
     try:
@@ -80,9 +85,10 @@ def get_spaces():
             
         return jsonify(spaces), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @campus_bp.route('/seats', methods=['GET'])
+@require_auth
 def get_seats():
     space_id = request.args.get('space_id')
     start = request.args.get('start')
@@ -145,4 +151,4 @@ def get_seats():
         }), 200
         
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)

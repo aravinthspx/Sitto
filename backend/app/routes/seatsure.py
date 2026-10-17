@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, g
 from app.database.connection import supabase
+from app.security import server_error
 from app.middleware.auth import require_auth
 from datetime import datetime, timezone
 
@@ -31,7 +32,7 @@ def respond_to_seatsure(task_id):
     except ValueError:
         return jsonify({"message": "Invalid verification task ID."}), 400
 
-    data = request.json or {}
+    data = request.get_json(silent=True) or {}
     response = data.get('response')  # 'YES' or 'NO'
 
     if response not in ['YES', 'NO']:
@@ -94,12 +95,12 @@ def respond_to_seatsure(task_id):
             return jsonify({"success": True, "message": "Seat released. Thank you!"}), 200
 
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @seatsure_bp.route('/respond-active', methods=['POST'])
 @require_auth
 def respond_active():
-    data = request.json or {}
+    data = request.get_json(silent=True) or {}
     response = data.get('response')
 
     if response not in ['YES', 'NO']:
@@ -175,4 +176,4 @@ def respond_active():
             return jsonify({"success": True, "message": "Seat released. Thank you!"}), 200
 
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)

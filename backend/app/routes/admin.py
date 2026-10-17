@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, g, request
 from app.database.connection import supabase
-from app.middleware.auth import require_auth
+from app.security import server_error
+from app.middleware.auth import authenticate_request
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
 
@@ -9,75 +10,20 @@ def is_admin():
 
 @admin_bp.before_request
 def check_admin():
-    from flask import request as _req
     # Let CORS handle OPTIONS preflights — no auth needed
-    if _req.method == 'OPTIONS':
+    if request.method == 'OPTIONS':
         return None
-    # All other requests must be authenticated admin
-    from app.middleware.auth import require_auth as _require_auth
-    # Manually invoke require_auth logic inline
-    from flask import jsonify as _jsonify
-    auth_header = _req.headers.get("Authorization")
-    if not auth_header or not auth_header.startswith("Bearer "):
-        return _jsonify({"message": "Missing or invalid authorization header"}), 401
-
-    import jwt
-    from app.config import Config
-    from app.database.connection import supabase as _supabase
-    import flask.globals as _fg
-
-    token = auth_header.split(" ")[1]
-    try:
-        unverified_headers = jwt.get_unverified_header(token)
-        alg = unverified_headers.get("alg")
-        if alg != "ES256":
-            return _jsonify({"message": f"Only ES256 tokens are supported. Got: {alg}"}), 401
-
-        from app.middleware.auth import _jwk_client as _cached_client
-        import app.middleware.auth as _auth_mod
-        if _auth_mod._jwk_client is None:
-            jwks_url = f"{Config.SUPABASE_URL}/auth/v1/.well-known/jwks.json"
-            _auth_mod._jwk_client = jwt.PyJWKClient(jwks_url)
-
-        signing_key = _auth_mod._jwk_client.get_signing_key_from_jwt(token)
-        issuer = f"{Config.SUPABASE_URL}/auth/v1"
-        payload = jwt.decode(
-            token,
-            signing_key.key,
-            algorithms=["ES256"],
-            audience="authenticated",
-            issuer=issuer
-        )
-
-        user_id = payload.get("sub")
-        if not user_id:
-            return _jsonify({"message": "Invalid token payload"}), 401
-
-        from flask import g
-        res = _supabase.table("profiles").select("role, name").eq("id", user_id).execute()
-        profile = res.data[0] if res.data else {"role": "student", "name": "Unknown"}
-        g.user = {
-            "id": user_id,
-            "role": profile.get("role", "student"),
-            "name": profile.get("name")
-        }
-
-        if g.user.get("role") != "admin":
-            return _jsonify({"message": "Admin access required"}), 403
-
-    except jwt.ExpiredSignatureError:
-        return _jsonify({"message": "Token expired"}), 401
-    except jwt.InvalidTokenError as e:
-        return _jsonify({"message": f"Invalid token: {str(e)}"}), 401
-    except Exception as e:
-        import traceback
-        traceback.print_exc()
-        return _jsonify({"message": f"Auth error: {str(e)}"}), 500
+    # Every other admin request must come from an authenticated admin
+    user, error = authenticate_request()
+    if error:
+        return error
+    if user["role"] != "admin":
+        return jsonify({"message": "Admin access required"}), 403
 
 @admin_bp.route('/verify', methods=['POST'])
 def verify_reservation():
     try:
-        data = request.json or {}
+        data = request.get_json(silent=True) or {}
         qr_token = data.get('qr_token')
         manual_code = data.get('manual_code')
         
@@ -110,7 +56,7 @@ def verify_reservation():
         }), 200
         
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @admin_bp.route('/stats', methods=['GET'])
 def get_stats():
@@ -123,7 +69,7 @@ def get_stats():
             "current_occupancy": occ_count.count
         }), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @admin_bp.route('/tasks', methods=['GET'])
 def get_tasks():
@@ -131,11 +77,11 @@ def get_tasks():
         res = supabase.table('admin_verification_tasks').select('*, occupancy_session:occupancy_sessions(*)').eq('status', 'PENDING').execute()
         return jsonify(res.data), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 @admin_bp.route('/tasks/<task_id>/resolve', methods=['POST'])
 def resolve_task(task_id):
-    data = request.json
+    data = request.get_json(silent=True) or {}
     resolution = data.get('resolution') # 'PRESENT' or 'ABSENT'
     
     if resolution not in ['PRESENT', 'ABSENT']:
@@ -165,7 +111,7 @@ def resolve_task(task_id):
             
         return jsonify({"success": True, "message": f"Marked as {resolution}"}), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 from datetime import datetime, timezone
 
 def _get_dashboard_data(supabase):
@@ -263,7 +209,7 @@ def admin_dashboard():
         data = _get_dashboard_data(supabase)
         return jsonify(data), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)
 
 def _get_room_details(supabase, space_id):
     res_space = supabase.table('spaces').select('id, name, type, floors(name, buildings(name))').eq('id', space_id).execute()
@@ -353,4 +299,4 @@ def admin_room_details(space_id):
             return jsonify({"message": "Room not found"}), 404
         return jsonify(data), 200
     except Exception as e:
-        return jsonify({"message": str(e)}), 500
+        return server_error(e)

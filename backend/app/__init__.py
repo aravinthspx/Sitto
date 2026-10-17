@@ -1,12 +1,36 @@
+import logging
+
 from flask import Flask, jsonify
 from flask_cors import CORS
+
+from app.config import Config
+from app.security import init_security
+
 
 def create_app():
     app = Flask(__name__)
 
-    # Allow the Vite dev server and production origin
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
+
+    # Only the configured frontend origins may call the API from a browser.
     # Credentials are NOT used here; the frontend sends the JWT in Authorization header
-    CORS(app, origins="*", supports_credentials=False)
+    CORS(
+        app,
+        resources={r"/api/*": {"origins": Config.ALLOWED_ORIGINS}},
+        supports_credentials=False,
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        max_age=600,
+    )
+    if Config.IS_PRODUCTION and not Config.ALLOWED_ORIGINS:
+        logging.getLogger("sitto").warning(
+            "ALLOWED_ORIGINS is empty — browsers on other origins cannot call the API."
+        )
+
+    init_security(app)
 
     from app.routes.auth import auth_bp
     from app.routes.campus import campus_bp
@@ -31,12 +55,12 @@ def create_app():
                 db_status = "not_configured"
             else:
                 supabase.table("profiles").select("id").limit(1).execute()
-        except Exception as e:
-            db_status = f"error"
-        return jsonify({"status": "healthy", "database": db_status, "version": "1.0.0"}), 200
+        except Exception:
+            db_status = "error"
+        return jsonify({"status": "healthy", "database": db_status}), 200
 
     @app.route('/api')
     def api_root():
-        return jsonify({"message": "Sitto API running", "version": "1.0.0"}), 200
+        return jsonify({"message": "Sitto API running"}), 200
 
     return app

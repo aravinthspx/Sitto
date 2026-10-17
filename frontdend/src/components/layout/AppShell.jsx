@@ -20,6 +20,7 @@ import {
 import { useState, useEffect, useCallback } from 'react';
 import { getUnreadCount } from '../../services/notificationService';
 import { apiClient } from '../../services/apiClient';
+import { LegalLinks } from '../../legal/LegalLinks';
 
 export function AppShell() {
   const { user, logout } = useAuth();
@@ -263,11 +264,7 @@ export function AppShell() {
             <span>•</span>
             <span>SRM Institute of Science and Technology, Kattankulathur</span>
           </div>
-          <div className="flex items-center space-x-4 text-gray-400">
-            <span>Library & Lab Live Telemetry</span>
-            <span>•</span>
-            <span>SeatSure™ Verified</span>
-          </div>
+          <LegalLinks />
         </div>
       </footer>
     </div>

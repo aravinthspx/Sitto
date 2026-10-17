@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, g
 from app.database.connection import supabase
+from app.security import server_error
 from app.middleware.auth import require_auth
 
 notifications_bp = Blueprint('notifications', __name__, url_prefix='/api/notifications')
@@ -30,7 +31,7 @@ def get_notifications():
             )
         return jsonify(res.data), 200
     except Exception as e:
-        return jsonify({'message': str(e)}), 500
+        return server_error(e)
 
 
 @notifications_bp.route('/unread-count', methods=['GET'])
@@ -47,9 +48,7 @@ def unread_count():
         )
         return jsonify({'count': res.count or 0}), 200
     except Exception as e:
-        import traceback
-        traceback.print_exc()
-        return jsonify({'message': str(e)}), 500
+        return server_error(e)
 
 
 @notifications_bp.route('/<notif_id>/read', methods=['POST'])
@@ -67,7 +66,7 @@ def mark_read(notif_id):
         supabase.table('notifications').update({'is_read': True}).eq('id', notif_id).execute()
         return jsonify({'success': True}), 200
     except Exception as e:
-        return jsonify({'message': str(e)}), 500
+        return server_error(e)
 
 
 @notifications_bp.route('/read-all', methods=['POST'])
@@ -78,7 +77,7 @@ def mark_all_read():
         supabase.table('notifications').update({'is_read': True}).eq('user_id', g.user['id']).execute()
         return jsonify({'success': True}), 200
     except Exception as e:
-        return jsonify({'message': str(e)}), 500
+        return server_error(e)
 
 
 # ─── Internal helper (used by other routes) ─────────────────────────────────

@@ -63,7 +63,12 @@ export async function signup(credentials) {
     await mockStore.delay();
     return { message: "Signup successful. Check your email to verify your account." };
   }
-  return apiClient.post('/auth/signup', credentials);
+  return apiClient.post('/auth/signup', {
+    email: credentials.email,
+    password: credentials.password,
+    name: credentials.name,
+    accepted_privacy: credentials.acceptedPrivacy === true,
+  });
 }
 
 export async function resetPassword(email) {

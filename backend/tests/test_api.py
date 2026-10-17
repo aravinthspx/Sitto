@@ -1,13 +1,5 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from app import create_app
-
-@pytest.fixture
-def client():
-    app = create_app()
-    app.config['TESTING'] = True
-    with app.test_client() as client:
-        yield client
 
 def test_missing_auth_headers(client):
     rv = client.get('/api/auth/me')
@@ -33,17 +25,18 @@ def test_valid_auth(mock_supabase, mock_decode, client):
         assert b"Test Student" in rv.data
 
 @patch('app.routes.campus.supabase')
-def test_get_buildings(mock_supabase, client):
+def test_get_buildings(mock_supabase, client, login_as):
     mock_res = MagicMock()
     mock_res.data = [{"id": "BLD01", "name": "CSE Block"}]
     mock_supabase.table().select().execute.return_value = mock_res
     
-    rv = client.get('/api/buildings?include_all=1')
+    with login_as() as headers:
+        rv = client.get('/api/buildings?include_all=1', headers=headers)
     assert rv.status_code == 200
     assert b"CSE Block" in rv.data
 
 @patch('app.routes.campus.supabase')
-def test_get_seats(mock_supabase, client):
+def test_get_seats(mock_supabase, client, login_as):
     # Mock spaces query
     mock_space_res = MagicMock()
     mock_space_res.data = [{"id": "LAB001", "name": "Lab 1", "floor_id": "FL02", "capacity": 30, "type": "Lab"}]
@@ -66,7 +59,8 @@ def test_get_seats(mock_supabase, client):
     chain_mock.execute.return_value = MagicMock(data=[])
     mock_supabase.table().select().eq().in_().lt().gt.return_value = chain_mock
     
-    rv = client.get('/api/seats?space_id=LAB001&start=2024-01-01T10:00:00Z&end=2024-01-01T11:00:00Z')
+    with login_as() as headers:
+        rv = client.get('/api/seats?space_id=LAB001&start=2024-01-01T10:00:00Z&end=2024-01-01T11:00:00Z', headers=headers)
     assert rv.status_code == 200
     assert b"S01" in rv.data
 

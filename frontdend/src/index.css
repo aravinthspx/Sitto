@@ -3,8 +3,8 @@
 @import "./styles/glass.css";
 
 @theme {
-  --font-sans: "DM Sans", sans-serif;
-  --font-heading: "Sora", sans-serif;
+  --font-sans: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+  --font-heading: "Sora Variable", "Sora", system-ui, sans-serif;
 
   --color-brand-ink: #0F0D26;
   --color-brand-ink-light: #17143A;

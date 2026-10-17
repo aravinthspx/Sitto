@@ -53,6 +53,11 @@ else:
 
 IST = timezone(timedelta(hours=5, minutes=30))
 
+# Data retention (must match the periods stated in the Privacy Policy,
+# frontdend/src/legal/siteInfo.js)
+RETENTION_BOOKINGS_DAYS = int(os.environ.get('RETENTION_BOOKINGS_DAYS', '365'))
+RETENTION_NOTIFICATIONS_DAYS = int(os.environ.get('RETENTION_NOTIFICATIONS_DAYS', '90'))
+
 
 # --------------------------------------------------------------------------- #
 #  Notification helper                                                         #
@@ -372,6 +377,28 @@ def _lookup_seat_label_from_session(occ_id):
 
 
 # --------------------------------------------------------------------------- #
+#  Data retention                                                              #
+# --------------------------------------------------------------------------- #
+def purge_expired_data():
+    """Delete personal data older than the retention periods in the Privacy Policy.
+
+    Deleting a reservation cascades to its occupancy session, SeatSure tasks and
+    admin verification tasks.
+    """
+    now = datetime.now(timezone.utc)
+    try:
+        cutoff = (now - timedelta(days=RETENTION_NOTIFICATIONS_DAYS)).isoformat()
+        supabase.table('notifications').delete().lt('created_at', cutoff).execute()
+
+        cutoff = (now - timedelta(days=RETENTION_BOOKINGS_DAYS)).isoformat()
+        supabase.table('reservations').delete()             .lt('end_time', cutoff)             .not_.in_('status', ['RESERVED', 'CHECKED_IN'])             .execute()
+        print(f"[scheduler/retention] Purged notifications > {RETENTION_NOTIFICATIONS_DAYS}d "
+              f"and bookings > {RETENTION_BOOKINGS_DAYS}d")
+    except Exception as e:
+        print(f"[scheduler/retention] Error: {e}")
+
+
+# --------------------------------------------------------------------------- #
 #  Entry point                                                                 #
 # --------------------------------------------------------------------------- #
 def start_scheduler():
@@ -379,6 +406,8 @@ def start_scheduler():
     print(f"[scheduler] Starting SeatSure worker — Mode: {mode}")
     print(f"[scheduler] Student window: {STUDENT_WINDOW_SECS}s | Admin window: {ADMIN_WINDOW_SECS}s")
     schedule.every(10).seconds.do(sweep_deadlines)
+    schedule.every().day.at("03:00").do(purge_expired_data)
+    purge_expired_data()
     while True:
         schedule.run_pending()
         time.sleep(1)
