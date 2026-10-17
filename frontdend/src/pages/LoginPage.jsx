@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useNavigate } from '../hooks/useNavigate';
 import { useAuth } from '../hooks/useAuth';
 import { signup, resetPassword } from '../services/authService';
@@ -24,6 +24,14 @@ import {
 export function LoginPage() {
   const { login, logout, user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  // Page the user was sent here from (e.g. tapping a phone notification)
+  const from = location.state?.from;
+  const returnTo = (role) => {
+    const path = from ? `${from.pathname}${from.search || ''}` : null;
+    if (role === 'admin') return path?.startsWith('/admin') ? path : '/admin';
+    return path && !path.startsWith('/admin') ? path : '/';
+  };
 
   // Role: 'student' | 'admin'
   const [role, setRole] = useState('student');
@@ -139,7 +147,7 @@ export function LoginPage() {
           return;
         }
 
-        navigate(userRole === 'admin' ? '/admin' : '/', { replace: true });
+        navigate(returnTo(userRole), { replace: true });
       }
     } catch (err) {
       setError(err.message || 'Authentication failed. Please verify your credentials.');
@@ -151,7 +159,7 @@ export function LoginPage() {
 
   // Already signed in (e.g. back button or bookmarked /login) — skip the form
   if (user && !loading) {
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/'} replace />;
+    return <Navigate to={returnTo(user.role)} replace />;
   }
 
   return (

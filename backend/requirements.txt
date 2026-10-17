@@ -11,3 +11,4 @@ cryptography==50.0.0
 gunicorn==22.0.0
 websockets==15.0.1
 Flask-Limiter==3.8.0
+pywebpush==2.0.3

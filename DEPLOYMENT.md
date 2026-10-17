@@ -21,6 +21,7 @@ The database and logins are hosted by Supabase.
 - **Project Settings → API:** the backend needs the **secret / service-role** key. It must only ever be on the server. Never put it in the frontend or in git.
 - **Database → Tables:** confirm row-level security is **enabled with no policies** on every table, as in `backend/app/database/schema.sql`. Only the backend (service role) may read or write data.
 - Delete any test or demo accounts, for example `admin@sitto.edu` or `student@sitto.edu`, which appear in old scripts in `backend/`.
+- **Database → SQL Editor:** run `backend/migrations/002_push_subscriptions.sql` once. It creates the table for phone notifications.
 - To make a staff member an admin, set `role = 'admin'` on their row in `public.profiles`. The app never lets users choose their own role.
 
 ## 2. Backend
@@ -30,6 +31,12 @@ cd backend
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
 cp .env.example .env    # then fill in every value
+```
+
+Generate this environment's Web Push keys (phone notifications) and add the output to `.env`:
+
+```bash
+.venv/bin/python scripts/generate_vapid_keys.py
 ```
 
 Required production values in `backend/.env`:
@@ -133,4 +140,5 @@ server {
 - [ ] Signing up with a non-college email is refused.
 - [ ] A student account gets "Admin access required" on `/admin`.
 - [ ] The legal placeholders in `siteInfo.js` are filled in and the policies are approved by the college.
+- [ ] On a phone, Notifications → **Turn on notifications** → **Send test notification** arrives. On iPhone, add SITTO to the Home Screen first.
 - [ ] Database backups (Supabase → Database → Backups) are enabled.

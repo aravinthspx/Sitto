@@ -75,6 +75,8 @@ function NotifIcon({ type }) {
 }
 
 // ─── Main page ─────────────────────────────────────────────────────────────
+import { PushSettingsCard } from '../components/notifications/PushSettingsCard';
+
 export function NotificationsPage() {
   const { user } = useAuth();
   const [notifications, setNotifications] = useState([]);
@@ -237,6 +239,8 @@ export function NotificationsPage() {
           </Button>
         )}
       </div>
+
+      <PushSettingsCard />
 
       {actionMessage && (
         <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-xl text-xs font-semibold flex justify-between items-center shadow-2xs animate-in fade-in">

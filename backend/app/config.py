@@ -58,6 +58,14 @@ class Config:
     # Rate limiting (Flask-Limiter). Use redis://... when running several workers.
     RATELIMIT_STORAGE_URI = _env("RATELIMIT_STORAGE_URI", "memory://")
 
+    # Web Push (phone notifications). Generate with scripts/generate_vapid_keys.py
+    VAPID_PUBLIC_KEY = _env("VAPID_PUBLIC_KEY")
+    VAPID_PRIVATE_KEY = _env("VAPID_PRIVATE_KEY")
+    VAPID_SUBJECT = _env("VAPID_SUBJECT", "mailto:admin@localhost")
+    # Signs the one-tap SeatSure buttons inside push notifications
+    PUSH_ACTION_SECRET = _env("PUSH_ACTION_SECRET") or VAPID_PRIVATE_KEY
+    CHECKIN_REMINDER_MINUTES = int(_env("CHECKIN_REMINDER_MINUTES", "10") or 10)
+
     # Booking config
     MAX_SEATS_PER_STUDENT = int(_env("MAX_SEATS_PER_STUDENT", "4") or 4)
     BOOKING_START_HOUR = int(_env("BOOKING_START_HOUR", "8") or 8)

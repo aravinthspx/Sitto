@@ -4,6 +4,7 @@ from flask import Blueprint, jsonify, request, g
 from app.database.connection import supabase
 from app.security import server_error
 from app.middleware.auth import require_auth
+from app.push import push_for_notification
 
 reservations_bp = Blueprint('reservations', __name__, url_prefix='/api/reservations')
 
@@ -36,6 +37,9 @@ def _notify(user_id, notif_type, title, message, reservation_id=None, expires_at
             supabase.table('notifications').insert(minimal).execute()
         except Exception as e2:
             print(f"[notify] warning (fallback also failed): {e2}")
+    # Mirror important notifications to the user's phone (non-blocking)
+    push_for_notification(user_id, notif_type, title, message, reservation_id=reservation_id,
+                          seatsure_task_id=seatsure_task_id, action_url=action_url)
 
 
 def generate_qr_token():

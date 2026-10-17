@@ -63,6 +63,11 @@ export function PrivacyPolicyPage() {
             <td>To tell you about bookings, check-ins and SeatSure prompts</td>
           </tr>
           <tr>
+            <td>Phone notification subscription: a device address from your browser's push service and encryption keys</td>
+            <td>Your browser, only if you turn on phone notifications</td>
+            <td>To send booking, check-in reminder, SeatSure and seat-release alerts to that device</td>
+          </tr>
+          <tr>
             <td>Your privacy-policy consent (version and time)</td>
             <td>Recorded when you sign up</td>
             <td>To prove consent, as the DPDP Act requires</td>
@@ -101,6 +106,11 @@ export function PrivacyPolicyPage() {
           <strong>Service providers</strong> who process data only on our instructions:{' '}
           {L.hostingProvider}, hosted in {L.hostingRegion}.
         </li>
+        <li>
+          <strong>Your browser's push service</strong> (Google, Mozilla, Apple or Microsoft, depending on your
+          browser) carries phone notifications to your device if you turn them on. Notification content is
+          end-to-end encrypted, so the push service cannot read it.
+        </li>
         <li>Authorities, where we are legally required to disclose information.</li>
       </ul>
 
@@ -109,6 +119,7 @@ export function PrivacyPolicyPage() {
         <li>Account details: while your account exists. Ask us to delete it at any time (see section 7).</li>
         <li>Bookings, check-in and SeatSure records: deleted automatically {L.retentionBookingsMonths} months after the booking date.</li>
         <li>Notifications: deleted automatically {L.retentionNotificationsDays} days after they are created.</li>
+        <li>Phone notification subscriptions: deleted when you turn notifications off, log out on that device, or your browser expires the subscription.</li>
         <li>Security logs: kept only as long as needed to investigate incidents, normally no more than 90 days.</li>
       </ul>
 

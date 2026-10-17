@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, g
 from app.database.connection import supabase
 from app.security import server_error
 from app.middleware.auth import require_auth
+from app.push import push_for_notification
 
 notifications_bp = Blueprint('notifications', __name__, url_prefix='/api/notifications')
 
@@ -107,6 +108,8 @@ def create_notification(user_id: str, notif_type: str, title: str, message: str,
     if seatsure_task_id:
         payload['seatsure_task_id'] = seatsure_task_id
 
+    push_for_notification(user_id, notif_type, title, message, reservation_id=reservation_id,
+                          seatsure_task_id=seatsure_task_id, action_url=action_url)
     try:
         res = supabase.table('notifications').insert(payload).execute()
         return res.data[0] if res.data else None

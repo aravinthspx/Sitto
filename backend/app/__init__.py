@@ -38,6 +38,7 @@ def create_app():
     from app.routes.seatsure import seatsure_bp
     from app.routes.admin import admin_bp
     from app.routes.notifications import notifications_bp
+    from app.routes.push import push_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(campus_bp)
@@ -45,6 +46,7 @@ def create_app():
     app.register_blueprint(seatsure_bp)
     app.register_blueprint(admin_bp)
     app.register_blueprint(notifications_bp)
+    app.register_blueprint(push_bp)
 
     @app.route('/health')
     def health():

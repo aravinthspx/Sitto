@@ -21,6 +21,10 @@ import os
 import sys
 import time
 import schedule
+
+# Log lines contain emoji; don't crash on consoles that aren't UTF-8 (e.g. Windows pipes)
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from datetime import datetime, timedelta, timezone
 
 # --------------------------------------------------------------------------- #
@@ -34,6 +38,8 @@ if os.path.exists(_env_path):
 
 sys.path.insert(0, _here)
 from app.database.connection import supabase
+from app.config import Config
+from app.push import push_for_notification
 
 # --------------------------------------------------------------------------- #
 #  Timing config                                                               #
@@ -90,6 +96,14 @@ def _notify(user_id, notif_type, title, message,
             supabase.table('notifications').insert(minimal).execute()
         except Exception as e2:
             print(f"[scheduler/_notify] fallback also failed: {e2}")
+
+    # Mirror important notifications to the student's phone (Web Push)
+    try:
+        push_for_notification(user_id, notif_type, title, message,
+                              reservation_id=reservation_id, seatsure_task_id=seatsure_task_id,
+                              action_url=action_url)
+    except Exception as e:
+        print(f"[scheduler/_notify] push failed: {e}")
 
 
 def _safe_set(d, key, value):
@@ -377,6 +391,37 @@ def _lookup_seat_label_from_session(occ_id):
 
 
 # --------------------------------------------------------------------------- #
+#  Check-in reminders                                                          #
+# --------------------------------------------------------------------------- #
+def send_checkin_reminders():
+    """Remind students shortly before a booking starts that they must check in."""
+    now = datetime.now(timezone.utc)
+    window_end = (now + timedelta(minutes=Config.CHECKIN_REMINDER_MINUTES)).isoformat()
+    try:
+        upcoming = supabase.table('reservations')             .select('id, user_id, space_id, seat_id, start_time, check_in_deadline')             .eq('status', 'RESERVED')             .gt('start_time', now.isoformat())             .lte('start_time', window_end)             .execute()
+        for r in upcoming.data or []:
+            already = supabase.table('notifications').select('id')                 .eq('reservation_id', r['id']).eq('type', 'CHECKIN_REMINDER').limit(1).execute()
+            if already.data:
+                continue
+            start_local = _parse_dt(r['start_time']).astimezone(IST).strftime('%I:%M %p')
+            deadline_local = _parse_dt(r['check_in_deadline']).astimezone(IST).strftime('%I:%M %p')
+            space_name = _lookup_space_name(r['space_id'])
+            seat_info = supabase.table('seats').select('label').eq('id', r['seat_id']).execute()
+            seat_label = seat_info.data[0]['label'] if seat_info.data else 'your seat'
+            _notify(
+                user_id=r['user_id'],
+                notif_type='CHECKIN_REMINDER',
+                title='Your seat is coming up ⏰',
+                message=(f"Seat {seat_label} in {space_name} starts at {start_local}. "
+                         f"Check in at the entrance by {deadline_local} or the booking expires."),
+                reservation_id=r['id'],
+                action_url=f"/reservations/{r['id']}/pass",
+            )
+    except Exception as e:
+        print(f"[scheduler/reminders] Error: {e}")
+
+
+# --------------------------------------------------------------------------- #
 #  Data retention                                                              #
 # --------------------------------------------------------------------------- #
 def purge_expired_data():
@@ -406,6 +451,7 @@ def start_scheduler():
     print(f"[scheduler] Starting SeatSure worker — Mode: {mode}")
     print(f"[scheduler] Student window: {STUDENT_WINDOW_SECS}s | Admin window: {ADMIN_WINDOW_SECS}s")
     schedule.every(10).seconds.do(sweep_deadlines)
+    schedule.every(1).minutes.do(send_checkin_reminders)
     schedule.every().day.at("03:00").do(purge_expired_data)
     purge_expired_data()
     while True:

@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify, g
 from app.database.connection import supabase
 from app.security import server_error
 from app.middleware.auth import require_auth
+from app.push import read_action_token
+from app.security import limiter
 from datetime import datetime, timezone
 
 seatsure_bp = Blueprint('seatsure', __name__, url_prefix='/api/seatsure')
@@ -177,3 +179,20 @@ def respond_active():
 
     except Exception as e:
         return server_error(e)
+
+
+@seatsure_bp.route('/<task_id>/push-respond', methods=['POST'])
+@limiter.limit("20 per minute")
+def respond_from_push(task_id):
+    """One-tap "I'm here" / "Release seat" from a phone notification.
+
+    The service worker has no login session, so the push payload carries a
+    short-lived token signed by the server for exactly this user and task.
+    """
+    data = request.get_json(silent=True) or {}
+    user_id = read_action_token(data.get('token'), task_id)
+    if not user_id:
+        return jsonify({"message": "This notification has expired. Open SITTO to respond."}), 401
+    g.user = {"id": user_id, "role": "student", "name": None}
+    # Same checks as the in-app button: task ownership, status and deadline
+    return respond_to_seatsure.__wrapped__(task_id)

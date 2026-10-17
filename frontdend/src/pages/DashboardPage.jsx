@@ -31,6 +31,8 @@ import {
 } from 'lucide-react';
 import { formatTime, formatDate, formatSessionDisplay } from '../utils/time';
 
+import { PushSettingsCard } from '../components/notifications/PushSettingsCard';
+
 export function DashboardPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -264,6 +266,9 @@ export function DashboardPage() {
           </div>
         </div>
       </section>
+
+      {/* Prompt to turn on phone notifications (hidden once enabled) */}
+      <PushSettingsCard compact />
 
       {/* ─── 2. QUICK STATUS CARDS ─────────────────────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">

@@ -42,6 +42,12 @@ export function CookiePolicyPage() {
             <td>Until you untick the box or clear your browser data</td>
           </tr>
           <tr>
+            <td>Service worker and push subscription</td>
+            <td>Optional</td>
+            <td>Only if you turn on phone notifications: lets your browser show SITTO notifications when the site is closed. It does not cache pages or track you</td>
+            <td>Until you turn notifications off, log out, or clear this site's data</td>
+          </tr>
+          <tr>
             <td><code>sitto_storage_notice</code></td>
             <td>Strictly necessary</td>
             <td>Remembers that you have seen the storage notice, so it isn't shown again</td>

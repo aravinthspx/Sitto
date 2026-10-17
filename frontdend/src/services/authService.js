@@ -1,6 +1,7 @@
 import { USE_MOCK } from './config';
 import { mockStore } from '../mocks/mockStore';
 import { apiClient, clearSession } from './apiClient';
+import { disablePush } from './pushService';
 
 export async function login(credentials) {
   if (USE_MOCK) {
@@ -38,6 +39,9 @@ export async function logout() {
     clearSession();
     return;
   }
+
+  // Stop this device getting the signed-out user's notifications (shared computers)
+  await disablePush().catch(() => {});
 
   try {
     await apiClient.post('/auth/logout');
