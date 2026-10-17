@@ -195,7 +195,7 @@ export function DashboardPage() {
   return (
     <div className="space-y-8 pb-12">
       {/* ─── 1. PREMIUM WELCOME HERO ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#17143A] via-[#211B54] to-[#120F30] text-white p-6 sm:p-8 lg:p-10 shadow-[0_12px_40px_rgba(23,20,58,0.15)]">
+      <section className="liquid-dark relative overflow-hidden rounded-[24px] text-white p-6 sm:p-8 lg:p-10">
         {/* Subtle Ambient Shapes */}
         <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-[#6850F4]/20 rounded-full blur-[100px] pointer-events-none -mr-20 -mt-20" />
         <div className="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-[#8B5CF6]/15 rounded-full blur-[90px] pointer-events-none" />

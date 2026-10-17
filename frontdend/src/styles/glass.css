@@ -23,12 +23,14 @@
 }
 
 /* ─── Backdrop: colour mesh the glass refracts ───────────────────────────── */
-html {
-  background: #ECE8FB;
-}
-
+/* Painted on <html> (the canvas) and NOT on <body>: a body background would be
+ * drawn above the fixed z-index:-1 water scene (LiquidBackground) and hide it. */
 body {
   min-height: 100vh;
+  background: transparent;
+}
+
+html {
   background-color: #ECE8FB;
   background-image:
     radial-gradient(42rem 42rem at -8% -10%, rgb(139 107 255 / 0.55), transparent 60%),
