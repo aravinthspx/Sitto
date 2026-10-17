@@ -5,26 +5,49 @@ from unittest.mock import patch
 from app.config import Config
 
 
-def test_scheduler_thread_starts_once_inside_web(monkeypatch):
+def test_gunicorn_hook_starts_scheduler_once(monkeypatch):
+    import importlib.util, os, scheduler
+    spec = importlib.util.spec_from_file_location(
+        "gunicorn_conf", os.path.join(os.path.dirname(__file__), "..", "gunicorn.conf.py"))
+    conf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(conf)
+    monkeypatch.setattr(Config, "RUN_SCHEDULER_IN_WEB", True)
+    monkeypatch.setattr(scheduler, "_started", False)
+    worker = type("W", (), {"log": type("L", (), {"info": staticmethod(lambda *a: None)})()})()
+    with patch.object(scheduler, "_run_loop"), patch.object(scheduler, "_register_jobs") as register:
+        conf.post_worker_init(worker)
+        conf.post_worker_init(worker)
+    assert register.call_count == 1
+    assert conf.workers == 1  # a single process = a single scheduler
+
+
+def test_creating_the_app_never_starts_the_scheduler(monkeypatch):
+    # Regression: starting it during import left the gunicorn worker unresponsive
     import scheduler
     monkeypatch.setattr(Config, "RUN_SCHEDULER_IN_WEB", True)
-    monkeypatch.setattr(Config, "DEBUG", False)
-    monkeypatch.setattr(scheduler, "_started", False)
-    with patch.object(scheduler, "_run_loop"), patch.object(scheduler, "_register_jobs") as register:
-        from app import create_app
-        create_app()
-        create_app()  # e.g. a second import must not start a second scheduler
-    assert register.call_count == 1
-
-
-def test_scheduler_not_started_by_default(monkeypatch):
-    import scheduler
-    monkeypatch.setattr(Config, "RUN_SCHEDULER_IN_WEB", False)
     monkeypatch.setattr(scheduler, "_started", False)
     with patch.object(scheduler, "start_in_background") as start:
         from app import create_app
         create_app()
     start.assert_not_called()
+
+
+def test_each_thread_gets_its_own_supabase_client(monkeypatch):
+    # Regression: one HTTP/2 client shared by web and scheduler threads deadlocked
+    from app.database import connection
+    made = []
+    monkeypatch.setattr(connection, "get_supabase_client", lambda: made.append(object()) or made[-1])
+    proxy = connection._PerThreadClient()
+    seen = {}
+
+    def grab(name):
+        seen[name] = (proxy._client(), proxy._client())
+
+    threads = [threading.Thread(target=grab, args=(n,)) for n in ("web", "scheduler")]
+    [t.start() for t in threads]
+    [t.join() for t in threads]
+    assert seen["web"][0] is seen["web"][1]          # reused within a thread
+    assert seen["web"][0] is not seen["scheduler"][0]  # never shared across threads
 
 
 def test_loop_survives_a_failing_job(monkeypatch):

@@ -21,7 +21,7 @@ services:
     buildCommand: pip install -r requirements.txt
     # Exactly one process: keeps the rate limiter accurate and ensures a
     # single scheduler thread
-    startCommand: gunicorn -w 1 --threads 8 --timeout 30 -b 0.0.0.0:$PORT run:app
+    startCommand: gunicorn -c gunicorn.conf.py run:app
     healthCheckPath: /health
     autoDeploy: true
     envVars:
