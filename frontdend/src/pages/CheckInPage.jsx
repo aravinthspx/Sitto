@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import jsQR from 'jsqr';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { checkIn, checkOut, adminVerify } from '../services/reservationService';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/common/Card';
 import { Button } from '../components/common/Button';

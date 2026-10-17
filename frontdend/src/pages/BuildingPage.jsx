@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { getFloors, getBuildings } from '../services/buildingService';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/common/Card';
 import { Spinner } from '../components/common/Spinner';

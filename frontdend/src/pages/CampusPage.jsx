@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { getBuildings } from '../services/buildingService';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/common/Card';
 import { Spinner } from '../components/common/Spinner';

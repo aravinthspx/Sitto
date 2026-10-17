@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { updatePassword } from '../services/authService';
 import { Button } from '../components/common/Button';
 import { Card, CardContent } from '../components/common/Card';

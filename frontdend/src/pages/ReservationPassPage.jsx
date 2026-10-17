@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { QRCodeSVG } from 'qrcode.react';
 import { getReservation, cancelReservation } from '../services/reservationService';
 import { getBuildings, getFloors, getSpaces } from '../services/buildingService';

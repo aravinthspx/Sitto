@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { ArrowLeft } from 'lucide-react';
 import { LEGAL } from './siteInfo';
 import { LegalLinks } from './LegalLinks';
@@ -24,7 +25,7 @@ export function LegalLayout({ title, children }) {
             Back
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <img src="/sitto-emblem.png" alt="" className="w-8 h-8 object-contain" />
+            <img src="/sitto-icon.svg" alt="" className="w-8 h-8 rounded-[22.5%] shadow-[0_4px_12px_rgba(91,61,245,0.3)]" />
             <span className="font-heading font-bold text-[#0F0D26]">{LEGAL.productName}</span>
           </Link>
         </div>

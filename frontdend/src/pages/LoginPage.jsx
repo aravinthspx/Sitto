@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { useAuth } from '../hooks/useAuth';
 import { signup, resetPassword } from '../services/authService';
 import { Button } from '../components/common/Button';
-import SITTOLogo from '../components/common/SITTOLogo';
+import { SITTOIcon } from '../components/common/SITTOLogo';
 import { LegalLinks } from '../legal/LegalLinks';
 import { Link } from 'react-router-dom';
 import { 
@@ -158,18 +159,11 @@ export function LoginPage() {
 
       <div className="w-full max-w-[440px] relative z-10">
         {/* Brand Header */}
-        <div className="flex flex-col items-center justify-center text-center mb-6">
-          <div className="glass-panel px-6 py-3 rounded-2xl mb-3 flex items-center justify-center transition-transform duration-200 hover:scale-[1.01]">
-            <SITTOLogo
-              variant="full"
-              size="lg"
-              className="w-full"
-              imgClassName="max-h-14 sm:max-h-16"
-              alt="SITTO - Smart Campus Seating, SRM KTR Campus"
-            />
-          </div>
-          <p className="text-xs sm:text-sm text-[#3B3568] font-semibold tracking-wide">
-            Smart Campus Seating & Occupancy • SRM KTR
+        <div className="flex flex-col items-center justify-center text-center mb-7">
+          <SITTOIcon className="w-20 h-20 sm:w-[88px] sm:h-[88px] mb-4 ios-float" alt="SITTO" />
+          <h1 className="text-[32px] leading-none font-heading font-bold tracking-[-0.03em] text-[#0B0A1F]">SITTO</h1>
+          <p className="mt-2 text-[13px] sm:text-sm text-[#4B4670] font-medium">
+            Smart Campus Seating · SRM KTR
           </p>
         </div>
 
@@ -179,16 +173,20 @@ export function LoginPage() {
             
             {/* Student / Admin Tabs */}
             <div className="p-4 sm:p-5 pb-0">
-              <div className="relative flex bg-white/40 border border-white/60 rounded-xl p-1" role="tablist">
+              <div
+                className="ios-segmented"
+                role="tablist"
+                aria-label="Account type"
+                style={{ '--segments': 2, '--index': role === 'admin' ? 1 : 0 }}
+              >
+                <span className="ios-segmented-thumb" aria-hidden="true" />
                 <button
                   type="button"
                   role="tab"
                   aria-selected={role === 'student'}
                   onClick={() => handleRoleSwitch('student')}
-                  className={`relative flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-1.5 focus:outline-none ${
-                    role === 'student'
-                      ? 'bg-white/90 text-[#0F0D26] shadow-sm'
-                      : 'text-[#4B4670] hover:text-[#0F0D26] hover:bg-white/40'
+                  className={`py-2 text-[13px] font-semibold rounded-[9px] flex items-center justify-center gap-1.5 focus:outline-none ${
+                    role === 'student' ? 'text-[#0B0A1F]' : 'text-[#4B4670]'
                   }`}
                 >
                   <GraduationCap className="w-4 h-4 text-[#6B3DF5]" />
@@ -200,10 +198,8 @@ export function LoginPage() {
                   role="tab"
                   aria-selected={role === 'admin'}
                   onClick={() => handleRoleSwitch('admin')}
-                  className={`relative flex-1 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-1.5 focus:outline-none ${
-                    role === 'admin'
-                      ? 'bg-white/90 text-[#0F0D26] shadow-sm'
-                      : 'text-[#4B4670] hover:text-[#0F0D26] hover:bg-white/40'
+                  className={`py-2 text-[13px] font-semibold rounded-[9px] flex items-center justify-center gap-1.5 focus:outline-none ${
+                    role === 'admin' ? 'text-[#0B0A1F]' : 'text-[#4B4670]'
                   }`}
                 >
                   <Shield className="w-4 h-4 text-[#6B3DF5]" />

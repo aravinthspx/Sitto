@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { getSeatMap } from '../services/seatService';
 import { createReservation } from '../services/reservationService';
 import { getBuildings, getFloors, getSpaces } from '../services/buildingService';

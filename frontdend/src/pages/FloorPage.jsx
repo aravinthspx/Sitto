@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { getSpaces } from '../services/buildingService';
 import { Spinner } from '../components/common/Spinner';
 import { ErrorState } from '../components/common/ErrorState';

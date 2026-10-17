@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import {
   Search,
   RefreshCw,
@@ -514,9 +515,9 @@ export function AdminDashboardPage() {
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => navigate('/admin')}>
             <div className="w-8 h-8 rounded-lg flex items-center justify-center p-0.5 group-hover:scale-105 transition-transform duration-200">
               <img
-                src="/sitto-emblem.png"
+                src="/sitto-icon.svg"
                 alt="SITTO Admin Console"
-                className="w-full h-full object-contain select-none drop-shadow-xs"
+                className="w-full h-full rounded-[22.5%] select-none"
               />
             </div>
             <div>
@@ -615,14 +616,14 @@ export function AdminDashboardPage() {
           <div className="p-3 border-b border-[#F0F2F5] flex items-center justify-between">
             {!isLeftCollapsed ? (
               <div className="flex items-center gap-2">
-                <img src="/sitto-emblem.png" alt="SITTO" className="w-4 h-4 object-contain" />
+                <img src="/sitto-icon.svg" alt="SITTO" className="w-4 h-4 rounded-[22.5%]" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">
                   Administration
                 </span>
               </div>
             ) : (
               <div className="w-full flex justify-center py-0.5">
-                <img src="/sitto-emblem.png" alt="SITTO" className="w-5 h-5 object-contain" />
+                <img src="/sitto-icon.svg" alt="SITTO" className="w-5 h-5 rounded-[22.5%]" />
               </div>
             )}
             <button

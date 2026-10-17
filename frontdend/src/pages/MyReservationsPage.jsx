@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from '../hooks/useNavigate';
 import { getMyReservations, cancelReservation } from '../services/reservationService';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/common/Card';
 import { Spinner } from '../components/common/Spinner';

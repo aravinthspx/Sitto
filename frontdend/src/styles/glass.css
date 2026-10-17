@@ -12,10 +12,10 @@
  */
 
 :root {
-  --glass-bg: rgb(255 255 255 / 0.55);
-  --glass-bg-strong: rgb(255 255 255 / 0.72);
-  --glass-bg-soft: rgb(255 255 255 / 0.34);
-  --glass-tint: rgb(237 233 254 / 0.45);
+  --glass-bg: rgb(255 255 255 / 0.72);
+  --glass-bg-strong: rgb(255 255 255 / 0.82);
+  --glass-bg-soft: rgb(255 255 255 / 0.5);
+  --glass-tint: rgb(237 233 254 / 0.62);
   --glass-border: rgb(255 255 255 / 0.65);
   --glass-border-soft: rgb(255 255 255 / 0.45);
   --glass-blur: blur(18px) saturate(170%);
