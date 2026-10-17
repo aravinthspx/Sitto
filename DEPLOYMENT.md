@@ -10,6 +10,35 @@ SITTO is three pieces:
 
 The database and logins are hosted by Supabase.
 
+## Quick path: Vercel (frontend) + Render (API and scheduler)
+
+The repo has a `render.yaml` blueprint and a `frontdend/vercel.json`. After the Supabase settings in section 1:
+
+**A. Render: API and scheduler (about $14/month, both always on)**
+
+1. Go to [render.com](https://render.com) → sign in with GitHub → **New → Blueprint** → choose `aravinthspx/Sitto` (branch `main`).
+2. Render reads `render.yaml` and creates **sitto-api** (web service) and **sitto-scheduler** (background worker). Fill in the secrets it asks for:
+   - `SUPABASE_URL`, `SUPABASE_KEY` (secret / service-role key), `SUPABASE_JWT_SECRET`: copy them from `backend/.env`.
+   - `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`: generate **new** production keys with `python backend/scripts/generate_vapid_keys.py`.
+   - `VAPID_SUBJECT`: `mailto:` plus a contact address.
+   - `ALLOWED_ORIGINS`, `FRONTEND_URL`: leave as `https://example.com` for now and fix them in step C.
+3. Wait for the deploy, then open `https://sitto-api.onrender.com/health`. It should show `"database": "connected"`. Your Render URL may differ; use whatever Render shows.
+
+**B. Vercel: frontend (free)**
+
+1. Go to [vercel.com](https://vercel.com) → sign in with GitHub → **Add New → Project** → import `aravinthspx/Sitto`.
+2. Set **Root Directory** to `frontdend` (Framework: Vite is detected).
+3. Add the environment variable `VITE_API_BASE_URL` = `https://sitto-api.onrender.com/api` (your Render URL + `/api`).
+4. Click **Deploy**. Your site is at something like `https://sitto.vercel.app`.
+
+**C. Connect them**
+
+1. Render → sitto-api → Environment: set `ALLOWED_ORIGINS` and `FRONTEND_URL` to your Vercel URL (no trailing slash). Save; it redeploys.
+2. Supabase → Authentication → URL Configuration: set Site URL to the Vercel URL, and add `<vercel-url>/login` and `<vercel-url>/update-password` to Redirect URLs.
+3. Open the Vercel URL, sign in, and run the go-live checklist in section 5.
+
+Each push to `main` redeploys both automatically.
+
 ## 1. Supabase settings (dashboard)
 
 - **Authentication → Providers → Email:** turn **Confirm email** on.

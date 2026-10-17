@@ -1,0 +1,78 @@
+# Render Blueprint for the SITTO backend.
+# Render dashboard → New → Blueprint → pick this repo. Secrets marked
+# `sync: false` are asked for once during setup (see DEPLOYMENT.md).
+
+services:
+  # ─── Flask API ──────────────────────────────────────────────────────────────
+  - type: web
+    name: sitto-api
+    runtime: python
+    plan: starter            # always on; the free plan sleeps when idle
+    region: singapore        # closest Render region to India
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    # One process with threads keeps the in-memory rate limiter accurate
+    startCommand: gunicorn -w 1 --threads 8 --timeout 30 -b 0.0.0.0:$PORT run:app
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: APP_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: TRUSTED_PROXY_COUNT
+        value: "1"
+      - key: ALLOWED_ORIGINS        # e.g. https://sitto.vercel.app
+        sync: false
+      - key: FRONTEND_URL           # same as above
+        sync: false
+      - key: ALLOWED_EMAIL_DOMAINS
+        value: srmist.edu.in
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY           # Supabase secret / service-role key
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: VAPID_PUBLIC_KEY       # python scripts/generate_vapid_keys.py
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT          # mailto:you@college.edu.in
+        sync: false
+      - key: PUSH_ACTION_SECRET
+        generateValue: true
+
+  # ─── SeatSure scheduler (timers, expiries, reminders, phone notifications) ──
+  - type: worker
+    name: sitto-scheduler
+    runtime: python
+    plan: starter            # background workers have no free plan
+    region: singapore
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python scheduler.py
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: APP_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        sync: false
+      # Must equal the API's value so one-tap SeatSure buttons verify
+      - key: PUSH_ACTION_SECRET
+        fromService:
+          type: web
+          name: sitto-api
+          envVarKey: PUSH_ACTION_SECRET
