@@ -10,6 +10,8 @@ logger = logging.getLogger("sitto.auth")
 
 _jwk_client = None
 
+CLOCK_SKEW_LEEWAY_SECS = 30
+
 
 def _get_jwk_client():
     global _jwk_client
@@ -50,10 +52,14 @@ def authenticate_request():
             audience="authenticated",
             issuer=f"{Config.SUPABASE_URL}/auth/v1",
             options={"require": ["exp", "sub", "iss", "aud"]},
+            # Tolerate small clock differences between this server and Supabase,
+            # otherwise a token is "not yet valid" for its first moments.
+            leeway=CLOCK_SKEW_LEEWAY_SECS,
         )
     except jwt.ExpiredSignatureError:
         return None, (jsonify({"message": "Token expired"}), 401)
-    except (jwt.InvalidTokenError, jwt.PyJWKClientError):
+    except (jwt.InvalidTokenError, jwt.PyJWKClientError) as e:
+        logger.info("Rejected access token: %s", e)
         return None, (jsonify({"message": "Invalid or expired session"}), 401)
     except Exception:
         logger.exception("Token verification failed")

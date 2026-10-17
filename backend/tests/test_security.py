@@ -416,3 +416,35 @@ def test_qr_tokens_are_unguessable():
     tokens = {generate_qr_token() for _ in range(200)}
     assert len(tokens) == 200
     assert all(len(t) >= 64 for t in tokens)
+
+
+def test_fresh_token_accepted_despite_small_clock_skew(client):
+    # Regression: a token issued by Supabase a moment "in the future" (clock skew)
+    # was rejected as not-yet-valid, which logged users out right after sign-in.
+    import time
+    from cryptography.hazmat.primitives.asymmetric import ec
+    key = ec.generate_private_key(ec.SECP256R1())
+    now = int(time.time()) + 3
+    token = pyjwt.encode({
+        "sub": "u1", "aud": "authenticated", "iss": f"{Config.SUPABASE_URL}/auth/v1",
+        "iat": now, "nbf": now, "exp": now + 3600,
+    }, key, algorithm="ES256")
+    with patch("app.middleware.auth._jwk_client") as jwk, \
+         patch("app.middleware.auth.supabase") as db:
+        jwk.get_signing_key_from_jwt.return_value = MagicMock(key=key.public_key())
+        db.table().select().eq().execute.return_value = MagicMock(data=[{"role": "student", "name": "U"}])
+        rv = client.get("/api/auth/me", headers={"Authorization": f"Bearer {token}"})
+    assert rv.status_code == 200
+
+
+def test_token_signed_by_another_key_is_rejected(client):
+    import time
+    from cryptography.hazmat.primitives.asymmetric import ec
+    attacker, real = ec.generate_private_key(ec.SECP256R1()), ec.generate_private_key(ec.SECP256R1())
+    now = int(time.time())
+    token = pyjwt.encode({"sub": "u1", "aud": "authenticated", "iss": f"{Config.SUPABASE_URL}/auth/v1",
+                          "iat": now, "exp": now + 3600}, attacker, algorithm="ES256")
+    with patch("app.middleware.auth._jwk_client") as jwk:
+        jwk.get_signing_key_from_jwt.return_value = MagicMock(key=real.public_key())
+        rv = client.get("/api/auth/me", headers={"Authorization": f"Bearer {token}"})
+    assert rv.status_code == 401

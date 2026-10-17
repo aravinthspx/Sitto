@@ -17,6 +17,36 @@ export function clearSession() {
   sessionStorage.removeItem('user');
 }
 
+// Supabase rotates the refresh token on every use, so concurrent refreshes would
+// invalidate each other. All requests that hit a 401 share one in-flight refresh.
+let refreshPromise = null;
+
+function refreshSession() {
+  if (!refreshPromise) {
+    refreshPromise = (async () => {
+      const refreshToken = sessionStorage.getItem('refresh_token');
+      if (!refreshToken) return false;
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/refresh`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refresh_token: refreshToken }),
+        });
+        if (!res.ok) return false;
+        const data = await res.json();
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('refresh_token', data.refresh_token);
+        return true;
+      } catch {
+        return false;
+      }
+    })().finally(() => {
+      refreshPromise = null;
+    });
+  }
+  return refreshPromise;
+}
+
 async function request(endpoint, options = {}, isRetry = false) {
   const url = `${API_BASE_URL}${endpoint}`;
   
@@ -47,34 +77,18 @@ async function request(endpoint, options = {}, isRetry = false) {
 
     if (!response.ok) {
       if (response.status === 401 && !isRetry && !endpoint.includes('/auth/login') && !endpoint.includes('/auth/refresh')) {
-        const refreshToken = sessionStorage.getItem('refresh_token');
-        if (refreshToken) {
-          try {
-            const refreshRes = await fetch(`${API_BASE_URL}/auth/refresh`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ refresh_token: refreshToken })
-            });
-            if (refreshRes.ok) {
-              const refreshData = await refreshRes.json();
-              sessionStorage.setItem('token', refreshData.token);
-              sessionStorage.setItem('refresh_token', refreshData.refresh_token);
-              
-              // Retry original request
-              return await request(endpoint, options, true);
-            }
-          } catch (e) {
-            // Refresh failed, fall through to logout
-          }
+        // Another request may already have refreshed the session while this one was in flight
+        const refreshed = sessionStorage.getItem('token') !== token || await refreshSession();
+        if (refreshed) {
+          return await request(endpoint, options, true);
         }
-        
         clearSession();
         window.dispatchEvent(new Event('auth-expired'));
       } else if (response.status === 401 && isRetry) {
         clearSession();
         window.dispatchEvent(new Event('auth-expired'));
       }
-      
+
       let errorData;
       try {
         errorData = await response.json();
