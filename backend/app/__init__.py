@@ -1,4 +1,5 @@
 import logging
+import os
 
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -47,6 +48,11 @@ def create_app():
     app.register_blueprint(admin_bp)
     app.register_blueprint(notifications_bp)
     app.register_blueprint(push_bp)
+
+    if Config.RUN_SCHEDULER_IN_WEB and (not Config.DEBUG or os.environ.get("WERKZEUG_RUN_MAIN") == "true"):
+        # The debug reloader runs the app twice; only start in the serving process
+        import scheduler
+        scheduler.start_in_background()
 
     @app.route('/health')
     def health():

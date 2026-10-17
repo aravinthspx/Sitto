@@ -1,0 +1,29 @@
+# Keeps the free Render API awake so the SeatSure scheduler (which runs inside
+# it) doesn't pause. Free Render services sleep after 15 minutes idle.
+#
+# Set the repository variable API_HEALTH_URL (Settings → Secrets and variables
+# → Actions → Variables), e.g. https://sitto-api.onrender.com/health
+name: Keep API awake
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every 10 minutes (GitHub may delay runs a little)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping health endpoint
+        env:
+          URL: ${{ vars.API_HEALTH_URL }}
+        run: |
+          if [ -z "$URL" ]; then
+            echo "API_HEALTH_URL repository variable is not set; skipping."
+            exit 0
+          fi
+          # A sleeping free service can take ~1 minute to wake up
+          curl --silent --show-error --fail --max-time 90 --retry 2 --retry-delay 5 "$URL"

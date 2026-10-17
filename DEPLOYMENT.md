@@ -14,10 +14,12 @@ The database and logins are hosted by Supabase.
 
 The repo has a `render.yaml` blueprint and a `frontdend/vercel.json`. After the Supabase settings in section 1:
 
-**A. Render: API and scheduler (about $14/month, both always on)**
+**A. Render: API with the built-in scheduler (free plan)**
+
+The blueprint uses Render's free plan: one service that runs both the API and the SeatSure scheduler (`RUN_SCHEDULER_IN_WEB=1`). Free services sleep after 15 minutes idle, so after deploying, set the GitHub repository variable `API_HEALTH_URL` (Settings → Secrets and variables → Actions → Variables) to `https://<your-render-url>/health`. `.github/workflows/keep-alive.yml` then pings it every 10 minutes. For guaranteed timing, change `plan: free` to `starter` in `render.yaml` (about $7/month).
 
 1. Go to [render.com](https://render.com) → sign in with GitHub → **New → Blueprint** → choose `aravinthspx/Sitto` (branch `main`).
-2. Render reads `render.yaml` and creates **sitto-api** (web service) and **sitto-scheduler** (background worker). Fill in the secrets it asks for:
+2. Render reads `render.yaml` and creates **sitto-api**. Fill in the secrets it asks for:
    - `SUPABASE_URL`, `SUPABASE_KEY` (secret / service-role key), `SUPABASE_JWT_SECRET`: copy them from `backend/.env`.
    - `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`: generate **new** production keys with `python backend/scripts/generate_vapid_keys.py`.
    - `VAPID_SUBJECT`: `mailto:` plus a contact address.

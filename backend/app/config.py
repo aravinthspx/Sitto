@@ -58,6 +58,10 @@ class Config:
     # Rate limiting (Flask-Limiter). Use redis://... when running several workers.
     RATELIMIT_STORAGE_URI = _env("RATELIMIT_STORAGE_URI", "memory://")
 
+    # Run the SeatSure scheduler as a thread inside the API (for hosts without
+    # background workers, e.g. Render's free plan). Run only ONE API process then.
+    RUN_SCHEDULER_IN_WEB = _env_bool("RUN_SCHEDULER_IN_WEB", False)
+
     # Web Push (phone notifications). Generate with scripts/generate_vapid_keys.py
     VAPID_PUBLIC_KEY = _env("VAPID_PUBLIC_KEY")
     VAPID_PRIVATE_KEY = _env("VAPID_PRIVATE_KEY")

@@ -446,17 +446,49 @@ def purge_expired_data():
 # --------------------------------------------------------------------------- #
 #  Entry point                                                                 #
 # --------------------------------------------------------------------------- #
-def start_scheduler():
+_started = False
+
+
+def _register_jobs():
     mode = 'DEMO ⚡' if DEMO_MODE else 'PRODUCTION 🟢'
     print(f"[scheduler] Starting SeatSure worker — Mode: {mode}")
     print(f"[scheduler] Student window: {STUDENT_WINDOW_SECS}s | Admin window: {ADMIN_WINDOW_SECS}s")
     schedule.every(10).seconds.do(sweep_deadlines)
     schedule.every(1).minutes.do(send_checkin_reminders)
     schedule.every().day.at("03:00").do(purge_expired_data)
+
+
+def _run_loop():
     purge_expired_data()
     while True:
-        schedule.run_pending()
+        try:
+            schedule.run_pending()
+        except Exception as e:  # one failing cycle must never stop SeatSure
+            print(f"[scheduler] Job error: {e}")
         time.sleep(1)
+
+
+def start_scheduler():
+    """Run in the foreground (separate worker process)."""
+    global _started
+    if _started:
+        return
+    _started = True
+    _register_jobs()
+    _run_loop()
+
+
+def start_in_background():
+    """Run inside the web process (single free-plan service). Safe to call twice."""
+    import threading
+    global _started
+    if _started:
+        return None
+    _started = True
+    _register_jobs()
+    thread = threading.Thread(target=_run_loop, name="seatsure-scheduler", daemon=True)
+    thread.start()
+    return thread
 
 
 if __name__ == '__main__':
