@@ -190,7 +190,7 @@ button.absolute:active {
   animation-duration: 200ms;
 }
 
-/* ─── Calmer, smoother water background ───────────────────────────────────── */
+/* ─── Calmer, smoother background blobs ───────────────────────────────────── */
 .liquid-blob {
   animation-duration: 48s;
   filter: blur(80px);
@@ -198,17 +198,9 @@ button.absolute:active {
 .liquid-blob--aqua { animation-duration: 56s; }
 .liquid-blob--pink { animation-duration: 52s; }
 .liquid-blob--mint { animation-duration: 60s; }
-.liquid-blob,
-.liquid-wave,
-.liquid-bubble {
+.liquid-blob {
   backface-visibility: hidden;
 }
-.liquid-caustics,
-.liquid-caustics::after { animation-duration: 40s; opacity: 0.4; }
-.liquid-caustics::after { animation-duration: 55s; }
-.liquid-wave--back  { animation-duration: 60s; }
-.liquid-wave--mid   { animation-duration: 44s; }
-.liquid-wave--front { animation-duration: 32s; }
 
 /* ─── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

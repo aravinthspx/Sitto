@@ -1,0 +1,131 @@
+/* src/styles/future.css
+ *
+ * Futuristic layers of the background scene (LiquidBackground.jsx):
+ * aurora ribbons, holographic grid floor, particle canvas, light sweep.
+ * Everything animates with transform/opacity/background-position only.
+ */
+
+/* ─── Aurora ribbons ──────────────────────────────────────────────────────── */
+.future-aurora {
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 75vh;
+  filter: blur(42px) saturate(140%);
+  opacity: 0.75;
+  mix-blend-mode: soft-light;
+}
+.future-aurora__band {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 26%;
+  border-radius: 50%;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgb(139 107 255 / 0.9) 20%,
+    rgb(56 189 248 / 0.9) 45%,
+    rgb(236 72 153 / 0.8) 70%,
+    transparent 100%);
+  background-size: 200% 100%;
+  will-change: transform, background-position;
+  animation:
+    future-aurora-flow 18s linear infinite,
+    future-aurora-wave 14s ease-in-out infinite alternate;
+}
+.future-aurora__band--1 { top: 18%; transform: rotate(-8deg); }
+.future-aurora__band--2 { top: 40%; opacity: 0.7; animation-duration: 24s, 17s; animation-delay: -6s, -3s; }
+.future-aurora__band--3 { top: 60%; opacity: 0.5; animation-duration: 30s, 21s; animation-delay: -12s, -8s; }
+
+@keyframes future-aurora-flow {
+  from { background-position: 0% 50%; }
+  to   { background-position: 200% 50%; }
+}
+@keyframes future-aurora-wave {
+  0%   { transform: translate3d(-4%, 0, 0) rotate(-8deg) scaleY(0.8); }
+  50%  { transform: translate3d(3%, 4vh, 0) rotate(-3deg) scaleY(1.25); }
+  100% { transform: translate3d(5%, -2vh, 0) rotate(-11deg) scaleY(0.9); }
+}
+
+/* ─── Holographic grid floor ──────────────────────────────────────────────── */
+.future-grid {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42vh;
+  min-height: 220px;
+  perspective: 420px;
+  perspective-origin: 50% 0%;
+  overflow: hidden;
+  mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
+}
+.future-grid__plane {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  top: 0;
+  height: 240%;
+  transform-origin: 50% 0%;
+  transform: rotateX(68deg);
+  background-image:
+    linear-gradient(rgb(107 61 245 / 0.38) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgb(56 189 248 / 0.34) 1.5px, transparent 1.5px);
+  background-size: 64px 64px;
+  will-change: background-position;
+  animation: future-grid-scroll 3.2s linear infinite;
+}
+@keyframes future-grid-scroll {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 64px, 0 0; }
+}
+.future-grid__horizon {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgb(139 107 255 / 0.8), rgb(56 189 248 / 0.9), rgb(139 107 255 / 0.8), transparent);
+  box-shadow: 0 0 24px 6px rgb(139 107 255 / 0.35);
+  animation: future-pulse 4s ease-in-out infinite;
+}
+@keyframes future-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+/* ─── Particle network canvas ─────────────────────────────────────────────── */
+.future-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Light sweep ─────────────────────────────────────────────────────────── */
+.future-sweep {
+  position: absolute;
+  inset: -50% auto -50% 0;
+  width: 22vw;
+  min-width: 180px;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.32), transparent);
+  transform: translate3d(-40vw, 0, 0) rotate(18deg);
+  mix-blend-mode: overlay;
+  will-change: transform;
+  animation: future-sweep 11s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+@keyframes future-sweep {
+  0%, 62% { transform: translate3d(-40vw, 0, 0) rotate(18deg); }
+  100%    { transform: translate3d(140vw, 0, 0) rotate(18deg); }
+}
+
+/* Small screens: lighter scene */
+@media (max-width: 640px) {
+  .future-grid { height: 30vh; }
+  .future-aurora { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .future-aurora__band,
+  .future-grid__plane,
+  .future-grid__horizon,
+  .future-sweep {
+    animation: none !important;
+  }
+  .future-sweep { display: none; }
+}

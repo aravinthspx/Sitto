@@ -1,7 +1,7 @@
 /* src/styles/liquid.css
  *
  * "Liquid glass" layer on top of glass.css:
- *   1. the animated water scene behind the app (LiquidBackground.jsx)
+ *   1. the drifting colour blobs behind the app (LiquidBackground.jsx; see future.css)
  *   2. glossy, light-bending glass surfaces
  *   3. the water-drop press ripple (useLiquidRipple.js)
  *
@@ -56,85 +56,6 @@
   50%  { transform: translate3d(8vmax, 6vmax, 0) rotate(40deg) scale(1.12); }
   100% { transform: translate3d(-4vmax, 10vmax, 0) rotate(-20deg) scale(0.95); }
 }
-/* Caustics: two drifting light lattices interfere like sunlight through water */
-.liquid-caustics,
-.liquid-caustics::after {
-  position: absolute;
-  inset: -20%;
-  background-image:
-    radial-gradient(closest-side, rgb(255 255 255 / 0.55), transparent 70%),
-    radial-gradient(closest-side, rgb(255 255 255 / 0.35), transparent 70%);
-  background-size: 260px 180px, 190px 240px;
-  background-position: 0 0, 90px 60px;
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-  animation: liquid-caustics 22s linear infinite;
-}
-.liquid-caustics {
-  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
-}
-.liquid-caustics::after {
-  content: '';
-  inset: 0;
-  background-size: 220px 300px, 300px 200px;
-  transform: rotate(18deg) scale(1.2);
-  animation-duration: 31s;
-  animation-direction: reverse;
-}
-@keyframes liquid-caustics {
-  from { background-position: 0 0, 90px 60px; }
-  to   { background-position: 520px 360px, -290px 540px; }
-}
-
-/* Waves rolling along the bottom of the viewport */
-.liquid-waves {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 22vh;
-  min-height: 120px;
-}
-.liquid-wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  will-change: transform;
-  animation: liquid-wave 24s linear infinite;
-}
-.liquid-wave--back  { fill: rgb(139 107 255 / 0.10); height: 100%; animation-duration: 38s; }
-.liquid-wave--mid   { fill: rgb(56 189 248 / 0.10); height: 80%; animation-duration: 27s; animation-direction: reverse; }
-.liquid-wave--front { fill: rgb(255 255 255 / 0.28); height: 60%; animation-duration: 19s; }
-@keyframes liquid-wave {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
-}
-
-/* Bubbles */
-.liquid-bubbles {
-  position: absolute;
-  inset: 0;
-}
-.liquid-bubble {
-  position: absolute;
-  bottom: -40px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.95) 0 12%, transparent 13%),
-    radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.05) 55%, rgb(255 255 255 / 0.55) 100%);
-  border: 1px solid rgb(255 255 255 / 0.55);
-  box-shadow: 0 0 10px rgb(139 107 255 / 0.15);
-  opacity: 0;
-  animation: liquid-bubble linear infinite;
-}
-@keyframes liquid-bubble {
-  0%   { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
-  10%  { opacity: 0.85; }
-  50%  { transform: translate3d(var(--drift), -55vh, 0) scale(1); }
-  90%  { opacity: 0.6; }
-  100% { transform: translate3d(calc(var(--drift) * -0.5), -110vh, 0) scale(1.1); opacity: 0; }
-}
-
 /* ─── 2. Liquid glass surfaces ────────────────────────────────────────────── */
 .glass-panel,
 .bg-white:is(.rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-\[22px\], .rounded-\[20px\], .rounded-\[24px\]) {
@@ -228,14 +149,8 @@
 /* ─── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .liquid-blob,
-  .liquid-caustics,
-  .liquid-caustics::after,
-  .liquid-wave,
   .liquid-ripple {
     animation: none !important;
-  }
-  .liquid-bubbles {
-    display: none;
   }
 }
 

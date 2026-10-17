@@ -3,6 +3,7 @@
 @import "./styles/glass.css";
 @import "./styles/liquid.css";
 @import "./styles/ios.css";
+@import "./styles/future.css";
 
 @theme {
   /* iOS look: San Francisco on Apple devices, Segoe UI Variable on Windows */
