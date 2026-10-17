@@ -60,12 +60,11 @@ export function UpdatePasswordPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0F0D26] p-4 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6B3DF5] rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       
       <div className="w-full max-w-md z-10">
-        <Card className="w-full bg-white border-none shadow-[0_20px_60px_rgba(0,0,0,0.4)] overflow-hidden rounded-2xl">
-          <div className="px-6 py-5 bg-transparent text-[#0F0D26] border-b border-gray-100">
+        <Card className="w-full overflow-hidden rounded-3xl">
+          <div className="px-6 py-5 bg-transparent text-[#0F0D26] border-b border-white/50">
             <div className="flex flex-col items-center justify-center space-y-3 mb-1.5">
               <SITTOLogo variant="full" size="md" className="py-1" alt="SITTO Logo" />
               <h2 className="text-xl font-bold font-heading tracking-tight text-center">Set New Password</h2>
@@ -84,7 +83,7 @@ export function UpdatePasswordPage() {
                   <input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
-                    className="peer w-full h-14 px-4 pt-5 pb-1 rounded-xl border border-gray-200 bg-white text-[#0F0D26] placeholder-transparent focus:border-[#6B3DF5] focus:ring-1 focus:ring-[#6B3DF5] outline-none transition-all pr-12"
+                    className="peer w-full h-14 px-4 pt-5 pb-1 rounded-xl glass-input text-[#0F0D26] placeholder-transparent focus:border-[#6B3DF5] focus:ring-1 focus:ring-[#6B3DF5] outline-none transition-all pr-12"
                     placeholder="New Password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
@@ -96,7 +95,7 @@ export function UpdatePasswordPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-4 p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-[#6B3DF5] transition-colors rounded-full hover:bg-gray-50"
+                    className="absolute right-3 top-4 p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-[#6B3DF5] transition-colors rounded-full hover:bg-white/60"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
@@ -106,7 +105,7 @@ export function UpdatePasswordPage() {
                   <input
                     id="confirmPassword"
                     type={showPassword ? 'text' : 'password'}
-                    className="peer w-full h-14 px-4 pt-5 pb-1 rounded-xl border border-gray-200 bg-white text-[#0F0D26] placeholder-transparent focus:border-[#6B3DF5] focus:ring-1 focus:ring-[#6B3DF5] outline-none transition-all pr-12"
+                    className="peer w-full h-14 px-4 pt-5 pb-1 rounded-xl glass-input text-[#0F0D26] placeholder-transparent focus:border-[#6B3DF5] focus:ring-1 focus:ring-[#6B3DF5] outline-none transition-all pr-12"
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}

@@ -1,0 +1,140 @@
+/* src/styles/glass.css
+ *
+ * Transparent "frosted glass" theme.
+ *
+ * The app's pages use opaque Tailwind surfaces (bg-white, bg-gray-50,
+ * bg-[#F7F8FC]...) everywhere. Instead of rewriting every page, this file
+ * paints a soft colour mesh behind the whole app and remaps those surface
+ * classes to translucent glass so the mesh shows through.
+ *
+ * Rules here are unlayered on purpose: they must win over Tailwind's
+ * `@layer utilities` without needing !important.
+ */
+
+:root {
+  --glass-bg: rgb(255 255 255 / 0.55);
+  --glass-bg-strong: rgb(255 255 255 / 0.72);
+  --glass-bg-soft: rgb(255 255 255 / 0.34);
+  --glass-tint: rgb(237 233 254 / 0.45);
+  --glass-border: rgb(255 255 255 / 0.65);
+  --glass-border-soft: rgb(255 255 255 / 0.45);
+  --glass-blur: blur(18px) saturate(170%);
+  --glass-shadow: 0 8px 32px rgb(31 22 90 / 0.12), inset 0 1px 0 rgb(255 255 255 / 0.6);
+}
+
+/* ─── Backdrop: colour mesh the glass refracts ───────────────────────────── */
+html {
+  background: #ECE8FB;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #ECE8FB;
+  background-image:
+    radial-gradient(42rem 42rem at -8% -10%, rgb(139 107 255 / 0.55), transparent 60%),
+    radial-gradient(36rem 36rem at 108% 4%, rgb(56 189 248 / 0.38), transparent 60%),
+    radial-gradient(40rem 40rem at 85% 105%, rgb(236 72 153 / 0.30), transparent 60%),
+    radial-gradient(34rem 34rem at 10% 95%, rgb(16 185 129 / 0.22), transparent 60%),
+    linear-gradient(160deg, #EFEAFE 0%, #E6F0FF 50%, #F7EAF6 100%);
+  background-attachment: fixed;
+}
+
+/* ─── Explicit glass utilities (used directly in components) ─────────────── */
+.glass-panel {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.glass-bar {
+  background-color: rgb(255 255 255 / 0.5);
+  border-color: var(--glass-border-soft);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.glass-input {
+  background-color: rgb(255 255 255 / 0.6);
+  border: 1px solid rgb(255 255 255 / 0.8);
+  box-shadow: inset 0 1px 2px rgb(31 22 90 / 0.06);
+}
+.glass-input:focus {
+  background-color: rgb(255 255 255 / 0.85);
+  border-color: #6B3DF5;
+}
+
+/* ─── Remap opaque page shells to transparent ─────────────────────────────── */
+.bg-\[\#F7F8FC\],
+.bg-\[\#F6F7FB\],
+.bg-\[\#F6F5FB\],
+.bg-\[\#F3F4F9\] {
+  background-color: var(--glass-bg-soft);
+}
+#root > div.min-h-screen.bg-\[\#F7F8FC\],
+#root > div.min-h-screen.bg-\[\#F6F7FB\],
+.min-h-screen > div.min-h-screen.bg-\[\#F6F7FB\] {
+  background-color: transparent;
+}
+
+/* ─── Remap opaque surfaces to glass ──────────────────────────────────────── */
+.bg-white {
+  background-color: var(--glass-bg);
+}
+.bg-white\/95,
+.bg-white\/80 {
+  background-color: var(--glass-bg-strong);
+}
+.bg-gray-50,
+.bg-gray-50\/50,
+.bg-gray-50\/70,
+.bg-gray-50\/80,
+.bg-\[\#F7F8FC\]\/50,
+.bg-\[\#F6F7FB\]\/60 {
+  background-color: var(--glass-bg-soft);
+}
+.bg-gray-100,
+.bg-gray-100\/70,
+.bg-gray-100\/80,
+.bg-\[\#F1EFFB\] {
+  background-color: var(--glass-tint);
+}
+
+/* Frost the large surfaces (cards, panels, bars). Small chips stay unblurred
+ * so we don't stack dozens of backdrop filters on one screen. */
+.bg-white:is(.rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-\[22px\], .rounded-\[20px\], .rounded-\[24px\]),
+.bg-white\/95,
+.bg-white\/80,
+header.bg-white,
+aside.bg-white,
+footer.bg-white {
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+.bg-white:is(.rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-\[22px\], .rounded-\[20px\], .rounded-\[24px\]) {
+  border-color: var(--glass-border);
+}
+
+/* ─── Hairline borders become light glass edges ───────────────────────────── */
+.border-gray-100,
+.border-gray-200,
+.border-gray-200\/60,
+.border-gray-200\/80,
+.border-\[\#E8EBF2\],
+.border-\[\#E5E7EB\] {
+  border-color: var(--glass-border-soft);
+}
+.divide-gray-100 > :not(:last-child),
+.divide-gray-200 > :not(:last-child) {
+  border-color: var(--glass-border-soft);
+}
+
+/* Browsers without backdrop-filter get a more opaque surface so text stays readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-bg: rgb(255 255 255 / 0.88);
+    --glass-bg-strong: rgb(255 255 255 / 0.94);
+    --glass-bg-soft: rgb(255 255 255 / 0.7);
+  }
+}

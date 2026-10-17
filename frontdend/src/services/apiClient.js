@@ -9,7 +9,15 @@ class ApiError extends Error {
   }
 }
 
-async function request(endpoint, options = {}) {
+const SERVER_UNREACHABLE = "Can't reach the SITTO server. Check that the backend is running and try again.";
+
+export function clearSession() {
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('refresh_token');
+  sessionStorage.removeItem('user');
+}
+
+async function request(endpoint, options = {}, isRetry = false) {
   const url = `${API_BASE_URL}${endpoint}`;
   
   const controller = new AbortController();
@@ -20,7 +28,6 @@ async function request(endpoint, options = {}) {
     'Accept': 'application/json',
   };
 
-  // TODO: Add auth token here when authService is implemented
   const token = sessionStorage.getItem('token');
   if (token) {
     defaultHeaders['Authorization'] = `Bearer ${token}`;
@@ -39,7 +46,7 @@ async function request(endpoint, options = {}) {
     clearTimeout(id);
 
     if (!response.ok) {
-      if (response.status === 401 && !endpoint.includes('/auth/login') && !endpoint.includes('/auth/refresh')) {
+      if (response.status === 401 && !isRetry && !endpoint.includes('/auth/login') && !endpoint.includes('/auth/refresh')) {
         const refreshToken = sessionStorage.getItem('refresh_token');
         if (refreshToken) {
           try {
@@ -54,16 +61,17 @@ async function request(endpoint, options = {}) {
               sessionStorage.setItem('refresh_token', refreshData.refresh_token);
               
               // Retry original request
-              return await request(endpoint, options);
+              return await request(endpoint, options, true);
             }
           } catch (e) {
             // Refresh failed, fall through to logout
           }
         }
         
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('refresh_token');
-        sessionStorage.removeItem('user');
+        clearSession();
+        window.dispatchEvent(new Event('auth-expired'));
+      } else if (response.status === 401 && isRetry) {
+        clearSession();
         window.dispatchEvent(new Event('auth-expired'));
       }
       
@@ -74,10 +82,11 @@ async function request(endpoint, options = {}) {
         errorData = { message: response.statusText || '' };
       }
       
-      let message = errorData.message || 'An error occurred';
-      if (response.status === 401 && !endpoint.includes('/auth/login')) message = 'Authentication expired';
-      if (response.status === 403) message = 'Access denied';
-      if (response.status === 404) message = 'Reservation not found';
+      let message = errorData.message || 'Something went wrong. Please try again.';
+      if (response.status === 401 && !endpoint.includes('/auth/')) message = 'Your session has expired. Please sign in again.';
+      if (response.status === 403 && !errorData.message) message = 'Access denied';
+      if (response.status === 404 && !errorData.message) message = 'Not found';
+      if (response.status >= 502 && response.status <= 504) message = SERVER_UNREACHABLE;
 
       throw new ApiError(message, response.status, errorData);
     }
@@ -94,7 +103,7 @@ async function request(endpoint, options = {}) {
     if (error instanceof ApiError) {
       throw error;
     }
-    throw new ApiError('Backend unreachable', 0, null, true);
+    throw new ApiError(SERVER_UNREACHABLE, 0, null, true);
   }
 }
 

@@ -55,15 +55,15 @@ export function AppShell() {
     setMobileMenuOpen(false); // close mobile menu on route change
   }, [location.pathname, fetchUnread]);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login', { replace: true });
   };
 
   // If in admin mode, keep admin full-bleed layout
   if (location.pathname.startsWith('/admin')) {
     return (
-      <div className="min-h-screen bg-[#F6F7FB] font-sans text-[#252638]">
+      <div className="min-h-screen font-sans text-[#252638]">
         <Outlet />
       </div>
     );
@@ -79,9 +79,9 @@ export function AppShell() {
   const displayName = user?.name || user?.email?.split('@')[0] || 'Student';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F7F8FC] font-sans text-[#0F0D26] selection:bg-[#6850F4]/15">
+    <div className="min-h-screen flex flex-col font-sans text-[#0F0D26] selection:bg-[#6850F4]/15">
       {/* ─── Premium Student Header ─────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#E8EBF2] shadow-[0_2px_12px_rgba(15,13,38,0.03)]">
+      <header className="sticky top-0 z-50 w-full glass-bar border-b shadow-[0_4px_24px_rgba(31,22,90,0.06)]">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
           {/* Logo & Campus Tag */}
           <div className="flex items-center space-x-3.5">
@@ -109,7 +109,7 @@ export function AppShell() {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
             {studentNavItems.map(item => {
               const Icon = item.icon;
               const isActive = item.path === '/' 
@@ -120,16 +120,17 @@ export function AppShell() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative flex items-center space-x-2 px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-150 ${
+                  title={item.label}
+                  className={`relative flex items-center gap-2 px-3 lg:px-3.5 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
                     isActive
-                      ? 'bg-[#F1EDFF] text-[#6850F4]'
-                      : 'text-gray-600 hover:text-[#0F0D26] hover:bg-gray-100/70'
+                      ? 'bg-white/80 text-[#6850F4] shadow-sm'
+                      : 'text-gray-600 hover:text-[#0F0D26] hover:bg-white/50'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#6850F4]' : 'text-gray-500'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#6850F4]' : 'text-gray-500'}`} />
+                  <span className="sr-only lg:not-sr-only">{item.label}</span>
                   {item.badge > 0 && (
-                    <span className="ml-1.5 px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#6850F4] text-white leading-none">
+                    <span className="lg:ml-1.5 px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-[#6850F4] text-white leading-none">
                       {item.badge > 9 ? '9+' : item.badge}
                     </span>
                   )}
@@ -139,7 +140,7 @@ export function AppShell() {
           </nav>
 
           {/* Profile & Controls */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {/* Notification Bell Quick Button */}
             <Link
               to="/notifications"
@@ -153,12 +154,12 @@ export function AppShell() {
             </Link>
 
             {/* Student Profile Chip */}
-            <div className="hidden sm:flex items-center pl-3 pr-2 py-1.5 rounded-xl border border-gray-200/80 bg-gray-50/50 hover:bg-gray-50 transition-colors">
+            <div className="hidden sm:flex items-center pl-2 pr-1.5 py-1.5 rounded-xl border border-white/60 bg-white/40 hover:bg-white/60 transition-colors">
               <div className="w-7 h-7 rounded-lg bg-[#6850F4] text-white flex items-center justify-center font-bold text-xs mr-2 shadow-xs">
                 {displayName.charAt(0).toUpperCase()}
               </div>
               <div className="flex flex-col text-left mr-2">
-                <span className="text-xs font-bold text-[#0F0D26] leading-tight max-w-[120px] truncate">
+                <span className="text-xs font-bold text-[#0F0D26] leading-tight max-w-[120px] truncate whitespace-nowrap">
                   {displayName}
                 </span>
                 <span className="text-[10px] text-gray-400 font-medium">Student</span>
@@ -189,8 +190,8 @@ export function AppShell() {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-5 space-y-1 shadow-lg animate-in slide-in-from-top duration-200">
-            <div className="flex items-center p-3 mb-2 rounded-xl bg-[#F7F8FC]">
+          <div className="md:hidden border-t border-white/50 px-4 pt-3 pb-5 space-y-1 shadow-lg">
+            <div className="flex items-center p-3 mb-2 rounded-xl bg-white/50 border border-white/60">
               <div className="w-9 h-9 rounded-xl bg-[#6850F4] text-white flex items-center justify-center font-bold text-sm mr-3">
                 {displayName.charAt(0).toUpperCase()}
               </div>
@@ -216,8 +217,8 @@ export function AppShell() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                     isActive
-                      ? 'bg-[#F1EDFF] text-[#6850F4]'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-white/80 text-[#6850F4] shadow-sm'
+                      : 'text-gray-700 hover:bg-white/50'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -254,7 +255,7 @@ export function AppShell() {
       </main>
 
       {/* Subtle Student Space Hub Footer */}
-      <footer className="border-t border-[#E8EBF2] bg-white py-6 text-center text-xs text-gray-500">
+      <footer className="glass-bar border-t py-6 text-center text-xs text-gray-600">
         <div className="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center space-x-2">
             <img src="/sitto-emblem.png" alt="SITTO" className="w-4 h-4 object-contain inline-block" />

@@ -500,9 +500,9 @@ export function AdminDashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F6F7FB] text-[#252638] flex flex-col font-sans antialiased selection:bg-[#6850F4]/15">
+    <div className="min-h-screen text-[#252638] flex flex-col font-sans antialiased selection:bg-[#6850F4]/15">
       {/* 1. TOP PURPLE ENTERPRISE BAR */}
-      <header className="bg-gradient-to-r from-[#5B42E8] via-[#6850F4] to-[#7B66FF] text-white px-3 sm:px-5 py-2.5 shadow-md flex items-center justify-between z-30 sticky top-0">
+      <header className="bg-gradient-to-r from-[#5B42E8]/85 via-[#6850F4]/80 to-[#7B66FF]/75 backdrop-blur-xl border-b border-white/20 text-white px-3 sm:px-5 py-2.5 shadow-md flex items-center justify-between z-30 sticky top-0">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsLeftCollapsed(!isLeftCollapsed)}

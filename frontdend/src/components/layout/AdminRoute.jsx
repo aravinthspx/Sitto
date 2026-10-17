@@ -6,8 +6,8 @@ export function AdminRoute() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F0D26]">
-        <div className="text-white text-center">
+      <div className="min-h-screen flex items-center justify-center ">
+        <div className="glass-panel rounded-2xl px-8 py-6 text-[#0F0D26] text-center">
           <div className="w-8 h-8 border-4 border-[#6B3DF5] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p>Verifying access...</p>
         </div>

@@ -1,6 +1,6 @@
 import { USE_MOCK } from './config';
 import { mockStore } from '../mocks/mockStore';
-import { apiClient } from './apiClient';
+import { apiClient, clearSession } from './apiClient';
 
 export async function login(credentials) {
   if (USE_MOCK) {
@@ -35,8 +35,7 @@ export async function login(credentials) {
 export async function logout() {
   if (USE_MOCK) {
     await mockStore.delay();
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    clearSession();
     return;
   }
 
@@ -45,8 +44,7 @@ export async function logout() {
   } catch (err) {
     console.error('Logout error', err);
   } finally {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    clearSession();
   }
 }
 
@@ -55,7 +53,7 @@ export function getCurrentUser() {
   if (!userStr) return null;
   try {
     return JSON.parse(userStr);
-  } catch (e) {
+  } catch {
     return null;
   }
 }
