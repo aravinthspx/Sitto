@@ -19,7 +19,7 @@ export function SITTOIcon({ className = '', alt = '' }) {
     <img
       src={SITTO_ICON_SRC}
       alt={alt}
-      className={`select-none shrink-0 rounded-[22.5%] shadow-[0_4px_14px_rgba(91,61,245,0.35)] ${className}`}
+      className={`select-none shrink-0 rounded-[22.5%] shadow-[0_4px_14px_rgba(46,75,255,0.35)] ${className}`}
       draggable="false"
     />
   );
@@ -38,8 +38,8 @@ export default function SITTOLogo({
   ...props
 }) {
   const isLightTheme = theme === 'light';
-  const nameColor = isLightTheme ? 'text-white' : 'text-[#0B0A1F]';
-  const mutedColor = isLightTheme ? 'text-white/70' : 'text-[#5E5A7A]';
+  const nameColor = isLightTheme ? 'text-white' : 'text-[#15140F]';
+  const mutedColor = isLightTheme ? 'text-white/70' : 'text-[#6E6A60]';
 
   if (variant === 'full') {
     const s = {
@@ -80,7 +80,7 @@ export default function SITTOLogo({
                 className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                   isLightTheme
                     ? 'bg-white/15 text-purple-200 border border-white/20'
-                    : 'bg-[#F1EDFF] text-[#6850F4]'
+                    : 'bg-[#E7EBFF] text-[#2E4BFF]'
                 }`}
               >
                 {subtitle}

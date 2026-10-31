@@ -51,12 +51,12 @@ export function PushSettingsCard({ compact = false }) {
   return (
     <section className="bg-white rounded-2xl p-4 sm:p-5" aria-labelledby="push-card-title">
       <div className="flex items-start gap-3">
-        <div className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center ${on ? 'bg-emerald-100 text-emerald-600' : 'bg-[#F1EDFF] text-[#6850F4]'}`}>
+        <div className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center ${on ? 'bg-emerald-100 text-emerald-600' : 'bg-[#E7EBFF] text-[#2E4BFF]'}`}>
           {on ? <BellRing className="w-5 h-5" /> : <Smartphone className="w-5 h-5" />}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h2 id="push-card-title" className="text-[15px] font-bold text-[#0F0D26]">Phone notifications</h2>
+            <h2 id="push-card-title" className="text-[15px] font-bold text-[#15140F]">Phone notifications</h2>
             <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${on ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-600'}`}>
               {on ? 'On' : status.permission === 'denied' ? 'Blocked' : 'Off'}
             </span>
@@ -74,8 +74,8 @@ export function PushSettingsCard({ compact = false }) {
           )}
 
           {status.supported && iosInstall && !on && (
-            <p className="mt-3 text-[13px] text-[#3B3568] flex gap-2">
-              <Share className="w-4 h-4 shrink-0 mt-0.5 text-[#6850F4]" />
+            <p className="mt-3 text-[13px] text-[#45423A] flex gap-2">
+              <Share className="w-4 h-4 shrink-0 mt-0.5 text-[#2E4BFF]" />
               <span>
                 On iPhone: tap <strong>Share</strong> → <strong>Add to Home Screen</strong>, open SITTO from your
                 Home Screen, then turn notifications on here.
@@ -109,7 +109,7 @@ export function PushSettingsCard({ compact = false }) {
                     type="button"
                     disabled={busy}
                     onClick={() => run(sendTestPush, 'Test notification sent. It should appear in a few seconds.')}
-                    className="h-9 px-4 rounded-xl text-[13px] font-semibold text-white bg-[#6B3DF5] disabled:opacity-60"
+                    className="h-9 px-4 rounded-xl text-[13px] font-semibold text-white bg-[#2E4BFF] disabled:opacity-60"
                   >
                     Send test notification
                   </button>
@@ -117,7 +117,7 @@ export function PushSettingsCard({ compact = false }) {
                     type="button"
                     disabled={busy}
                     onClick={() => run(disablePush, 'Phone notifications turned off for this device.')}
-                    className="h-9 px-4 rounded-xl text-[13px] font-semibold text-[#3B3568] bg-white/60 border border-white/80 disabled:opacity-60"
+                    className="h-9 px-4 rounded-xl text-[13px] font-semibold text-[#45423A] bg-white/60 border border-white/80 disabled:opacity-60"
                   >
                     Turn off
                   </button>
@@ -127,13 +127,13 @@ export function PushSettingsCard({ compact = false }) {
                   type="button"
                   disabled={busy || status.permission === 'denied'}
                   onClick={() => run(enablePush, "You're all set. We'll notify this device.")}
-                  className="h-10 px-5 rounded-xl text-[13px] font-semibold text-white bg-[#6B3DF5] disabled:opacity-60 inline-flex items-center gap-2"
+                  className="h-10 px-5 rounded-xl text-[13px] font-semibold text-white bg-[#2E4BFF] disabled:opacity-60 inline-flex items-center gap-2"
                 >
                   {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <BellRing className="w-4 h-4" />}
                   Turn on notifications
                 </button>
               )}
-              {busy && on && <Loader2 className="w-4 h-4 animate-spin text-[#6B3DF5] self-center" />}
+              {busy && on && <Loader2 className="w-4 h-4 animate-spin text-[#2E4BFF] self-center" />}
             </div>
           )}
         </div>

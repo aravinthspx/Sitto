@@ -71,7 +71,7 @@ function NotifIcon({ type }) {
     SUCCESS:            <CheckCircle className="w-5 h-5 text-emerald-500" />,
     INFO:               <Info className="w-5 h-5 text-blue-500" />,
   };
-  return map[type] ?? <Bell className="w-5 h-5 text-[#6850F4]" />;
+  return map[type] ?? <Bell className="w-5 h-5 text-[#2E4BFF]" />;
 }
 
 // ─── Main page ─────────────────────────────────────────────────────────────
@@ -215,11 +215,11 @@ export function NotificationsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#F1EDFF] text-[#6850F4] flex items-center justify-center shadow-xs">
+          <div className="w-10 h-10 rounded-xl bg-[#E7EBFF] text-[#2E4BFF] flex items-center justify-center shadow-xs">
             <Bell className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#0F0D26]">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#15140F]">
               Notifications
             </h1>
             <p className="text-xs text-gray-500">
@@ -233,7 +233,7 @@ export function NotificationsPage() {
             variant="outline"
             size="sm"
             onClick={handleMarkAllRead}
-            className="border-gray-200 hover:border-[#6850F4] text-[#6850F4] hover:bg-[#F1EDFF] text-xs font-semibold rounded-xl"
+            className="border-gray-200 hover:border-[#2E4BFF] text-[#2E4BFF] hover:bg-[#E7EBFF] text-xs font-semibold rounded-xl"
           >
             Mark all as read
           </Button>
@@ -266,7 +266,7 @@ export function NotificationsPage() {
       {adminTasks.length > 0 && (
         <div className="space-y-3 mb-6">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#6850F4]" />
+            <ShieldCheck className="w-4 h-4 text-[#2E4BFF]" />
             <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
               Staff Presence Verifications ({adminTasks.length})
             </h2>
@@ -346,17 +346,17 @@ export function NotificationsPage() {
                 key={notif.id}
                 className={`bg-white rounded-2xl border transition-all duration-200 overflow-hidden ${
                   !notif.isRead
-                    ? 'border-[#6850F4]/30 shadow-[0_4px_20px_rgba(104,80,244,0.08)] ring-1 ring-[#6850F4]/10'
-                    : 'border-[#E8EBF2] shadow-xs opacity-90'
+                    ? 'border-[#2E4BFF]/30 shadow-[0_4px_20px_rgba(46,75,255,0.08)] ring-1 ring-[#2E4BFF]/10'
+                    : 'border-[#E6E1D6] shadow-xs opacity-90'
                 }`}
               >
-                <CardHeader className="py-3 px-4 sm:px-5 border-b border-gray-50 bg-[#F7F8FC]/50">
+                <CardHeader className="py-3 px-4 sm:px-5 border-b border-gray-50 bg-[#F7F5EF]/50">
                   <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="text-xs sm:text-sm font-bold flex items-center gap-2 text-[#0F0D26] font-heading">
+                    <CardTitle className="text-xs sm:text-sm font-bold flex items-center gap-2 text-[#15140F] font-heading">
                       <NotifIcon type={notif.type} />
                       <span>{notif.title}</span>
                       {!notif.isRead && (
-                        <span className="w-2 h-2 bg-[#6850F4] rounded-full shrink-0" />
+                        <span className="w-2 h-2 bg-[#2E4BFF] rounded-full shrink-0" />
                       )}
                     </CardTitle>
                     <div className="flex items-center gap-2.5 shrink-0">
@@ -366,7 +366,7 @@ export function NotificationsPage() {
                       {!notif.isRead && (
                         <button
                           onClick={() => handleMarkRead(notif.id)}
-                          className="text-[11px] text-[#6850F4] hover:underline font-bold"
+                          className="text-[11px] text-[#2E4BFF] hover:underline font-bold"
                         >
                           Mark read
                         </button>
@@ -384,7 +384,7 @@ export function NotificationsPage() {
                   {isSeatSure && (
                     <div className="mt-4 pt-3 border-t border-gray-100 space-y-2.5">
                       <div className="flex items-center justify-between flex-wrap gap-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#6850F4]">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#2E4BFF]">
                           SeatSure™ Active Presence Check
                         </span>
                         {notif.expiresAt && <Countdown expiresAt={notif.expiresAt} />}
@@ -393,7 +393,7 @@ export function NotificationsPage() {
                       {isActive ? (
                         <div className="flex gap-2.5 pt-1">
                           <Button
-                            className="flex-1 bg-[#6850F4] hover:bg-[#5840DC] text-white text-xs font-bold h-10 rounded-xl shadow-xs"
+                            className="flex-1 bg-[#2E4BFF] hover:bg-[#1F37E0] text-white text-xs font-bold h-10 rounded-xl shadow-xs"
                             disabled={!!isResponding}
                             onClick={() => handleSeatSureResponse(notif, 'YES')}
                           >
@@ -421,7 +421,7 @@ export function NotificationsPage() {
                     <div className="mt-3 pt-2">
                       <button
                         onClick={() => navigate(notif.actionUrl)}
-                        className="text-xs font-bold text-[#6850F4] hover:text-[#5840DC] hover:underline flex items-center gap-1 cursor-pointer"
+                        className="text-xs font-bold text-[#2E4BFF] hover:text-[#1F37E0] hover:underline flex items-center gap-1 cursor-pointer"
                       >
                         <span>View Reservation Pass</span>
                         <ArrowRight className="w-3.5 h-3.5" />

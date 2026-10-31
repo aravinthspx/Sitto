@@ -87,6 +87,18 @@ export function SpacePage() {
   // Success state for Step 4
   const [confirmedReservation, setConfirmedReservation] = useState(null);
 
+  // Phones: hide the "Choose time" shortcut once the summary is on screen
+  const [summaryInView, setSummaryInView] = useState(false);
+  useEffect(() => {
+    const el = document.getElementById('booking-summary');
+    if (!el || !('IntersectionObserver' in window)) return undefined;
+    const io = new IntersectionObserver(([entry]) => setSummaryInView(entry.isIntersecting), {
+      rootMargin: '0px 0px -45% 0px',
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [data, confirmedReservation]);
+
   // Building & Floor metadata
   const [metaLoading, setMetaLoading] = useState(false);
   const [buildingMeta, setBuildingMeta] = useState(null);
@@ -319,7 +331,7 @@ export function SpacePage() {
   if (loading && !data) {
     return (
       <div className="flex flex-col items-center justify-center p-20 space-y-4">
-        <Spinner className="w-10 h-10 text-[#6850F4]" />
+        <Spinner className="w-10 h-10 text-[#2E4BFF]" />
         <p className="text-sm font-semibold text-gray-500">Loading SITTO Seat Map...</p>
       </div>
     );
@@ -354,7 +366,7 @@ export function SpacePage() {
         /* ─── Steps 1, 2, 3: Location Bar, Seat Grid & Sticky Summary ────── */
         <>
           {/* Step 1 Location & Live Room Header */}
-          <div className="bg-white rounded-2xl border border-[#E8EBF2] p-4 sm:p-5 shadow-[0_2px_12px_rgba(15,13,38,0.03)] flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="bg-white rounded-2xl border border-[#E6E1D6] p-4 sm:p-5 shadow-[0_2px_12px_rgba(21,20,15,0.03)] flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <Button 
                 variant="ghost" 
@@ -363,12 +375,12 @@ export function SpacePage() {
                 className="shrink-0 h-10 w-10 bg-gray-50 hover:bg-gray-100 rounded-xl border border-gray-200"
                 title="Change building or room"
               >
-                <ArrowLeft className="w-5 h-5 text-[#0F0D26]" />
+                <ArrowLeft className="w-5 h-5 text-[#15140F]" />
               </Button>
               
               <div>
                 <div className="flex items-center space-x-2 text-xs">
-                  <span className="font-bold text-[#6850F4] bg-[#F1EDFF] px-2 py-0.5 rounded-full">
+                  <span className="font-bold text-[#2E4BFF] bg-[#E7EBFF] px-2 py-0.5 rounded-full">
                     Step 1 Selected
                   </span>
                   <span className="text-gray-300">•</span>
@@ -377,7 +389,7 @@ export function SpacePage() {
                   </span>
                 </div>
                 
-                <h1 className="text-xl sm:text-2xl font-black font-heading text-[#0F0D26] tracking-tight mt-0.5">
+                <h1 className="text-xl sm:text-2xl font-black font-heading text-[#15140F] tracking-tight mt-0.5">
                   {data?.spaceName || 'Seat Map'}
                 </h1>
               </div>
@@ -386,7 +398,7 @@ export function SpacePage() {
             {/* Real Room Availability Pill */}
             <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
               {availabilityStats && (
-                <div className="flex items-center gap-2 bg-[#F7F8FC] px-3.5 py-1.5 rounded-xl border border-[#E8EBF2] text-xs">
+                <div className="flex items-center gap-2 bg-[#F7F5EF] px-3.5 py-1.5 rounded-xl border border-[#E6E1D6] text-xs">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="font-bold text-emerald-700">
                     {availabilityStats.available} Available
@@ -420,7 +432,7 @@ export function SpacePage() {
               <div className="relative">
                 {loading && data && (
                   <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-20 flex items-center justify-center rounded-[24px]">
-                    <Spinner className="w-8 h-8 text-[#6850F4]" />
+                    <Spinner className="w-8 h-8 text-[#2E4BFF]" />
                   </div>
                 )}
                 
@@ -434,7 +446,7 @@ export function SpacePage() {
             </div>
             
             {/* Right Column: Step 3 Sticky Desktop Booking Summary */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 scroll-mt-20" id="booking-summary">
               <div className="lg:sticky lg:top-20 space-y-4">
                 <SeatDetailPanel 
                   spaceName={data?.spaceName}
@@ -464,6 +476,27 @@ export function SpacePage() {
               </div>
             </div>
           </div>
+
+          {/* Phones: the summary sits below the room, so offer a shortcut to it */}
+          {selectedSeats.length > 0 && !confirmedReservation && !summaryInView && (
+            <button
+              type="button"
+              onClick={() => document.getElementById('booking-summary')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              className="lg:hidden fixed inset-x-3 z-50 bottom-[calc(86px+env(safe-area-inset-bottom))] flex items-center justify-between gap-3 rounded-2xl bg-[#2E4BFF] px-4 py-3 text-left text-white shadow-[0_18px_40px_-14px_rgba(46,75,255,0.7)]"
+            >
+              <span className="min-w-0">
+                <span className="block text-[11px] font-mono text-white/70">
+                  {selectedSeats.length} seat{selectedSeats.length > 1 ? 's' : ''} picked
+                </span>
+                <span className="block truncate font-heading font-bold">
+                  {selectedSeats.map((s) => s.id).join(', ')}
+                </span>
+              </span>
+              <span className="shrink-0 rounded-xl bg-[#D7FF3A] px-3 py-2 text-sm font-bold text-[#15140F]">
+                Choose time ↓
+              </span>
+            </button>
+          )}
         </>
       )}
     </div>

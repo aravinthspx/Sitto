@@ -1,0 +1,262 @@
+/* src/styles/seat3d.css
+ *
+ * 3D classroom seat map (components/seats/SeatGrid.jsx + Seat.jsx).
+ * Pure CSS 3D: the floor is tilted with rotateX/rotateZ and every desk and
+ * chair is a small cuboid of five faces coloured by seat status.
+ */
+
+.seat3d-stage {
+  perspective: 1100px;
+  perspective-origin: 50% 35%;
+  overflow: hidden;
+  touch-action: pan-y; /* vertical swipes still scroll the page on phones */
+  background:
+    radial-gradient(120% 90% at 50% 0%, #fff 0%, #F7F5EF 70%);
+}
+
+.seat3d-floor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  border-radius: 18px;
+  background-color: #EFEBE1;
+  background-image:
+    linear-gradient(rgb(21 20 15 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(21 20 15 / 0.05) 1px, transparent 1px);
+  background-size: 37px 41px;
+  box-shadow: inset 0 0 0 1px #DDD6C6, 0 30px 60px -30px rgb(21 20 15 / 0.35);
+  transition: transform 650ms var(--ease-ios);
+}
+.seat3d-floor.is-dragging {
+  transition: none;
+}
+
+/* Whiteboard standing at the front edge */
+.seat3d-board {
+  position: absolute;
+  top: -42px;
+  height: 54px;
+  transform-origin: bottom center;
+  transform: rotateX(-90deg);
+  border-radius: 8px 8px 0 0;
+  background: #15140F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.seat3d-board span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #D7FF3A;
+}
+
+.seat3d-floor-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8F897B;
+  pointer-events: none;
+}
+
+.seat3d-aisle {
+  position: absolute;
+  border-left: 1px dashed #D3CDBF;
+  border-right: 1px dashed #D3CDBF;
+  pointer-events: none;
+}
+
+/* ─── Cuboids ─────────────────────────────────────────────────────────────── */
+.box3d {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+.box3d__face {
+  position: absolute;
+}
+.box3d__top {
+  inset: 0;
+  border-radius: 6px;
+  transform: translateZ(var(--h));
+  background: var(--top);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+.box3d__north,
+.box3d__south {
+  left: 0;
+  width: 100%;
+  height: var(--h);
+  transform-origin: top center;
+  transform: rotateX(90deg);
+  background: var(--side);
+}
+.box3d__north { top: 0; }
+.box3d__south { top: 100%; }
+.box3d__west,
+.box3d__east {
+  top: 0;
+  width: var(--h);
+  height: 100%;
+  transform-origin: left center;
+  transform: rotateY(-90deg);
+  background: var(--side-dark);
+}
+.box3d__west { left: 0; }
+.box3d__east { left: 100%; }
+
+/* ─── Seats ───────────────────────────────────────────────────────────────── */
+.seat3d {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  --top: #3CCB74;
+  --side: #1F9D55;
+  --side-dark: #178246;
+  --label: #fff;
+}
+.seat3d[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+.seat3d:focus-visible {
+  outline: 3px solid #2E4BFF;
+  outline-offset: -2px;
+}
+
+.seat3d[data-status="SELECTED"] {
+  --top: #2E4BFF;
+  --side: #1F37E0;
+  --side-dark: #172AA8;
+}
+.seat3d[data-status="RESERVED"] {
+  --top: #F4C445;
+  --side: #D09A10;
+  --side-dark: #B4850C;
+  --label: #15140F;
+}
+.seat3d[data-status="OCCUPIED"] {
+  --top: #EE6A6E;
+  --side: #C2454A;
+  --side-dark: #A3383D;
+}
+.seat3d[data-status="UNVERIFIED"] {
+  --top: repeating-linear-gradient(45deg, #F7A733 0 5px, #F9BC5E 5px 10px);
+  --side: #CF7F0C;
+  --side-dark: #B06C0A;
+  --label: #15140F;
+}
+.seat3d.is-dimmed {
+  opacity: 0.45;
+}
+
+.seat3d__lift {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 380ms var(--ease-spring);
+}
+.seat3d[data-status="AVAILABLE"]:not(.is-dimmed):hover .seat3d__lift,
+.seat3d[data-status="AVAILABLE"]:focus-visible .seat3d__lift {
+  transform: translateZ(9px);
+}
+.seat3d[data-status="SELECTED"] .seat3d__lift {
+  transform: translateZ(12px);
+}
+.seat3d:not([aria-disabled="true"]):active .seat3d__lift {
+  transform: translateZ(2px);
+  transition-duration: 90ms;
+}
+
+/* Desks stay neutral whatever the seat status */
+.seat3d__desk {
+  --top: #E9E3D6;
+  --side: #CFC6B3;
+  --side-dark: #BDB39D;
+}
+.seat3d__back .box3d__top {
+  border-radius: 4px;
+}
+
+.seat3d__label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--label);
+}
+
+.seat3d__label--back {
+  /* the south wall is rotated face-down; flip it so the text reads upright */
+  transform: scaleY(-1);
+  font-size: 10px;
+}
+
+.seat3d__shadow {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 4px;
+  border-radius: 14px;
+  background: rgb(21 20 15 / 0.18);
+  filter: blur(6px);
+  transition: opacity 300ms;
+}
+.seat3d[data-status="SELECTED"] .seat3d__label--back {
+  /* the south wall is rotated face-down; flip it so the text reads upright */
+  transform: scaleY(-1);
+  font-size: 10px;
+}
+
+.seat3d__shadow {
+  background: rgb(46 75 255 / 0.35);
+}
+
+/* Floating name tag over picked seats: counter-rotated to face the viewer */
+.seat3d__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #D7FF3A;
+  color: #15140F;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 6px 14px -6px rgb(21 20 15 / 0.5);
+  transform: translate(-50%, -50%) translateZ(78px) rotateZ(calc(var(--spin) * -1)) rotateX(calc(var(--tilt) * -1));
+  animation: seat3d-pin-in 420ms var(--ease-spring) both;
+}
+@keyframes seat3d-pin-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat3d-floor,
+  .seat3d__lift {
+    transition: none !important;
+  }
+  .seat3d__pin {
+    animation: none !important;
+  }
+}

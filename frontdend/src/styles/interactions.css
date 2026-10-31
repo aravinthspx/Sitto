@@ -92,7 +92,7 @@
   100% { opacity: 1; transform: translateY(0); }
 }
 .page-transition {
-  animation: page-fade-up 400ms ease-out forwards;
+  animation: page-fade-up 400ms ease-out backwards;
 }
 
 /* Seat Map Container Perspective */

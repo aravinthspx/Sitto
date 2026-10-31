@@ -1,6 +1,6 @@
 /* src/styles/ios.css
  *
- * iOS look and feel on top of the liquid glass theme:
+ * iOS-style motion and controls (colours live in paper.css):
  * system typography, spring timing, press feedback, segmented control,
  * bottom tab bar, and View Transitions for smooth page switching.
  */
@@ -147,15 +147,12 @@ button.absolute:active {
 .ios-header {
   view-transition-name: app-header;
 }
-.liquid-scene {
-  view-transition-name: liquid-scene;
-  contain: strict;
-}
 
 /* ─── Page switching ──────────────────────────────────────────────────────── */
 /* Content entering a page: soft rise with an iOS ease-out */
 .page-transition {
-  animation: ios-page-in 520ms var(--ease-ios) both;
+  /* backwards, not both: a lingering transform would trap position:fixed children */
+  animation: ios-page-in 520ms var(--ease-ios) backwards;
 }
 @keyframes ios-page-in {
   from { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.992); }
@@ -180,26 +177,11 @@ button.absolute:active {
 @keyframes ios-root-in {
   from { opacity: 0; }
 }
-/* The animated background must keep running live, not as a frozen snapshot */
-::view-transition-old(liquid-scene) { display: none; }
-::view-transition-new(liquid-scene) { animation: none; }
 ::view-transition-old(app-header),
 ::view-transition-new(app-header),
 ::view-transition-old(app-tabbar),
 ::view-transition-new(app-tabbar) {
   animation-duration: 200ms;
-}
-
-/* ─── Calmer, smoother background blobs ───────────────────────────────────── */
-.liquid-blob {
-  animation-duration: 48s;
-  filter: blur(80px);
-}
-.liquid-blob--aqua { animation-duration: 56s; }
-.liquid-blob--pink { animation-duration: 52s; }
-.liquid-blob--mint { animation-duration: 60s; }
-.liquid-blob {
-  backface-visibility: hidden;
 }
 
 /* ─── Reduced motion ──────────────────────────────────────────────────────── */
@@ -218,26 +200,4 @@ button.absolute:active {
   ::view-transition-new(*) {
     animation: none !important;
   }
-}
-
-/* ─── Readability on glass ────────────────────────────────────────────────────
- * Tailwind's light greys were designed for solid white. On translucent glass
- * over a colourful backdrop they wash out, so darken them to keep body text
- * at WCAG AA contrast. Dark surfaces (hero banners) keep their own colours. */
-:where(.text-gray-400):not(:is(.liquid-dark, [class*="bg-[#0F0D26]"], [class*="bg-[#17143A]"], [class*="bg-[#211B54]"]) *) {
-  color: #5F5B7C;
-}
-:where(.text-gray-500):not(:is(.liquid-dark, [class*="bg-[#0F0D26]"], [class*="bg-[#17143A]"], [class*="bg-[#211B54]"]) *) {
-  color: #4F4B6B;
-}
-:where(.text-gray-600):not(:is(.liquid-dark, [class*="bg-[#0F0D26]"], [class*="bg-[#17143A]"], [class*="bg-[#211B54]"]) *) {
-  color: #3F3C5A;
-}
-:where(.text-gray-700) {
-  color: #312E4A;
-}
-/* Placeholder-style empty states ("No active booking") stay muted but legible */
-h3.text-gray-400,
-h4.text-gray-400 {
-  color: #6A6688;
 }

@@ -78,15 +78,15 @@ export function FloorPage() {
           onClick={() => navigate(`/campus/${buildingId}`)} 
           className="bg-white hover:bg-gray-100 rounded-xl shadow-xs shrink-0 h-10 w-10 border border-gray-200"
         >
-          <ArrowLeft className="w-5 h-5 text-[#0F0D26]" />
+          <ArrowLeft className="w-5 h-5 text-[#15140F]" />
         </Button>
         <div>
           <div className="flex items-center space-x-2 text-xs text-gray-500">
             <span>{buildingId}</span>
             <span>•</span>
-            <span className="font-bold text-[#6850F4]">{floorId}</span>
+            <span className="font-bold text-[#2E4BFF]">{floorId}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#0F0D26]">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#15140F]">
             Spaces on Floor {floorId}
           </h1>
         </div>
@@ -107,14 +107,14 @@ export function FloorPage() {
             return (
               <Card
                 key={s.id}
-                className="group rounded-[22px] border border-[#E8EBF2] bg-white overflow-hidden shadow-[0_4px_20px_rgba(15,13,38,0.03)] hover:shadow-[0_12px_32px_rgba(104,80,244,0.12)] hover:border-[#6850F4]/40 transition-all duration-200 flex flex-col justify-between"
+                className="group rounded-[22px] border border-[#E6E1D6] bg-white overflow-hidden shadow-[0_4px_20px_rgba(21,20,15,0.03)] hover:shadow-[0_12px_32px_rgba(46,75,255,0.12)] hover:border-[#2E4BFF]/40 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="p-5 pb-4 border-b border-gray-50 bg-gradient-to-r from-gray-50/60 to-white">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center space-x-2.5">
                         <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                          isLab ? 'bg-[#F1EDFF] text-[#6850F4]' : 'bg-emerald-50 text-emerald-600'
+                          isLab ? 'bg-[#E7EBFF] text-[#2E4BFF]' : 'bg-emerald-50 text-emerald-600'
                         }`}>
                           {isLab ? <Monitor className="w-5 h-5" /> : <BookOpen className="w-5 h-5" />}
                         </div>
@@ -122,7 +122,7 @@ export function FloorPage() {
                           <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
                             {s.type || 'Room'}
                           </span>
-                          <h3 className="text-lg font-bold font-heading text-[#0F0D26] group-hover:text-[#6850F4] transition-colors leading-tight">
+                          <h3 className="text-lg font-bold font-heading text-[#15140F] group-hover:text-[#2E4BFF] transition-colors leading-tight">
                             {s.name}
                           </h3>
                         </div>
@@ -139,7 +139,7 @@ export function FloorPage() {
                   <div className="p-5 space-y-3">
                     <div className="flex justify-between items-center text-xs">
                       <span className="font-medium text-gray-500">Live Availability</span>
-                      <span className="font-bold text-[#0F0D26]">
+                      <span className="font-bold text-[#15140F]">
                         {availableSeats} / {totalSeats} seats
                       </span>
                     </div>
@@ -162,7 +162,7 @@ export function FloorPage() {
                 <div className="p-5 pt-0">
                   <Button
                     onClick={() => navigate(`/space/${s.id}`)}
-                    className="w-full h-11 rounded-xl text-sm font-semibold bg-[#6850F4] hover:bg-[#5840DC] text-white shadow-xs"
+                    className="w-full h-11 rounded-xl text-sm font-semibold bg-[#2E4BFF] hover:bg-[#1F37E0] text-white shadow-xs"
                   >
                     <span>View Seats & Reserve</span>
                     <ArrowRight className="w-4 h-4 ml-2" />

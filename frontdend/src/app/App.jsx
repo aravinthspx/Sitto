@@ -4,8 +4,6 @@ import { AuthProvider } from '../hooks/useAuth';
 import { useNavigate } from '../hooks/useNavigate';
 import { AppRoutes } from './routes';
 import { StorageNotice } from '../legal/StorageNotice';
-import { LiquidBackground } from '../components/liquid/LiquidBackground';
-import { useLiquidRipple } from '../components/liquid/useLiquidRipple';
 import { internalLinkTarget, signalRouteCommit } from './viewTransition';
 
 // Animates every in-app page switch (see app/viewTransition.js):
@@ -48,12 +46,5 @@ function Root() {
 const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
 
 export function App() {
-  useLiquidRipple();
-
-  return (
-    <>
-      <LiquidBackground />
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }

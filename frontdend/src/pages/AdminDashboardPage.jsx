@@ -75,19 +75,19 @@ function FilterDropdown({ label, value, options, onChange, allLabel = 'All', ico
         onClick={() => setIsOpen(prev => !prev)}
         className={`h-9 px-3 text-xs rounded-xl font-medium border flex items-center justify-between gap-2 transition-all cursor-pointer shadow-2xs whitespace-nowrap min-w-[130px] sm:min-w-[145px] ${
           isSelected
-            ? 'bg-[#6850F4]/10 border-[#6850F4] text-[#6850F4] font-semibold ring-1 ring-[#6850F4]/30'
-            : 'bg-white hover:bg-[#F6F7FB] border-[#E5E7EB] text-gray-700 hover:border-gray-300'
+            ? 'bg-[#2E4BFF]/10 border-[#2E4BFF] text-[#2E4BFF] font-semibold ring-1 ring-[#2E4BFF]/30'
+            : 'bg-white hover:bg-[#F7F5EF] border-[#E6E1D6] text-gray-700 hover:border-gray-300'
         }`}
       >
         <div className="flex items-center gap-1.5 truncate">
-          {Icon && <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-[#6850F4]' : 'text-gray-400'}`} />}
+          {Icon && <Icon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-[#2E4BFF]' : 'text-gray-400'}`} />}
           <span className="truncate">{displayLabel}</span>
         </div>
-        <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-150 ${isOpen ? 'rotate-180 text-[#6850F4]' : 'text-gray-400'}`} />
+        <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-150 ${isOpen ? 'rotate-180 text-[#2E4BFF]' : 'text-gray-400'}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 mt-1.5 w-56 rounded-xl bg-white border border-[#E5E7EB] shadow-xl py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute left-0 mt-1.5 w-56 rounded-xl bg-white border border-[#E6E1D6] shadow-xl py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
           <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-gray-400 border-b border-gray-100">
             {label}
           </div>
@@ -99,12 +99,12 @@ function FilterDropdown({ label, value, options, onChange, allLabel = 'All', ico
                 onChange('ALL');
                 setIsOpen(false);
               }}
-              className={`w-full px-3 py-2 text-left text-xs flex items-center justify-between hover:bg-[#F6F7FB] transition cursor-pointer ${
-                value === 'ALL' ? 'text-[#6850F4] font-bold bg-[#6850F4]/5' : 'text-gray-700'
+              className={`w-full px-3 py-2 text-left text-xs flex items-center justify-between hover:bg-[#F7F5EF] transition cursor-pointer ${
+                value === 'ALL' ? 'text-[#2E4BFF] font-bold bg-[#2E4BFF]/5' : 'text-gray-700'
               }`}
             >
               <span>{allLabel}</span>
-              {value === 'ALL' && <Check className="w-3.5 h-3.5 text-[#6850F4]" />}
+              {value === 'ALL' && <Check className="w-3.5 h-3.5 text-[#2E4BFF]" />}
             </button>
             {options.map((opt) => (
               <button
@@ -115,12 +115,12 @@ function FilterDropdown({ label, value, options, onChange, allLabel = 'All', ico
                   onChange(opt.value);
                   setIsOpen(false);
                 }}
-                className={`w-full px-3 py-2 text-left text-xs flex items-center justify-between hover:bg-[#F6F7FB] transition cursor-pointer ${
-                  value === opt.value ? 'text-[#6850F4] font-bold bg-[#6850F4]/5' : 'text-gray-700'
+                className={`w-full px-3 py-2 text-left text-xs flex items-center justify-between hover:bg-[#F7F5EF] transition cursor-pointer ${
+                  value === opt.value ? 'text-[#2E4BFF] font-bold bg-[#2E4BFF]/5' : 'text-gray-700'
                 }`}
               >
                 <span className="truncate">{opt.label}</span>
-                {value === opt.value && <Check className="w-3.5 h-3.5 text-[#6850F4]" />}
+                {value === opt.value && <Check className="w-3.5 h-3.5 text-[#2E4BFF]" />}
               </button>
             ))}
           </div>
@@ -467,10 +467,10 @@ export function AdminDashboardPage() {
   const donutSegments = useMemo(() => {
     const tot = activeMetrics.total_seats || 1;
     const items = [
-      { key: 'occupied', label: 'Occupied', value: activeMetrics.occupied_seats, color: '#6850F4' },
+      { key: 'occupied', label: 'Occupied', value: activeMetrics.occupied_seats, color: '#2E4BFF' },
       { key: 'reserved', label: 'Reserved', value: activeMetrics.reserved_seats, color: '#F59E0B' },
       { key: 'unverified', label: 'Unverified', value: activeMetrics.unverified_seats, color: '#EF4444' },
-      { key: 'available', label: 'Available', value: activeMetrics.available_seats, color: '#E0E7FF' }
+      { key: 'available', label: 'Available', value: activeMetrics.available_seats, color: '#E7EBFF' }
     ];
 
     const radius = 54;
@@ -501,9 +501,9 @@ export function AdminDashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen text-[#252638] flex flex-col font-sans antialiased selection:bg-[#6850F4]/15">
+    <div className="min-h-screen text-[#15140F] flex flex-col font-sans antialiased selection:bg-[#2E4BFF]/15">
       {/* 1. TOP PURPLE ENTERPRISE BAR */}
-      <header className="bg-gradient-to-r from-[#5B42E8]/85 via-[#6850F4]/80 to-[#7B66FF]/75 backdrop-blur-xl border-b border-white/20 text-white px-3 sm:px-5 py-2.5 shadow-md flex items-center justify-between z-30 sticky top-0">
+      <header className="bg-[#15140F] border-b border-white/10 text-white px-3 sm:px-5 py-2.5 shadow-md flex items-center justify-between z-30 sticky top-0">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsLeftCollapsed(!isLeftCollapsed)}
@@ -566,7 +566,7 @@ export function AdminDashboardPage() {
           >
             <Bell className="w-4 h-4" />
             {notifications.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 text-[#252638] text-[9px] font-bold rounded-full flex items-center justify-center shadow">
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 text-[#15140F] text-[9px] font-bold rounded-full flex items-center justify-center shadow">
                 {notifications.length > 9 ? '9+' : notifications.length}
               </span>
             )}
@@ -584,7 +584,7 @@ export function AdminDashboardPage() {
 
           {/* User Badge */}
           <div className="flex items-center gap-2 pl-1">
-            <div className="w-7 h-7 rounded-full bg-white text-[#6850F4] font-bold text-xs flex items-center justify-center shadow">
+            <div className="w-7 h-7 rounded-full bg-white text-[#2E4BFF] font-bold text-xs flex items-center justify-center shadow">
               {user?.name?.charAt(0) || user?.email?.charAt(0) || 'A'}
             </div>
             <button
@@ -600,8 +600,8 @@ export function AdminDashboardPage() {
 
       {/* Top indeterminate loading bar */}
       {isLoading && (
-        <div className="w-full h-0.5 bg-[#6850F4]/20 overflow-hidden z-40">
-          <div className="w-1/3 h-full bg-[#6850F4] animate-pulse" />
+        <div className="w-full h-0.5 bg-[#2E4BFF]/20 overflow-hidden z-40">
+          <div className="w-1/3 h-full bg-[#2E4BFF] animate-pulse" />
         </div>
       )}
 
@@ -609,11 +609,11 @@ export function AdminDashboardPage() {
       <div className="flex flex-1 overflow-hidden">
         {/* PANE 1: LEFT SIDEBAR NAVIGATION */}
         <aside
-          className={`bg-white border-r border-[#E5E7EB] transition-all duration-200 flex flex-col z-20 shrink-0 ${
+          className={`bg-white border-r border-[#E6E1D6] transition-all duration-200 flex flex-col z-20 shrink-0 ${
             isLeftCollapsed ? 'w-16' : 'w-56'
           }`}
         >
-          <div className="p-3 border-b border-[#F0F2F5] flex items-center justify-between">
+          <div className="p-3 border-b border-[#F7F5EF] flex items-center justify-between">
             {!isLeftCollapsed ? (
               <div className="flex items-center gap-2">
                 <img src="/sitto-icon.svg" alt="SITTO" className="w-4 h-4 rounded-[22.5%]" />
@@ -644,8 +644,8 @@ export function AdminDashboardPage() {
                   onClick={() => navigate(item.path)}
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     item.active
-                      ? 'bg-[#6850F4] text-white shadow-sm shadow-[#6850F4]/30'
-                      : 'text-gray-600 hover:text-[#6850F4] hover:bg-[#F3F4F9]'
+                      ? 'bg-[#2E4BFF] text-white shadow-sm shadow-[#2E4BFF]/30'
+                      : 'text-gray-600 hover:text-[#2E4BFF] hover:bg-[#F7F5EF]'
                   }`}
                   title={item.label}
                 >
@@ -658,15 +658,15 @@ export function AdminDashboardPage() {
 
           {/* Quick Admin Summary card in bottom of sidebar */}
           {!isLeftCollapsed && (
-            <div className="p-3 m-2 rounded-xl bg-gradient-to-br from-[#6850F4]/10 via-[#8B5CF6]/5 to-transparent border border-[#6850F4]/15">
+            <div className="p-3 m-2 rounded-xl bg-gradient-to-br from-[#2E4BFF]/10 via-[#5C73FF]/5 to-transparent border border-[#2E4BFF]/15">
               <div className="flex items-center gap-2 mb-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#6850F4]" />
-                <span className="text-xs font-bold text-[#252638]">SeatSure Guard</span>
+                <ShieldCheck className="w-4 h-4 text-[#2E4BFF]" />
+                <span className="text-xs font-bold text-[#15140F]">SeatSure Guard</span>
               </div>
               <p className="text-[11px] text-gray-500 leading-snug">
                 15-min QR window verified across all labs.
               </p>
-              <div className="mt-2 pt-2 border-t border-[#6850F4]/10 flex justify-between items-center text-[10px] text-gray-600 font-medium">
+              <div className="mt-2 pt-2 border-t border-[#2E4BFF]/10 flex justify-between items-center text-[10px] text-gray-600 font-medium">
                 <span>Compliance</span>
                 <span className="font-bold text-emerald-600">
                   {formatPercentage(data.summary.occupied || 0, (data.summary.occupied || 0) + (data.summary.unverified || 0) || 1)}
@@ -679,10 +679,10 @@ export function AdminDashboardPage() {
         {/* PANE 2: CENTER MAIN CONTENT (SCROLLABLE) */}
         <main className="flex-1 overflow-y-auto px-3 sm:px-5 py-3 space-y-3.5">
           {/* WELCOME BANNER (Reduced vertical padding by ~20%) */}
-          <div className="bg-white rounded-2xl p-3 sm:p-3.5 border border-[#E5E7EB] shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div className="bg-white rounded-2xl p-3 sm:p-3.5 border border-[#E6E1D6] shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg sm:text-xl font-bold tracking-tight text-[#252638]">
+                <h1 className="text-lg sm:text-xl font-bold tracking-tight text-[#15140F]">
                   Welcome back, {user?.name || user?.email?.split('@')[0] || 'Admin'}
                 </h1>
                 <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -695,15 +695,15 @@ export function AdminDashboardPage() {
             </div>
 
             <div className="flex items-center gap-2 self-start md:self-auto">
-              <div className="px-3 py-1.5 rounded-xl bg-[#F6F7FB] border border-[#E5E7EB] text-xs flex items-center gap-2">
-                <Calendar className="w-3.5 h-3.5 text-[#6850F4]" />
+              <div className="px-3 py-1.5 rounded-xl bg-[#F7F5EF] border border-[#E6E1D6] text-xs flex items-center gap-2">
+                <Calendar className="w-3.5 h-3.5 text-[#2E4BFF]" />
                 <span className="font-semibold text-gray-700">
                   {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
                 </span>
               </div>
               <button
                 onClick={() => navigate('/notifications')}
-                className="px-3 py-1.5 rounded-xl bg-[#6850F4] hover:bg-[#5B42E8] text-white text-xs font-semibold shadow-xs flex items-center gap-1.5 transition cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-[#2E4BFF] hover:bg-[#1F37E0] text-white text-xs font-semibold shadow-xs flex items-center gap-1.5 transition cursor-pointer"
               >
                 <Activity className="w-3.5 h-3.5" />
                 <span>Verify Attendance</span>
@@ -712,7 +712,7 @@ export function AdminDashboardPage() {
           </div>
 
           {/* 2. REDESIGNED, CLEAN & RESPONSIVE FILTER SECTION */}
-          <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative z-30">
+          <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative z-30">
             {/* Top Row: Primary Controls */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5">
               {/* Controls Group */}
@@ -725,7 +725,7 @@ export function AdminDashboardPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search room name or code..."
-                    className="w-full h-9 pl-8 pr-7 text-xs rounded-xl bg-[#F6F7FB] border border-[#E5E7EB] focus:outline-none focus:ring-1 focus:ring-[#6850F4] text-gray-800 placeholder-gray-400 font-medium transition"
+                    className="w-full h-9 pl-8 pr-7 text-xs rounded-xl bg-[#F7F5EF] border border-[#E6E1D6] focus:outline-none focus:ring-1 focus:ring-[#2E4BFF] text-gray-800 placeholder-gray-400 font-medium transition"
                   />
                   {searchQuery && (
                     <button
@@ -784,9 +784,9 @@ export function AdminDashboardPage() {
                 <div className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5 border transition ${
                   isFiltered
                     ? 'bg-amber-50 text-amber-800 border-amber-200 shadow-2xs'
-                    : 'bg-purple-50 text-[#6850F4] border-purple-200'
+                    : 'bg-purple-50 text-[#2E4BFF] border-purple-200'
                 }`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${isFiltered ? 'bg-amber-500 animate-pulse' : 'bg-[#6850F4]'}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full ${isFiltered ? 'bg-amber-500 animate-pulse' : 'bg-[#2E4BFF]'}`} />
                   <span>{isFiltered ? `Filtered View (${filteredRooms.length} Spaces)` : 'Campus-Wide Metrics'}</span>
                 </div>
 
@@ -808,19 +808,19 @@ export function AdminDashboardPage() {
             {activeFilters.length > 0 && (
               <div className="flex flex-wrap items-center gap-1.5 pt-2.5 mt-2.5 border-t border-gray-100">
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mr-1 flex items-center gap-1">
-                  <Filter className="w-3 h-3 text-[#6850F4]" />
+                  <Filter className="w-3 h-3 text-[#2E4BFF]" />
                   <span>Active Filters:</span>
                 </span>
                 {activeFilters.map(chip => (
                   <span
                     key={chip.key}
-                    className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 rounded-lg bg-[#6850F4]/10 text-[#6850F4] text-xs font-semibold border border-[#6850F4]/20 shadow-2xs animate-in fade-in duration-150"
+                    className="inline-flex items-center gap-1.5 pl-2.5 pr-1.5 py-1 rounded-lg bg-[#2E4BFF]/10 text-[#2E4BFF] text-xs font-semibold border border-[#2E4BFF]/20 shadow-2xs animate-in fade-in duration-150"
                   >
                     <span>{chip.label}</span>
                     <button
                       type="button"
                       onClick={() => removeFilter(chip.key)}
-                      className="p-0.5 rounded-md hover:bg-[#6850F4]/20 text-[#6850F4] hover:text-rose-600 transition cursor-pointer"
+                      className="p-0.5 rounded-md hover:bg-[#2E4BFF]/20 text-[#2E4BFF] hover:text-rose-600 transition cursor-pointer"
                       title={`Remove ${chip.label}`}
                     >
                       <X className="w-3 h-3" />
@@ -842,13 +842,13 @@ export function AdminDashboardPage() {
           {/* KPI CARDS (Reduced padding by ~15-20%: p-3 sm:p-3.5) */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5">
             {/* 1. Total Seats */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-[#6850F4]/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-[#2E4BFF]/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Total Seats</span>
-                <Layers className="w-3.5 h-3.5 text-[#6850F4]" />
+                <Layers className="w-3.5 h-3.5 text-[#2E4BFF]" />
               </div>
               <div className="mt-1.5 flex items-baseline justify-between">
-                <span className="text-xl sm:text-2xl font-black text-[#252638] tracking-tight">
+                <span className="text-xl sm:text-2xl font-black text-[#15140F] tracking-tight">
                   {activeMetrics.total_seats}
                 </span>
                 <span className="text-[10px] text-gray-400 font-mono">100%</span>
@@ -856,31 +856,31 @@ export function AdminDashboardPage() {
               <div className="mt-1 text-[10px] text-gray-400 truncate">
                 {activeMetrics.rooms_count} rooms {isFiltered && '(filtered)'}
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6850F4]" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2E4BFF]" />
             </div>
 
             {/* 2. Occupied Seats */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-[#6850F4]/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-[#2E4BFF]/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Occupied</span>
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#6850F4]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#2E4BFF]" />
               </div>
               <div className="mt-1.5 flex items-baseline justify-between">
-                <span className="text-xl sm:text-2xl font-black text-[#6850F4] tracking-tight">
+                <span className="text-xl sm:text-2xl font-black text-[#2E4BFF] tracking-tight">
                   {activeMetrics.occupied_seats}
                 </span>
-                <span className="text-[11px] font-bold text-[#6850F4]">
+                <span className="text-[11px] font-bold text-[#2E4BFF]">
                   {formatPercentage(activeMetrics.occupied_seats, activeMetrics.total_seats)}
                 </span>
               </div>
               <div className="mt-1 text-[10px] text-gray-400 truncate">
                 Live checked-in
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6850F4]" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2E4BFF]" />
             </div>
 
             {/* 3. Reserved Seats */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-amber-400/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-amber-400/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Reserved</span>
                 <Clock className="w-3.5 h-3.5 text-amber-500" />
@@ -900,7 +900,7 @@ export function AdminDashboardPage() {
             </div>
 
             {/* 4. Available Seats */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-emerald-400/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-emerald-400/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Available</span>
                 <DoorOpen className="w-3.5 h-3.5 text-emerald-500" />
@@ -920,7 +920,7 @@ export function AdminDashboardPage() {
             </div>
 
             {/* 5. Unverified */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-rose-400/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-rose-400/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Unverified</span>
                 <ShieldCheck className="w-3.5 h-3.5 text-rose-500" />
@@ -940,13 +940,13 @@ export function AdminDashboardPage() {
             </div>
 
             {/* 6. Active Rooms */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E5E7EB] shadow-xs relative overflow-hidden group hover:border-indigo-400/40 transition">
+            <div className="bg-white rounded-2xl p-3 border border-[#E6E1D6] shadow-xs relative overflow-hidden group hover:border-indigo-400/40 transition">
               <div className="flex items-center justify-between text-gray-500 text-[11px] font-semibold">
                 <span>Rooms Active</span>
                 <Building className="w-3.5 h-3.5 text-indigo-500" />
               </div>
               <div className="mt-1.5 flex items-baseline justify-between">
-                <span className="text-xl sm:text-2xl font-black text-[#252638] tracking-tight">
+                <span className="text-xl sm:text-2xl font-black text-[#15140F] tracking-tight">
                   {activeMetrics.rooms_count}
                 </span>
                 <span className="text-[10px] font-bold text-indigo-600 uppercase">
@@ -963,21 +963,21 @@ export function AdminDashboardPage() {
           {/* 3. MIDDLE ROW: DAILY REVIEW + BUILDING-WISE BREAKDOWN */}
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-3.5">
             {/* LEFT (7 cols): DAILY REVIEW ANALYTICS CARD */}
-            <div className="xl:col-span-7 bg-white rounded-2xl p-3.5 border border-[#E5E7EB] shadow-xs flex flex-col justify-between">
+            <div className="xl:col-span-7 bg-white rounded-2xl p-3.5 border border-[#E6E1D6] shadow-xs flex flex-col justify-between">
               <div className="flex items-center justify-between pb-2.5 border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#6850F4]/10 flex items-center justify-center text-[#6850F4]">
+                  <div className="w-7 h-7 rounded-lg bg-[#2E4BFF]/10 flex items-center justify-center text-[#2E4BFF]">
                     <PieChartIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h2 className="text-sm font-bold text-[#252638]">Daily Review</h2>
+                    <h2 className="text-sm font-bold text-[#15140F]">Daily Review</h2>
                     <p className="text-[11px] text-gray-400">
                       Real-time campus utilization ratio & verified allocations {isFiltered && '(filtered)'}
                     </p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs font-black text-[#6850F4]">
+                  <div className="text-xs font-black text-[#2E4BFF]">
                     {formatPercentage(activeMetrics.occupied_seats, activeMetrics.total_seats)}
                   </div>
                   <div className="text-[10px] text-gray-400">Occupancy Ratio</div>
@@ -985,22 +985,22 @@ export function AdminDashboardPage() {
               </div>
 
               {/* Occupancy Summary Strip */}
-              <div className="mt-3 p-2.5 rounded-xl bg-[#F6F7FB] border border-[#E5E7EB] flex items-center justify-between">
+              <div className="mt-3 p-2.5 rounded-xl bg-[#F7F5EF] border border-[#E6E1D6] flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5 text-xs">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#6850F4]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#2E4BFF]" />
                     <span className="text-gray-600">Occupied:</span>
-                    <span className="font-bold text-[#252638]">{activeMetrics.occupied_seats}</span>
+                    <span className="font-bold text-[#15140F]">{activeMetrics.occupied_seats}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs">
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                     <span className="text-gray-600">Reserved:</span>
-                    <span className="font-bold text-[#252638]">{activeMetrics.reserved_seats}</span>
+                    <span className="font-bold text-[#15140F]">{activeMetrics.reserved_seats}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                     <span className="text-gray-600">Available:</span>
-                    <span className="font-bold text-[#252638]">{activeMetrics.available_seats}</span>
+                    <span className="font-bold text-[#15140F]">{activeMetrics.available_seats}</span>
                   </div>
                 </div>
                 <span className="text-[11px] font-semibold text-gray-500">
@@ -1046,7 +1046,7 @@ export function AdminDashboardPage() {
 
                   {/* Donut Center Label */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                    <span className="text-lg font-black text-[#252638]">
+                    <span className="text-lg font-black text-[#15140F]">
                       {formatPercentage(activeMetrics.occupied_seats, activeMetrics.total_seats)}
                     </span>
                     <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">
@@ -1056,7 +1056,7 @@ export function AdminDashboardPage() {
                 </div>
 
                 {/* Two Slim Vertical Progress Bars (4 cols) */}
-                <div className="sm:col-span-4 flex items-center justify-around bg-[#F6F7FB] rounded-xl p-3 border border-[#E5E7EB]">
+                <div className="sm:col-span-4 flex items-center justify-around bg-[#F7F5EF] rounded-xl p-3 border border-[#E6E1D6]">
                   {/* Vertical Bar 1: Available % */}
                   <div className="flex flex-col items-center">
                     <div className="w-5 h-28 bg-gray-200 rounded-full overflow-hidden flex flex-col justify-end p-0.5">
@@ -1075,7 +1075,7 @@ export function AdminDashboardPage() {
                   <div className="flex flex-col items-center">
                     <div className="w-5 h-28 bg-gray-200 rounded-full overflow-hidden flex flex-col justify-end p-0.5">
                       <div
-                        className="w-full bg-gradient-to-t from-[#6850F4] to-[#8B5CF6] rounded-full transition-all duration-500"
+                        className="w-full bg-gradient-to-t from-[#2E4BFF] to-[#5C73FF] rounded-full transition-all duration-500"
                         style={{ height: `${Math.min(100, Math.max(4, getPercentageNum(activeMetrics.occupied_seats + activeMetrics.reserved_seats, activeMetrics.total_seats)))}%` }}
                       />
                     </div>
@@ -1089,7 +1089,7 @@ export function AdminDashboardPage() {
             </div>
 
             {/* RIGHT (5 cols): BUILDING-WISE OCCUPANCY BREAKDOWN */}
-            <div className="xl:col-span-5 bg-white rounded-2xl p-3.5 border border-[#E5E7EB] shadow-xs flex flex-col justify-between">
+            <div className="xl:col-span-5 bg-white rounded-2xl p-3.5 border border-[#E6E1D6] shadow-xs flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between pb-2.5 border-b border-gray-100">
                   <div className="flex items-center gap-2">
@@ -1097,7 +1097,7 @@ export function AdminDashboardPage() {
                       <Building className="w-4 h-4" />
                     </div>
                     <div>
-                      <h2 className="text-sm font-bold text-[#252638]">Building Occupancy</h2>
+                      <h2 className="text-sm font-bold text-[#15140F]">Building Occupancy</h2>
                       <p className="text-[11px] text-gray-400">Campus blocks in current view</p>
                     </div>
                   </div>
@@ -1118,20 +1118,20 @@ export function AdminDashboardPage() {
                         onClick={() => setSelectedBuilding(isSelected ? 'ALL' : b.name)}
                         className={`p-2.5 rounded-xl border transition cursor-pointer ${
                           isSelected
-                            ? 'bg-[#6850F4]/10 border-[#6850F4]'
-                            : 'bg-[#F6F7FB] border-[#E5E7EB] hover:border-gray-300'
+                            ? 'bg-[#2E4BFF]/10 border-[#2E4BFF]'
+                            : 'bg-[#F7F5EF] border-[#E6E1D6] hover:border-gray-300'
                         }`}
                       >
                         <div className="flex items-center justify-between text-xs">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-bold text-[#252638]">{b.name}</span>
+                            <span className="font-bold text-[#15140F]">{b.name}</span>
                             <span className="text-[10px] text-gray-400">({b.rooms} rooms)</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="font-mono text-[11px] text-gray-500">
                               {b.occupied} / {b.total} occ
                             </span>
-                            <span className="text-[11px] font-bold text-[#6850F4]">
+                            <span className="text-[11px] font-bold text-[#2E4BFF]">
                               {occPct}
                             </span>
                           </div>
@@ -1140,7 +1140,7 @@ export function AdminDashboardPage() {
                         {/* Segmented bar */}
                         <div className="w-full h-2 bg-gray-200 rounded-full mt-2 overflow-hidden flex">
                           <div
-                            className="bg-[#6850F4] h-full"
+                            className="bg-[#2E4BFF] h-full"
                             style={{ width: `${getPercentageNum(b.occupied, b.total)}%` }}
                             title={`Occupied: ${b.occupied}`}
                           />
@@ -1163,7 +1163,7 @@ export function AdminDashboardPage() {
 
               <div className="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
                 <span>Click building to filter dashboard</span>
-                <span className="text-[#6850F4] font-medium hover:underline cursor-pointer" onClick={() => setSelectedBuilding('ALL')}>
+                <span className="text-[#2E4BFF] font-medium hover:underline cursor-pointer" onClick={() => setSelectedBuilding('ALL')}>
                   {selectedBuilding !== 'ALL' ? 'Reset Building Filter' : 'All Active'}
                 </span>
               </div>
@@ -1171,14 +1171,14 @@ export function AdminDashboardPage() {
           </div>
 
           {/* 4. ROOM-WISE OCCUPANCY TABLE DIRECTLY BELOW CHARTS */}
-          <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-xs overflow-hidden">
+          <div className="bg-white rounded-2xl border border-[#E6E1D6] shadow-xs overflow-hidden">
             <div className="p-3 sm:p-3.5 border-b border-gray-100 flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#6850F4]/10 flex items-center justify-center text-[#6850F4]">
+                <div className="w-7 h-7 rounded-lg bg-[#2E4BFF]/10 flex items-center justify-center text-[#2E4BFF]">
                   <BarChart3 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h2 className="text-sm font-bold text-[#252638]">Room-Wise Live Analytics</h2>
+                  <h2 className="text-sm font-bold text-[#15140F]">Room-Wise Live Analytics</h2>
                   <p className="text-[11px] text-gray-400">
                     Sortable breakdown of {sortedRooms.length} spaces matching current filters
                   </p>
@@ -1193,51 +1193,51 @@ export function AdminDashboardPage() {
             {/* Table */}
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-gray-600">
-                <thead className="bg-[#F6F7FB] text-gray-700 font-bold border-b border-[#E5E7EB]">
+                <thead className="bg-[#F7F5EF] text-gray-700 font-bold border-b border-[#E6E1D6]">
                   <tr>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('name')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('name')}>
                       <div className="flex items-center gap-1">
                         <span>Room Name / Space</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('building')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('building')}>
                       <div className="flex items-center gap-1">
                         <span>Building</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('floor')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('floor')}>
                       <div className="flex items-center gap-1">
                         <span>Floor</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('total_seats')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('total_seats')}>
                       <div className="flex items-center gap-1">
                         <span>Capacity</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('occupied')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('occupied')}>
                       <div className="flex items-center gap-1">
                         <span>Occupied</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('reserved')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('reserved')}>
                       <div className="flex items-center gap-1">
                         <span>Reserved</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('available')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('available')}>
                       <div className="flex items-center gap-1">
                         <span>Available</span>
                         <ArrowUpDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#6850F4]" onClick={() => handleSort('occupancy_rate')}>
+                    <th className="py-2.5 px-3 cursor-pointer hover:text-[#2E4BFF]" onClick={() => handleSort('occupancy_rate')}>
                       <div className="flex items-center gap-1">
                         <span>Occupancy %</span>
                         <ArrowUpDown className="w-3 h-3" />
@@ -1256,7 +1256,7 @@ export function AdminDashboardPage() {
                           <button
                             type="button"
                             onClick={clearAllFilters}
-                            className="text-xs text-[#6850F4] font-semibold hover:underline mt-1 cursor-pointer"
+                            className="text-xs text-[#2E4BFF] font-semibold hover:underline mt-1 cursor-pointer"
                           >
                             Reset all filters
                           </button>
@@ -1275,26 +1275,26 @@ export function AdminDashboardPage() {
                           onClick={() => openRoomModal(room.id)}
                           className="hover:bg-purple-50/40 cursor-pointer transition"
                         >
-                          <td className="py-2.5 px-3 font-bold text-[#252638] flex items-center gap-2">
+                          <td className="py-2.5 px-3 font-bold text-[#15140F] flex items-center gap-2">
                             <span>{room.name}</span>
                             <span className="text-[10px] text-gray-400 font-mono">[{room.code || room.id}]</span>
                           </td>
                           <td className="py-2.5 px-3 text-gray-500">{room.building}</td>
                           <td className="py-2.5 px-3 text-gray-500">{room.floor || 'Floor 1'}</td>
                           <td className="py-2.5 px-3 font-mono">{capacity}</td>
-                          <td className="py-2.5 px-3 font-bold text-[#6850F4]">{room.occupied}</td>
+                          <td className="py-2.5 px-3 font-bold text-[#2E4BFF]">{room.occupied}</td>
                           <td className="py-2.5 px-3 font-semibold text-amber-600">{room.reserved}</td>
                           <td className="py-2.5 px-3 font-semibold text-emerald-600">{room.available}</td>
-                          <td className="py-2.5 px-3 font-mono font-bold text-[#252638]">
+                          <td className="py-2.5 px-3 font-mono font-bold text-[#15140F]">
                             {occPctFormatted}
                           </td>
                           <td className="py-2.5 px-3">
                             <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
                               isHigh
-                                ? 'bg-purple-100 text-[#6850F4] border border-purple-200'
+                                ? 'bg-purple-100 text-[#2E4BFF] border border-purple-200'
                                 : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                             }`}>
-                              <span className={`w-1.5 h-1.5 rounded-full ${isHigh ? 'bg-[#6850F4]' : 'bg-emerald-500'}`} />
+                              <span className={`w-1.5 h-1.5 rounded-full ${isHigh ? 'bg-[#2E4BFF]' : 'bg-emerald-500'}`} />
                               <span>{isHigh ? 'Occupied' : 'Open / Empty'}</span>
                             </span>
                           </td>
@@ -1310,15 +1310,15 @@ export function AdminDashboardPage() {
 
         {/* PANE 3: RIGHT ACTIVITY PANEL / LIVE FEED (COLLAPSIBLE & COMPACT) */}
         <aside
-          className={`bg-white border-l border-[#E5E7EB] transition-all duration-200 flex flex-col z-20 shrink-0 ${
+          className={`bg-white border-l border-[#E6E1D6] transition-all duration-200 flex flex-col z-20 shrink-0 ${
             isRightCollapsed ? 'w-0 overflow-hidden border-none' : 'w-72 lg:w-80'
           }`}
         >
           {/* Header */}
-          <div className="p-3 border-b border-[#F0F2F5] flex items-center justify-between">
+          <div className="p-3 border-b border-[#F7F5EF] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Activity className="w-4 h-4 text-[#6850F4]" />
-              <h2 className="text-xs font-bold text-[#252638]">Live Activity Feed</h2>
+              <Activity className="w-4 h-4 text-[#2E4BFF]" />
+              <h2 className="text-xs font-bold text-[#15140F]">Live Activity Feed</h2>
             </div>
             <div className="flex items-center gap-1">
               <span className="text-[10px] font-bold text-gray-400">
@@ -1335,11 +1335,11 @@ export function AdminDashboardPage() {
           </div>
 
           {/* Quick Filter or Info Strip */}
-          <div className="px-3 py-2 bg-[#F6F7FB] border-b border-[#E5E7EB] flex items-center justify-between text-[11px] text-gray-500">
+          <div className="px-3 py-2 bg-[#F7F5EF] border-b border-[#E6E1D6] flex items-center justify-between text-[11px] text-gray-500">
             <span>Real-time events from Supabase</span>
             <button
               onClick={() => navigate('/notifications')}
-              className="text-[#6850F4] font-semibold hover:underline flex items-center gap-1 cursor-pointer"
+              className="text-[#2E4BFF] font-semibold hover:underline flex items-center gap-1 cursor-pointer"
             >
               <span>View All</span>
               <ExternalLink className="w-3 h-3" />
@@ -1368,14 +1368,14 @@ export function AdminDashboardPage() {
 
                 let badgeColor = 'bg-gray-100 text-gray-700';
                 if (isCheckin) badgeColor = 'bg-emerald-50 text-emerald-700 border-emerald-200';
-                else if (isSeatsure) badgeColor = 'bg-purple-50 text-[#6850F4] border-purple-200';
+                else if (isSeatsure) badgeColor = 'bg-purple-50 text-[#2E4BFF] border-purple-200';
                 else if (isBooking) badgeColor = 'bg-indigo-50 text-indigo-700 border-indigo-200';
                 else if (isWarning) badgeColor = 'bg-rose-50 text-rose-700 border-rose-200';
 
                 return (
                   <div
                     key={notif.id}
-                    className="p-2.5 rounded-xl border border-[#E5E7EB] bg-[#F6F7FB]/60 hover:bg-white hover:border-[#6850F4]/30 transition text-xs shadow-2xs"
+                    className="p-2.5 rounded-xl border border-[#E6E1D6] bg-[#F7F5EF]/60 hover:bg-white hover:border-[#2E4BFF]/30 transition text-xs shadow-2xs"
                   >
                     {/* Header Row: Badge & Time */}
                     <div className="flex items-center justify-between gap-1 mb-1">
@@ -1388,7 +1388,7 @@ export function AdminDashboardPage() {
                     </div>
 
                     {/* Metadata details: Seat & Room info */}
-                    <div className="flex items-center gap-2 text-[11px] font-semibold text-[#252638] mb-1">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold text-[#15140F] mb-1">
                       {notif.seat_id && (
                         <span className="px-1.5 py-0.2 bg-white rounded border border-gray-200 font-mono text-gray-700">
                           Seat: {notif.seat_id}
@@ -1410,7 +1410,7 @@ export function AdminDashboardPage() {
                     {isLong && (
                       <button
                         onClick={() => toggleExpandNotification(notif.id)}
-                        className="mt-1 text-[10px] font-semibold text-[#6850F4] hover:underline flex items-center gap-0.5 cursor-pointer"
+                        className="mt-1 text-[10px] font-semibold text-[#2E4BFF] hover:underline flex items-center gap-0.5 cursor-pointer"
                       >
                         {isExpanded ? (
                           <>
@@ -1436,10 +1436,10 @@ export function AdminDashboardPage() {
       {/* ROOM INSPECTION MODAL */}
       {selectedRoomModal && (
         <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-4 border border-[#E5E7EB] shadow-xl">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-4 border border-[#E6E1D6] shadow-xl">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100">
               <div>
-                <h3 className="text-base font-bold text-[#252638]">
+                <h3 className="text-base font-bold text-[#15140F]">
                   {roomModalDetails?.room?.name || 'Room Inspection'}
                 </h3>
                 <p className="text-xs text-gray-400">
@@ -1456,14 +1456,14 @@ export function AdminDashboardPage() {
 
             {roomModalLoading ? (
               <div className="py-12 text-center text-gray-400 text-xs">
-                <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#6850F4]" />
+                <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#2E4BFF]" />
                 Loading room seats...
               </div>
             ) : (
               <div className="py-3 space-y-3">
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="p-2 rounded-xl bg-purple-50 border border-purple-100">
-                    <div className="text-sm font-black text-[#6850F4]">
+                    <div className="text-sm font-black text-[#2E4BFF]">
                       {roomModalDetails?.room?.occupied || 0}
                     </div>
                     <div className="text-[10px] text-gray-500">Occupied</div>
@@ -1483,11 +1483,11 @@ export function AdminDashboardPage() {
                 </div>
 
                 <div className="text-xs font-bold text-gray-700">Configured Seats</div>
-                <div className="max-h-48 overflow-y-auto grid grid-cols-6 gap-1.5 p-2 bg-[#F6F7FB] rounded-xl border border-[#E5E7EB]">
+                <div className="max-h-48 overflow-y-auto grid grid-cols-6 gap-1.5 p-2 bg-[#F7F5EF] rounded-xl border border-[#E6E1D6]">
                   {roomModalDetails?.seats?.map((seat) => {
                     const st = seat.status?.toLowerCase();
                     let bg = 'bg-emerald-100 text-emerald-800 border-emerald-200';
-                    if (st === 'occupied') bg = 'bg-[#6850F4] text-white border-[#6850F4]';
+                    if (st === 'occupied') bg = 'bg-[#2E4BFF] text-white border-[#2E4BFF]';
                     else if (st === 'reserved') bg = 'bg-amber-100 text-amber-800 border-amber-200';
                     else if (st === 'unverified') bg = 'bg-rose-100 text-rose-800 border-rose-200';
 

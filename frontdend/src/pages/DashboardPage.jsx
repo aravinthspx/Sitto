@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { formatTime, formatDate, formatSessionDisplay } from '../utils/time';
 
+import { LiveClock } from '../components/common/LiveClock';
 import { PushSettingsCard } from '../components/notifications/PushSettingsCard';
 
 export function DashboardPage() {
@@ -198,25 +199,25 @@ export function DashboardPage() {
   return (
     <div className="space-y-8 pb-12">
       {/* ─── 1. PREMIUM WELCOME HERO ────────────────────────────────────────── */}
-      <section className="liquid-dark relative overflow-hidden rounded-[24px] text-white p-6 sm:p-8 lg:p-10">
+      <section className="liquid-dark relative overflow-hidden rounded-[28px] text-white p-6 sm:p-9 lg:p-12">
         {/* Subtle Ambient Shapes */}
-        <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-[#6850F4]/20 rounded-full blur-[100px] pointer-events-none -mr-20 -mt-20" />
-        <div className="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-[#8B5CF6]/15 rounded-full blur-[90px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-[#2E4BFF]/20 rounded-full blur-[100px] pointer-events-none -mr-20 -mt-20" />
+        <div className="absolute bottom-0 left-1/3 w-[300px] h-[300px] bg-[#5C73FF]/15 rounded-full blur-[90px] pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-[#8B6BFF]">
-              <Sparkles className="w-3.5 h-3.5 text-[#8B6BFF]" />
-              <span>SITTO Student Space Hub</span>
-              <span>•</span>
-              <span className="text-gray-300 font-medium">SRM KTR Campus</span>
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-white/15 text-[11px] font-mono font-medium text-[#D7FF3A]">
+              <span className="live-dot mr-1" />
+              <span>Live · SITTO Space Hub</span>
+              <span className="hidden sm:inline">•</span>
+              <span className="hidden sm:inline text-white/60">SRM KTR Campus</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-heading tracking-tight text-white leading-tight">
-              Your Seat. Your Space.
+            <h1 className="font-extrabold font-heading text-white pt-2">
+              Your seat.<br />Your <span className="hero-mark">space.</span>
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+            <p className="text-base sm:text-lg text-white/65 font-normal leading-relaxed max-w-xl">
               Welcome back, <span className="font-semibold text-white">{displayName}</span>. Find your perfect study spot across SRM KTR libraries and labs with real-time seat availability.
             </p>
 
@@ -226,7 +227,7 @@ export function DashboardPage() {
                   const el = document.getElementById('seat-discovery-section');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="bg-[#6850F4] hover:bg-[#5840DC] text-white font-semibold h-11 px-6 rounded-xl shadow-[0_4px_16px_rgba(104,80,244,0.4)] transition-all hover:-translate-y-0.5"
+                className="btn-lime h-12 px-6 rounded-xl transition-all hover:-translate-y-0.5"
               >
                 <Search className="w-4 h-4 mr-2" />
                 Find a Seat
@@ -235,22 +236,24 @@ export function DashboardPage() {
               <Button
                 variant="outline"
                 onClick={() => navigate('/reservations')}
-                className="bg-white/10 hover:bg-white/15 text-white border-white/20 font-semibold h-11 px-6 rounded-xl transition-all"
+                className="bg-transparent hover:bg-white/10 text-white border-white/25 font-semibold h-12 px-6 rounded-xl transition-all"
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 My Reservations
               </Button>
             </div>
+
+            <LiveClock variant="hero" className="lg:hidden pt-4 border-t border-white/10 mt-2" />
           </div>
 
           {/* Mini Live Telemetry Badge */}
-          <div className="hidden lg:flex flex-col items-end text-right space-y-2 border-l border-white/10 pl-8">
-            <div className="text-xs font-medium text-gray-400 uppercase tracking-wider">Campus Telemetry</div>
-            <div className="text-2xl font-bold font-heading text-white flex items-center">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#10b981] mr-2.5 animate-pulse" />
-              {totalAvailableSeats} Available
+          <div className="hidden lg:flex flex-col items-end text-right space-y-1 border-l border-white/10 pl-10">
+            <LiveClock variant="hero" className="items-end mb-6" />
+            <div className="text-[11px] text-white/50 uppercase tracking-wider">Seats free now</div>
+            <div className="font-heading font-bold text-[#D7FF3A] text-7xl leading-none tracking-[-0.05em] tabular-nums">
+              {totalAvailableSeats}
             </div>
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-white/50 font-mono">
               across {spaces.length} labs & reading halls
             </div>
             <Button
@@ -258,7 +261,7 @@ export function DashboardPage() {
               size="sm"
               onClick={() => fetchDashboardData(true)}
               disabled={refreshing}
-              className="text-xs text-gray-400 hover:text-white hover:bg-white/10 h-8 px-2.5 rounded-lg mt-1"
+              className="text-xs font-mono text-white/60 hover:text-white hover:bg-white/10 h-8 px-2.5 rounded-lg mt-2"
             >
               <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${refreshing ? 'animate-spin' : ''}`} />
               {refreshing ? 'Refreshing...' : 'Refresh Feed'}
@@ -273,11 +276,11 @@ export function DashboardPage() {
       {/* ─── 2. QUICK STATUS CARDS ─────────────────────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {/* Card 1: Available Seats */}
-        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,13,38,0.04)] hover:border-[#6850F4]/30 transition-all">
+        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(21,20,15,0.04)] hover:border-[#2E4BFF]/30 transition-all">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Available Seats</p>
-              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-[#0F0D26] mt-1.5">
+              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-[#15140F] mt-1.5">
                 {totalAvailableSeats}
               </h3>
               <p className="text-xs text-gray-500 mt-1">
@@ -290,7 +293,7 @@ export function DashboardPage() {
           </div>
           <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
             <span className="text-gray-500">Occupancy rate</span>
-            <span className="font-bold text-[#0F0D26]">
+            <span className="font-bold text-[#15140F]">
               {totalConfiguredSeats > 0 
                 ? `${Math.round(((totalConfiguredSeats - totalAvailableSeats) / totalConfiguredSeats) * 100)}%` 
                 : '0%'}
@@ -299,13 +302,13 @@ export function DashboardPage() {
         </Card>
 
         {/* Card 2: My Active Reservation */}
-        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,13,38,0.04)] hover:border-[#6850F4]/30 transition-all">
+        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(21,20,15,0.04)] hover:border-[#2E4BFF]/30 transition-all">
           <div className="flex items-start justify-between">
             <div className="min-w-0 pr-2">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Active Reservation</p>
               {activeReservation ? (
                 <>
-                  <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-[#6850F4] mt-1.5 truncate">
+                  <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-[#2E4BFF] mt-1.5 truncate">
                     Seat {activeReservation.seatId}
                   </h3>
                   <p className="text-xs text-gray-600 font-medium truncate mt-0.5">
@@ -321,7 +324,7 @@ export function DashboardPage() {
                 </>
               )}
             </div>
-            <div className="w-11 h-11 rounded-xl bg-[#F1EDFF] text-[#6850F4] flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-[#E7EBFF] text-[#2E4BFF] flex items-center justify-center shrink-0">
               <Calendar className="w-6 h-6" />
             </div>
           </div>
@@ -331,7 +334,7 @@ export function DashboardPage() {
                 <StatusBadge status={activeReservation.status} />
                 <button 
                   onClick={() => navigate(`/reservations/${activeReservation.id}/pass`)}
-                  className="font-semibold text-[#6850F4] hover:underline"
+                  className="font-semibold text-[#2E4BFF] hover:underline"
                 >
                   View Details →
                 </button>
@@ -343,13 +346,13 @@ export function DashboardPage() {
         </Card>
 
         {/* Card 3: My QR Pass */}
-        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,13,38,0.04)] hover:border-[#6850F4]/30 transition-all">
+        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(21,20,15,0.04)] hover:border-[#2E4BFF]/30 transition-all">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">My QR Pass</p>
               {activeReservation ? (
                 <>
-                  <h3 className="text-lg font-extrabold font-heading text-[#0F0D26] mt-1.5">
+                  <h3 className="text-lg font-extrabold font-heading text-[#15140F] mt-1.5">
                     Ready to Scan
                   </h3>
                   <p className="text-xs text-gray-500 mt-1 font-mono">
@@ -365,7 +368,7 @@ export function DashboardPage() {
                 </>
               )}
             </div>
-            <div className="w-11 h-11 rounded-xl bg-purple-50 text-[#6850F4] flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 rounded-xl bg-purple-50 text-[#2E4BFF] flex items-center justify-center shrink-0">
               <QrCode className="w-6 h-6" />
             </div>
           </div>
@@ -373,7 +376,7 @@ export function DashboardPage() {
             {activeReservation ? (
               <button 
                 onClick={() => navigate(`/reservations/${activeReservation.id}/pass`)}
-                className="w-full flex items-center justify-between font-bold text-[#6850F4] hover:underline"
+                className="w-full flex items-center justify-between font-bold text-[#2E4BFF] hover:underline"
               >
                 <span>Open Digital Pass</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -385,11 +388,11 @@ export function DashboardPage() {
         </Card>
 
         {/* Card 4: Unread Notifications */}
-        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,13,38,0.04)] hover:border-[#6850F4]/30 transition-all">
+        <Card className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(21,20,15,0.04)] hover:border-[#2E4BFF]/30 transition-all">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Notifications</p>
-              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-[#0F0D26] mt-1.5">
+              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-[#15140F] mt-1.5">
                 {unreadNotifCount}
               </h3>
               <p className="text-xs text-gray-500 mt-1">
@@ -404,7 +407,7 @@ export function DashboardPage() {
             <span className="text-gray-500">SeatSure™ & reminders</span>
             <button
               onClick={() => navigate('/notifications')}
-              className="font-semibold text-[#6850F4] hover:underline"
+              className="font-semibold text-[#2E4BFF] hover:underline"
             >
               Open Inbox →
             </button>
@@ -417,8 +420,8 @@ export function DashboardPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center space-x-2">
-              <Compass className="w-5 h-5 text-[#6850F4]" />
-              <h2 className="text-2xl font-extrabold font-heading text-[#0F0D26]">Smart Seat Discovery</h2>
+              <Compass className="w-5 h-5 text-[#2E4BFF]" />
+              <h2 className="text-2xl font-extrabold font-heading text-[#15140F]">Smart Seat Discovery</h2>
             </div>
             <p className="text-sm text-gray-500 mt-1">
               Select building, floor, space type, and duration to find live configured seats.
@@ -432,7 +435,7 @@ export function DashboardPage() {
         </div>
 
         {/* Discovery Filter Controls Panel */}
-        <div className="bg-white rounded-[22px] border border-[#E8EBF2] p-5 sm:p-6 shadow-[0_4px_24px_rgba(15,13,38,0.03)] space-y-5">
+        <div className="bg-white rounded-[22px] border border-[#E6E1D6] p-5 sm:p-6 shadow-[0_4px_24px_rgba(21,20,15,0.03)] space-y-5">
           {/* Row 1: Search & Cascading Dropdowns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Search Input */}
@@ -447,7 +450,7 @@ export function DashboardPage() {
                   placeholder="e.g. Lab 4, Reading Zone..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-10 pl-9 pr-3 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6850F4]/30 focus:border-[#6850F4] transition-all"
+                  className="w-full h-10 pl-9 pr-3 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2E4BFF]/30 focus:border-[#2E4BFF] transition-all"
                 />
               </div>
             </div>
@@ -462,7 +465,7 @@ export function DashboardPage() {
                 <select
                   value={selectedBuildingId}
                   onChange={(e) => handleBuildingChange(e.target.value)}
-                  className="w-full h-10 pl-9 pr-8 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6850F4]/30 focus:border-[#6850F4] appearance-none cursor-pointer transition-all font-medium text-gray-800"
+                  className="w-full h-10 pl-9 pr-8 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2E4BFF]/30 focus:border-[#2E4BFF] appearance-none cursor-pointer transition-all font-medium text-gray-800"
                 >
                   <option value="ALL">All Campus Buildings</option>
                   {buildings.map(b => (
@@ -483,7 +486,7 @@ export function DashboardPage() {
                 <select
                   value={selectedFloorId}
                   onChange={(e) => setSelectedFloorId(e.target.value)}
-                  className="w-full h-10 pl-9 pr-8 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6850F4]/30 focus:border-[#6850F4] appearance-none cursor-pointer transition-all font-medium text-gray-800"
+                  className="w-full h-10 pl-9 pr-8 text-sm bg-gray-50/80 hover:bg-white focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2E4BFF]/30 focus:border-[#2E4BFF] appearance-none cursor-pointer transition-all font-medium text-gray-800"
                 >
                   <option value="ALL">All Available Floors</option>
                   {availableFloors.map(f => (
@@ -505,7 +508,7 @@ export function DashboardPage() {
                   onClick={() => setSelectedType('ALL')}
                   className={`flex-1 text-xs font-bold rounded-lg transition-all ${
                     selectedType === 'ALL'
-                      ? 'bg-white text-[#6850F4] shadow-xs'
+                      ? 'bg-white text-[#2E4BFF] shadow-xs'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -516,7 +519,7 @@ export function DashboardPage() {
                   onClick={() => setSelectedType('Lab')}
                   className={`flex-1 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 ${
                     selectedType === 'Lab'
-                      ? 'bg-white text-[#6850F4] shadow-xs'
+                      ? 'bg-white text-[#2E4BFF] shadow-xs'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -528,7 +531,7 @@ export function DashboardPage() {
                   onClick={() => setSelectedType('Library')}
                   className={`flex-1 text-xs font-bold rounded-lg transition-all flex items-center justify-center space-x-1 ${
                     selectedType === 'Library'
-                      ? 'bg-white text-[#6850F4] shadow-xs'
+                      ? 'bg-white text-[#2E4BFF] shadow-xs'
                       : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
@@ -553,7 +556,7 @@ export function DashboardPage() {
                   onClick={() => setBookingDuration(h)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
                     bookingDuration === h
-                      ? 'bg-[#F1EDFF] border-[#6850F4] text-[#6850F4] shadow-xs'
+                      ? 'bg-[#E7EBFF] border-[#2E4BFF] text-[#2E4BFF] shadow-xs'
                       : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                   }`}
                 >
@@ -569,7 +572,7 @@ export function DashboardPage() {
                   type="checkbox"
                   checked={onlyAvailable}
                   onChange={(e) => setOnlyAvailable(e.target.checked)}
-                  className="w-4 h-4 rounded text-[#6850F4] focus:ring-[#6850F4] border-gray-300 cursor-pointer"
+                  className="w-4 h-4 rounded text-[#2E4BFF] focus:ring-[#2E4BFF] border-gray-300 cursor-pointer"
                 />
                 <span>Only rooms with free seats</span>
               </label>
@@ -606,7 +609,7 @@ export function DashboardPage() {
               <div className="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto">
                 <AlertCircle className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold font-heading text-[#0F0D26]">No campus spaces match this criteria</h3>
+              <h3 className="text-lg font-bold font-heading text-[#15140F]">No campus spaces match this criteria</h3>
               <p className="text-sm text-gray-500 max-w-md mx-auto">
                 Try selecting "All Campus Buildings", removing the availability filter, or adjusting your search term.
               </p>
@@ -620,7 +623,7 @@ export function DashboardPage() {
                   setSearchQuery('');
                   setOnlyAvailable(false);
                 }}
-                className="mt-2 text-xs font-semibold text-[#6850F4] border-[#6850F4]"
+                className="mt-2 text-xs font-semibold text-[#2E4BFF] border-[#2E4BFF]"
               >
                 Reset Search Filters
               </Button>
@@ -638,7 +641,7 @@ export function DashboardPage() {
                 return (
                   <Card
                     key={space.id}
-                    className="group rounded-[22px] border border-[#E8EBF2] bg-white overflow-hidden shadow-[0_4px_20px_rgba(15,13,38,0.03)] hover:shadow-[0_12px_32px_rgba(104,80,244,0.12)] hover:border-[#6850F4]/40 transition-all duration-200 flex flex-col justify-between"
+                    className="group rounded-[22px] border border-[#E6E1D6] bg-white overflow-hidden shadow-[0_4px_20px_rgba(21,20,15,0.03)] hover:shadow-[0_12px_32px_rgba(46,75,255,0.12)] hover:border-[#2E4BFF]/40 transition-all duration-200 flex flex-col justify-between"
                   >
                     <div>
                       {/* Top Header Card Banner */}
@@ -646,7 +649,7 @@ export function DashboardPage() {
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex items-center space-x-2.5">
                             <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                              isLab ? 'bg-[#F1EDFF] text-[#6850F4]' : 'bg-emerald-50 text-emerald-600'
+                              isLab ? 'bg-[#E7EBFF] text-[#2E4BFF]' : 'bg-emerald-50 text-emerald-600'
                             }`}>
                               {isLab ? <Monitor className="w-5 h-5" /> : <BookOpen className="w-5 h-5" />}
                             </div>
@@ -654,7 +657,7 @@ export function DashboardPage() {
                               <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400">
                                 {space.type || 'Room'}
                               </span>
-                              <h3 className="text-lg font-bold font-heading text-[#0F0D26] group-hover:text-[#6850F4] transition-colors leading-tight">
+                              <h3 className="text-lg font-bold font-heading text-[#15140F] group-hover:text-[#2E4BFF] transition-colors leading-tight">
                                 {space.name}
                               </h3>
                             </div>
@@ -683,7 +686,7 @@ export function DashboardPage() {
                       <div className="p-5 space-y-3">
                         <div className="flex justify-between items-center text-xs">
                           <span className="font-medium text-gray-500">Live Availability</span>
-                          <span className="font-bold text-[#0F0D26]">
+                          <span className="font-bold text-[#15140F]">
                             {availableSeats} / {totalSeats} seats
                           </span>
                         </div>
@@ -714,7 +717,7 @@ export function DashboardPage() {
                         onClick={() => navigate(`/space/${space.id}`)}
                         className={`w-full h-11 rounded-xl text-sm font-semibold transition-all ${
                           availableSeats > 0
-                            ? 'bg-[#6850F4] hover:bg-[#5840DC] text-white shadow-[0_4px_14px_rgba(104,80,244,0.25)]'
+                            ? 'bg-[#2E4BFF] hover:bg-[#1F37E0] text-white shadow-[0_4px_14px_rgba(46,75,255,0.25)]'
                             : 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600'
                         }`}
                       >
@@ -734,12 +737,12 @@ export function DashboardPage() {
       <section className="space-y-4 pt-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-extrabold font-heading text-[#0F0D26]">My Bookings</h2>
+            <h2 className="text-2xl font-extrabold font-heading text-[#15140F]">My Bookings</h2>
             <p className="text-sm text-gray-500 mt-0.5">Quick access to your active and past reservations</p>
           </div>
           <Link
             to="/reservations"
-            className="text-sm font-bold text-[#6850F4] hover:underline flex items-center"
+            className="text-sm font-bold text-[#2E4BFF] hover:underline flex items-center"
           >
             <span>View All ({myReservations.length})</span>
             <ChevronRight className="w-4 h-4 ml-1" />
@@ -755,13 +758,13 @@ export function DashboardPage() {
             {myReservations.slice(0, 3).map(res => (
               <Card
                 key={res.id}
-                className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(15,13,38,0.03)] hover:border-[#6850F4]/30 transition-all flex flex-col justify-between"
+                className="rounded-[20px] border border-gray-100 bg-white p-5 shadow-[0_4px_20px_rgba(21,20,15,0.03)] hover:border-[#2E4BFF]/30 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <h4 className="font-bold text-base text-[#0F0D26]">{res.spaceName}</h4>
-                      <p className="text-xs text-gray-500 mt-0.5">Seat <span className="font-bold text-[#6850F4]">{res.seatId}</span></p>
+                      <h4 className="font-bold text-base text-[#15140F]">{res.spaceName}</h4>
+                      <p className="text-xs text-gray-500 mt-0.5">Seat <span className="font-bold text-[#2E4BFF]">{res.seatId}</span></p>
                     </div>
                     <StatusBadge status={res.status} />
                   </div>
@@ -782,9 +785,9 @@ export function DashboardPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => navigate(`/reservations/${res.id}/pass`)}
-                  className="w-full mt-2 h-9 text-xs font-semibold border-gray-200 text-gray-700 hover:text-[#6850F4] hover:border-[#6850F4]/50 rounded-xl"
+                  className="w-full mt-2 h-9 text-xs font-semibold border-gray-200 text-gray-700 hover:text-[#2E4BFF] hover:border-[#2E4BFF]/50 rounded-xl"
                 >
-                  <QrCode className="w-3.5 h-3.5 mr-2 text-[#6850F4]" />
+                  <QrCode className="w-3.5 h-3.5 mr-2 text-[#2E4BFF]" />
                   Open QR Pass
                 </Button>
               </Card>
@@ -797,12 +800,12 @@ export function DashboardPage() {
       <section className="space-y-4 pt-2">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-extrabold font-heading text-[#0F0D26]">Live Notifications & Reminders</h2>
+            <h2 className="text-2xl font-extrabold font-heading text-[#15140F]">Live Notifications & Reminders</h2>
             <p className="text-sm text-gray-500 mt-0.5">SeatSure™ verification prompts and reservation confirmations</p>
           </div>
           <Link
             to="/notifications"
-            className="text-sm font-bold text-[#6850F4] hover:underline flex items-center"
+            className="text-sm font-bold text-[#2E4BFF] hover:underline flex items-center"
           >
             <span>Notification Center</span>
             <ChevronRight className="w-4 h-4 ml-1" />
@@ -818,21 +821,21 @@ export function DashboardPage() {
             {notifications.slice(0, 3).map(notif => (
               <Card
                 key={notif.id}
-                className={`rounded-[20px] border p-4 transition-all shadow-[0_2px_12px_rgba(15,13,38,0.03)] ${
+                className={`rounded-[20px] border p-4 transition-all shadow-[0_2px_12px_rgba(21,20,15,0.03)] ${
                   !notif.isRead 
-                    ? 'border-[#6850F4]/25 bg-white ring-1 ring-[#6850F4]/10' 
+                    ? 'border-[#2E4BFF]/25 bg-white ring-1 ring-[#2E4BFF]/10' 
                     : 'border-gray-100 bg-white/80 opacity-90'
                 }`}
               >
                 <div className="flex items-start space-x-3">
-                  <div className="p-2 rounded-xl bg-[#F1EDFF] text-[#6850F4] shrink-0 mt-0.5">
+                  <div className="p-2 rounded-xl bg-[#E7EBFF] text-[#2E4BFF] shrink-0 mt-0.5">
                     <Bell className="w-4 h-4" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-bold text-[#0F0D26] truncate">{notif.title}</h4>
+                      <h4 className="text-sm font-bold text-[#15140F] truncate">{notif.title}</h4>
                       {!notif.isRead && (
-                        <span className="w-2 h-2 rounded-full bg-[#6850F4] shrink-0 ml-2" />
+                        <span className="w-2 h-2 rounded-full bg-[#2E4BFF] shrink-0 ml-2" />
                       )}
                     </div>
                     <p className="text-xs text-gray-600 line-clamp-2 mt-1 leading-relaxed">{notif.message}</p>
@@ -840,7 +843,7 @@ export function DashboardPage() {
                       <span>{formatTime(notif.createdAt)}</span>
                       <button 
                         onClick={() => navigate('/notifications')}
-                        className="text-[#6850F4] hover:underline font-semibold"
+                        className="text-[#2E4BFF] hover:underline font-semibold"
                       >
                         Respond →
                       </button>

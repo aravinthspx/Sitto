@@ -76,13 +76,13 @@ export function SeatDetailPanel({
   const hasSelectedSeats = selectedSeats.length > 0;
 
   return (
-    <Card className={`border border-[#E8EBF2] bg-white shadow-[0_8px_30px_rgba(15,13,38,0.06)] rounded-[24px] overflow-hidden transition-all duration-300 ${maxSeatsError ? 'animate-shake' : ''}`}>
+    <Card className={`border border-[#E6E1D6] bg-white shadow-[0_8px_30px_rgba(21,20,15,0.06)] rounded-[24px] overflow-hidden transition-all duration-300 ${maxSeatsError ? 'animate-shake' : ''}`}>
       {/* Header with SITTO Royal Purple Identity */}
-      <CardHeader className="bg-gradient-to-r from-[#17143A] via-[#211B54] to-[#120F30] text-white p-5 sm:p-6 pb-5">
+      <CardHeader className="bg-gradient-to-r from-[#15140F] via-[#24231C] to-[#15140F] text-white p-5 sm:p-6 pb-5">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#8B6BFF]" />
-            <span className="text-xs font-bold text-[#8B6BFF] uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#5C73FF]" />
+            <span className="text-xs font-bold text-[#5C73FF] uppercase tracking-wider">
               Step 3 &bull; Booking Summary
             </span>
           </div>
@@ -98,7 +98,7 @@ export function SeatDetailPanel({
         </div>
         {(buildingName || floorName) && (
           <div className="text-xs text-purple-200/80 font-medium flex items-center gap-1.5 mt-0.5">
-            <MapPin className="w-3 h-3 text-[#8B6BFF]" />
+            <MapPin className="w-3 h-3 text-[#5C73FF]" />
             <span>{[buildingName, floorName].filter(Boolean).join(' • ')}</span>
           </div>
         )}
@@ -114,7 +114,7 @@ export function SeatDetailPanel({
                 {selectedSeats.map(seat => (
                   <div 
                     key={seat.id} 
-                    className="flex items-center bg-[#6850F4] rounded-xl pl-3 pr-1.5 py-1 text-white shadow-xs border border-white/20 animate-in fade-in zoom-in duration-150"
+                    className="flex items-center bg-[#2E4BFF] rounded-xl pl-3 pr-1.5 py-1 text-white shadow-xs border border-white/20 animate-in fade-in zoom-in duration-150"
                   >
                     <span className="text-sm font-bold font-heading">{seat.id}</span>
                     <button 
@@ -133,7 +133,7 @@ export function SeatDetailPanel({
             </div>
           ) : (
             <div className="text-xs text-purple-200/90 py-1.5 px-3 bg-white/10 rounded-xl flex items-center gap-2 border border-white/10">
-              <Info className="w-4 h-4 text-[#8B6BFF] shrink-0" />
+              <Info className="w-4 h-4 text-[#5C73FF] shrink-0" />
               <span>Select an available green seat on the map</span>
             </div>
           )}
@@ -160,7 +160,7 @@ export function SeatDetailPanel({
         <div>
           <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#6850F4]" />
+              <Calendar className="w-3.5 h-3.5 text-[#2E4BFF]" />
               Booking Date
             </span>
             <span className="text-gray-400 font-normal">Next 3 days</span>
@@ -174,7 +174,7 @@ export function SeatDetailPanel({
                 disabled={isReserving}
                 className={`flex-1 min-w-[76px] py-2 px-2.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                   selectedDateStr === d.dateStr 
-                    ? 'border-[#6850F4] bg-[#F1EDFF] text-[#6850F4] shadow-xs' 
+                    ? 'border-[#2E4BFF] bg-[#E7EBFF] text-[#2E4BFF] shadow-xs' 
                     : 'border-gray-200 text-gray-600 hover:border-gray-300 bg-white'
                 }`}
               >
@@ -188,11 +188,11 @@ export function SeatDetailPanel({
         <div>
           <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-[#6850F4]" />
+              <Clock className="w-3.5 h-3.5 text-[#2E4BFF]" />
               Start Time
             </span>
             {selectedSession && (
-              <span className="text-[#6850F4] font-semibold">{formattedStart}</span>
+              <span className="text-[#2E4BFF] font-semibold">{formattedStart}</span>
             )}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -210,10 +210,10 @@ export function SeatDetailPanel({
                   aria-disabled={isUnavailable}
                   className={`py-2 px-2 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center ${
                     isSelected 
-                      ? 'border-[#6850F4] bg-[#6850F4] text-white shadow-xs' 
+                      ? 'border-[#2E4BFF] bg-[#2E4BFF] text-white shadow-xs' 
                       : isUnavailable
                         ? 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed opacity-50'
-                        : 'border-gray-200 text-gray-700 hover:border-[#6850F4]/40 hover:text-[#6850F4] bg-white cursor-pointer'
+                        : 'border-gray-200 text-gray-700 hover:border-[#2E4BFF]/40 hover:text-[#2E4BFF] bg-white cursor-pointer'
                   }`}
                 >
                   <span>{s.label.split(' – ')[0]}</span>
@@ -230,7 +230,7 @@ export function SeatDetailPanel({
         <div>
           <label className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center justify-between">
             <span>Duration Option</span>
-            <span className="text-[#6850F4] font-semibold">{duration} Hour{duration > 1 ? 's' : ''}</span>
+            <span className="text-[#2E4BFF] font-semibold">{duration} Hour{duration > 1 ? 's' : ''}</span>
           </label>
           <div className="grid grid-cols-3 gap-2">
             {durations.map(d => (
@@ -241,7 +241,7 @@ export function SeatDetailPanel({
                 disabled={isReserving}
                 className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all border cursor-pointer flex flex-col items-center justify-center ${
                   duration === d 
-                    ? 'border-[#6850F4] bg-[#F1EDFF] text-[#6850F4] shadow-xs' 
+                    ? 'border-[#2E4BFF] bg-[#E7EBFF] text-[#2E4BFF] shadow-xs' 
                     : 'border-gray-200 text-gray-600 hover:border-gray-300 bg-white'
                 }`}
               >
@@ -255,10 +255,10 @@ export function SeatDetailPanel({
         </div>
 
         {/* 4. Complete Booking Summary Strip */}
-        <div className="bg-[#F7F8FC] rounded-2xl p-4 border border-[#E8EBF2] space-y-2.5 text-xs">
+        <div className="bg-[#F7F5EF] rounded-2xl p-4 border border-[#E6E1D6] space-y-2.5 text-xs">
           <div className="flex justify-between items-center text-gray-500">
             <span>Schedule Window:</span>
-            <span className="font-bold text-[#0F0D26]">
+            <span className="font-bold text-[#15140F]">
               {formattedStart} &ndash; {formattedEnd} ({duration} hr{duration > 1 ? 's' : ''})
             </span>
           </div>
@@ -278,7 +278,7 @@ export function SeatDetailPanel({
       
       <CardFooter className="p-5 sm:p-6 pt-0 flex flex-col space-y-2.5">
         <Button 
-          className="w-full bg-[#6850F4] hover:bg-[#5840DC] text-white font-bold text-sm h-12 rounded-xl border-none shadow-[0_4px_16px_rgba(104,80,244,0.35)] transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none cursor-pointer flex items-center justify-center gap-2"
+          className="w-full bg-[#2E4BFF] hover:bg-[#1F37E0] text-white font-bold text-sm h-12 rounded-xl border-none shadow-[0_4px_16px_rgba(46,75,255,0.35)] transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none cursor-pointer flex items-center justify-center gap-2"
           onClick={onReserve} 
           disabled={isReserving || !hasSelectedSeats}
         >

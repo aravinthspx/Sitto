@@ -65,10 +65,10 @@ export function ConfirmedPassCard({
       </div>
 
       {/* Main Digital Boarding Pass */}
-      <div className="bg-white rounded-[26px] border border-[#E8EBF2] shadow-[0_16px_50px_rgba(15,13,38,0.08)] overflow-hidden">
+      <div className="bg-white rounded-[26px] border border-[#E6E1D6] shadow-[0_16px_50px_rgba(21,20,15,0.08)] overflow-hidden">
         {/* Pass Top Banner with Royal Dark Identity */}
-        <div className="bg-gradient-to-r from-[#17143A] via-[#211B54] to-[#120F30] text-white p-6 sm:p-7 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-36 h-36 bg-[#6850F4]/20 rounded-full blur-2xl pointer-events-none" />
+        <div className="bg-gradient-to-r from-[#15140F] via-[#24231C] to-[#15140F] text-white p-6 sm:p-7 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-36 h-36 bg-[#2E4BFF]/20 rounded-full blur-2xl pointer-events-none" />
 
           {/* SITTO Header & Badge */}
           <div className="flex items-center justify-between mb-4">
@@ -77,8 +77,8 @@ export function ConfirmedPassCard({
               <span className="text-xs font-bold font-heading text-white tracking-tight">SITTO</span>
             </div>
             
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-[#8B6BFF] uppercase tracking-wider border border-white/10">
-              <Sparkles className="w-3 h-3 text-[#8B6BFF]" />
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-[#5C73FF] uppercase tracking-wider border border-white/10">
+              <Sparkles className="w-3 h-3 text-[#5C73FF]" />
               <span>Verified Pass</span>
             </div>
           </div>
@@ -88,7 +88,7 @@ export function ConfirmedPassCard({
           </h2>
           
           <div className="flex items-center justify-center space-x-2 text-xs text-purple-200/80 mt-1.5 flex-wrap">
-            <MapPin className="w-3.5 h-3.5 text-[#8B6BFF] shrink-0" />
+            <MapPin className="w-3.5 h-3.5 text-[#5C73FF] shrink-0" />
             <span>{buildingName || 'SRM KTR Campus'}</span>
             {floorName && (
               <>
@@ -113,22 +113,22 @@ export function ConfirmedPassCard({
 
         {/* Ticket Perforation / Notch Divider */}
         <div className="relative h-6 bg-white flex items-center justify-center">
-          <div className="absolute -left-3 w-6 h-6 rounded-full bg-[#F7F8FC] border-r border-[#E8EBF2]" />
+          <div className="absolute -left-3 w-6 h-6 rounded-full bg-[#F7F5EF] border-r border-[#E6E1D6]" />
           <div className="w-full border-t-2 border-dashed border-gray-200 mx-4" />
-          <div className="absolute -right-3 w-6 h-6 rounded-full bg-[#F7F8FC] border-l border-[#E8EBF2]" />
+          <div className="absolute -right-3 w-6 h-6 rounded-full bg-[#F7F5EF] border-l border-[#E6E1D6]" />
         </div>
 
         {/* Pass QR Code Body */}
         <div className="p-6 sm:p-7 pt-2 space-y-6">
           <div className="flex flex-col items-center justify-center">
-            <div className="p-5 bg-white rounded-2xl border border-gray-200 shadow-[0_4px_24px_rgba(15,13,38,0.06)] flex flex-col items-center">
+            <div className="p-5 bg-white rounded-2xl border border-gray-200 shadow-[0_4px_24px_rgba(21,20,15,0.06)] flex flex-col items-center">
               {reservation.qrToken ? (
                 <QRCodeSVG 
                   value={reservation.qrToken} 
                   size={200}
                   level="H"
                   includeMargin={false}
-                  fgColor="#0F0D26"
+                  fgColor="#15140F"
                   bgColor="#FFFFFF"
                 />
               ) : (
@@ -149,7 +149,7 @@ export function ConfirmedPassCard({
               <button
                 type="button"
                 onClick={handleCopyId}
-                className="p-1 rounded-md text-gray-400 hover:text-[#6850F4] hover:bg-purple-50 transition-colors"
+                className="p-1 rounded-md text-gray-400 hover:text-[#2E4BFF] hover:bg-purple-50 transition-colors"
                 title="Copy Reservation Reference ID"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
@@ -162,13 +162,13 @@ export function ConfirmedPassCard({
           </div>
 
           {/* Session Timing Details */}
-          <div className="bg-[#F7F8FC] rounded-2xl p-4 sm:p-5 space-y-3 text-xs border border-[#E8EBF2]">
+          <div className="bg-[#F7F5EF] rounded-2xl p-4 sm:p-5 space-y-3 text-xs border border-[#E6E1D6]">
             <div className="flex justify-between items-center">
               <span className="text-gray-500 font-medium flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-[#6850F4]" />
+                <Calendar className="w-3.5 h-3.5 text-[#2E4BFF]" />
                 Scheduled Window
               </span>
-              <span className="font-bold text-[#0F0D26]">
+              <span className="font-bold text-[#15140F]">
                 {formatSessionDisplay(reservation.startTime, reservation.endTime)}
               </span>
             </div>
@@ -176,7 +176,7 @@ export function ConfirmedPassCard({
             {durationHours && (
               <div className="flex justify-between items-center text-gray-500">
                 <span className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[#6850F4]" />
+                  <Clock className="w-3.5 h-3.5 text-[#2E4BFF]" />
                   Total Duration
                 </span>
                 <span className="font-semibold text-gray-800">
@@ -209,7 +209,7 @@ export function ConfirmedPassCard({
           {/* Action Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <Button
-              className="bg-[#6850F4] hover:bg-[#5840DC] text-white font-bold text-xs sm:text-sm h-11 rounded-xl shadow-xs flex items-center justify-center gap-1.5"
+              className="bg-[#2E4BFF] hover:bg-[#1F37E0] text-white font-bold text-xs sm:text-sm h-11 rounded-xl shadow-xs flex items-center justify-center gap-1.5"
               onClick={onViewAll}
             >
               <span>View All Bookings</span>

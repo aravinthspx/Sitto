@@ -80,17 +80,17 @@ export function BuildingPage() {
           onClick={() => navigate('/campus')} 
           className="bg-white hover:bg-gray-100 rounded-xl shadow-xs shrink-0 h-10 w-10 border border-gray-200"
         >
-          <ArrowLeft className="w-5 h-5 text-[#0F0D26]" />
+          <ArrowLeft className="w-5 h-5 text-[#15140F]" />
         </Button>
         <div>
           <div className="flex items-center space-x-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6850F4] bg-[#F1EDFF] px-2 py-0.5 rounded-full">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#2E4BFF] bg-[#E7EBFF] px-2 py-0.5 rounded-full">
               {buildingId}
             </span>
             <span className="text-xs text-gray-400">•</span>
             <span className="text-xs text-gray-500">Floor Selection</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#0F0D26] mt-0.5">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading text-[#15140F] mt-0.5">
             {building?.name || buildingId}
           </h1>
         </div>
@@ -104,10 +104,10 @@ export function BuildingPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {floors.map(f => (
             <Link key={f.id} to={`/campus/${buildingId}/floor/${f.id}`} className="block group">
-              <Card className="rounded-[22px] border border-[#E8EBF2] bg-white p-6 shadow-[0_4px_20px_rgba(15,13,38,0.03)] hover:shadow-[0_12px_32px_rgba(104,80,244,0.12)] hover:border-[#6850F4]/40 transition-all duration-200 flex flex-col justify-between h-full">
+              <Card className="rounded-[22px] border border-[#E6E1D6] bg-white p-6 shadow-[0_4px_20px_rgba(21,20,15,0.03)] hover:shadow-[0_12px_32px_rgba(46,75,255,0.12)] hover:border-[#2E4BFF]/40 transition-all duration-200 flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-[#F1EDFF] text-[#6850F4] flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-[#E7EBFF] text-[#2E4BFF] flex items-center justify-center group-hover:scale-105 transition-transform">
                       <Layers className="w-6 h-6" />
                     </div>
                     <span className="text-xs font-mono font-semibold text-gray-400 bg-gray-50 px-2.5 py-1 rounded-lg">
@@ -115,7 +115,7 @@ export function BuildingPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold font-heading text-[#0F0D26] group-hover:text-[#6850F4] transition-colors leading-tight">
+                  <h3 className="text-xl font-bold font-heading text-[#15140F] group-hover:text-[#2E4BFF] transition-colors leading-tight">
                     {f.name}
                   </h3>
                   <p className="text-xs text-gray-500 mt-2">
@@ -123,7 +123,7 @@ export function BuildingPage() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-[#6850F4]">
+                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-[#2E4BFF]">
                   <span>Explore Rooms on {f.name}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>

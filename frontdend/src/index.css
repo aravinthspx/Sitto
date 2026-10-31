@@ -1,59 +1,88 @@
 @import "tailwindcss";
 @import "./styles/interactions.css";
-@import "./styles/glass.css";
-@import "./styles/liquid.css";
 @import "./styles/ios.css";
-@import "./styles/future.css";
+@import "./styles/paper.css";
+@import "./styles/seat3d.css";
 
 @theme {
-  /* iOS look: San Francisco on Apple devices, Segoe UI Variable on Windows */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", "DM Sans Variable", system-ui, sans-serif;
-  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", "Sora Variable", system-ui, sans-serif;
+  /* Editorial "campus paper" look: characterful grotesque headings, a clean
+     humanist body face and a mono for data labels */
+  --font-sans: "Instrument Sans Variable", "Segoe UI", system-ui, sans-serif;
+  --font-heading: "Bricolage Grotesque Variable", "Instrument Sans Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Mono", monospace;
 
-  /* iOS spring-like curves */
   --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 
-  --color-brand-ink: #0F0D26;
-  --color-brand-ink-light: #17143A;
-  --color-brand-violet: #6B3DF5;
-  --color-brand-violet-light: #8B6BFF;
-  --color-brand-lavender: #F6F5FB;
+  --color-brand-ink: #15140F;
+  --color-brand-ink-light: #24231C;
+  --color-brand-violet: #2E4BFF; /* cobalt — name kept so existing classes still resolve */
+  --color-brand-violet-light: #5C73FF;
+  --color-brand-lavender: #F3F0E8;
+  --color-brand-lime: #D7FF3A;
+  --color-brand-paper: #F3F0E8;
 
-  --color-background: var(--color-brand-lavender);
+  --color-background: var(--color-brand-paper);
   --color-foreground: var(--color-brand-ink);
-  
+
   --color-card: #ffffff;
   --color-card-foreground: var(--color-brand-ink);
 
-  --color-primary: var(--color-brand-violet);
+  --color-primary: var(--color-brand-ink);
   --color-primary-foreground: #ffffff;
 
-  --color-secondary: rgb(255 255 255 / 0.5);
+  --color-secondary: #ECE8DE;
   --color-secondary-foreground: var(--color-brand-ink);
 
-  --color-accent: rgb(255 255 255 / 0.55);
+  --color-accent: #ECE8DE;
   --color-accent-foreground: var(--color-brand-ink);
 
-  --color-muted: #e2e8f0;
-  --color-muted-foreground: #64748b;
+  --color-muted: #ECE8DE;
+  --color-muted-foreground: #6E6A60;
 
-  --color-destructive: #ef4444;
+  --color-destructive: #E5484D;
   --color-destructive-foreground: #ffffff;
 
-  --color-border: rgb(255 255 255 / 0.6);
-  --color-input: rgb(255 255 255 / 0.75);
-  --color-ring: var(--color-brand-violet-light);
+  --color-border: #E6E1D6;
+  --color-input: #DCD6C8;
+  --color-ring: var(--color-brand-violet);
 
-  --color-status-available: #10b981;
-  --color-status-reserved: #eab308;
-  --color-status-occupied: #ef4444;
-  --color-status-unverified: #f59e0b;
-  --color-status-selected: #3b82f6;
+  --color-status-available: #12A150;
+  --color-status-reserved: #E5A400;
+  --color-status-occupied: #E5484D;
+  --color-status-unverified: #F08C00;
+  --color-status-selected: #2E4BFF;
 
-  --radius-lg: 1.375rem; /* ~22px for cards */
-  --radius-md: 0.5rem;
-  --radius-sm: 0.25rem;
+  /* Warm stone neutrals instead of Tailwind's cool greys */
+  --color-gray-50: #FAF8F3;
+  --color-gray-100: #F2EFE7;
+  --color-gray-200: #E6E1D6;
+  --color-gray-300: #D3CDBF;
+  --color-gray-400: #8F897B;
+  --color-gray-500: #6E6A60;
+  --color-gray-600: #57534A;
+  --color-gray-700: #43403A;
+  --color-gray-800: #2D2A24;
+  --color-gray-900: #1C1A16;
+
+  /* Purple / indigo / violet utilities follow the cobalt accent */
+  --color-purple-50: #EEF1FF;
+  --color-purple-100: #E0E5FF;
+  --color-purple-200: #C3CCFF;
+  --color-purple-300: #9DABFF;
+  --color-purple-400: #7085FF;
+  --color-purple-500: #4A62FF;
+  --color-purple-600: #2E4BFF;
+  --color-purple-700: #2239D6;
+  --color-indigo-50: #EEF1FF;
+  --color-indigo-400: #7085FF;
+  --color-indigo-500: #4A62FF;
+  --color-indigo-600: #2E4BFF;
+  --color-indigo-700: #2239D6;
+
+  --radius-lg: 1.25rem;
+  --radius-md: 0.625rem;
+  --radius-sm: 0.375rem;
 }
 
 @layer base {

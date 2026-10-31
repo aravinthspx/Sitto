@@ -35,16 +35,16 @@ export function StorageNotice() {
       className="fixed inset-x-0 bottom-0 z-[100] p-3 sm:p-4 pointer-events-none"
     >
       <div className="glass-panel pointer-events-auto mx-auto max-w-3xl rounded-2xl px-4 py-3 sm:px-5 sm:py-4 flex flex-col sm:flex-row sm:items-center gap-3">
-        <Cookie className="hidden sm:block w-5 h-5 shrink-0 text-[#6B3DF5]" aria-hidden="true" />
+        <Cookie className="hidden sm:block w-5 h-5 shrink-0 text-[#2E4BFF]" aria-hidden="true" />
         <p className="text-xs sm:text-sm text-[#2A2550] flex-1">
           SITTO uses <strong>no cookies or trackers</strong>. We only store what's needed to keep you
-          signed in. Read our <Link to="/cookies" className="font-semibold text-[#6B3DF5] underline">Cookie Policy</Link>{' '}
-          and <Link to="/privacy" className="font-semibold text-[#6B3DF5] underline">Privacy Policy</Link>.
+          signed in. Read our <Link to="/cookies" className="font-semibold text-[#2E4BFF] underline">Cookie Policy</Link>{' '}
+          and <Link to="/privacy" className="font-semibold text-[#2E4BFF] underline">Privacy Policy</Link>.
         </p>
         <button
           type="button"
           onClick={dismiss}
-          className="shrink-0 h-9 px-4 rounded-xl text-sm font-semibold text-white bg-[#6B3DF5] hover:bg-[#5a32d6] transition-colors"
+          className="shrink-0 h-9 px-4 rounded-xl text-sm font-semibold text-white bg-[#2E4BFF] hover:bg-[#1F37E0] transition-colors"
         >
           Got it
         </button>

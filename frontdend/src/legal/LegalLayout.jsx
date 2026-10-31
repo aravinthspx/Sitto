@@ -19,14 +19,14 @@ export function LegalLayout({ title, children }) {
           <button
             type="button"
             onClick={goBack}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-[#3B3568] bg-white/50 border border-white/70 hover:bg-white/80 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-[#45423A] bg-white/50 border border-white/70 hover:bg-white/80 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <img src="/sitto-icon.svg" alt="" className="w-8 h-8 rounded-[22.5%] shadow-[0_4px_12px_rgba(91,61,245,0.3)]" />
-            <span className="font-heading font-bold text-[#0F0D26]">{LEGAL.productName}</span>
+            <img src="/sitto-icon.svg" alt="" className="w-8 h-8 rounded-[22.5%] shadow-[0_4px_12px_rgba(46,75,255,0.3)]" />
+            <span className="font-heading font-bold text-[#15140F]">{LEGAL.productName}</span>
           </Link>
         </div>
 

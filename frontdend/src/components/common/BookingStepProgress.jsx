@@ -39,7 +39,7 @@ export function BookingStepProgress({ currentStep = 1, onStepClick, className = 
   ];
 
   return (
-    <div className={`w-full bg-white rounded-2xl border border-[#E8EBF2] p-3 sm:p-4 shadow-[0_2px_12px_rgba(15,13,38,0.03)] ${className}`}>
+    <div className={`w-full bg-white rounded-2xl border border-[#E6E1D6] p-3 sm:p-4 shadow-[0_2px_12px_rgba(21,20,15,0.03)] ${className}`}>
       <div className="grid grid-cols-4 gap-2 sm:gap-3 relative">
         {steps.map((step, idx) => {
           const Icon = step.icon;
@@ -56,7 +56,7 @@ export function BookingStepProgress({ currentStep = 1, onStepClick, className = 
               onClick={() => isClickable && onStepClick(step.number)}
               className={`flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-3 p-2 rounded-xl text-left transition-all ${
                 isCurrent
-                  ? 'bg-[#F1EDFF] border border-[#6850F4]/30 shadow-xs'
+                  ? 'bg-[#E7EBFF] border border-[#2E4BFF]/30 shadow-xs'
                   : isDone
                   ? 'bg-emerald-50/60 border border-emerald-200/60 hover:bg-emerald-50 cursor-pointer'
                   : 'bg-gray-50/50 border border-transparent opacity-60'
@@ -68,7 +68,7 @@ export function BookingStepProgress({ currentStep = 1, onStepClick, className = 
                   isDone
                     ? 'bg-emerald-500 text-white shadow-xs'
                     : isCurrent
-                    ? 'bg-[#6850F4] text-white shadow-xs ring-2 ring-[#6850F4]/20'
+                    ? 'bg-[#2E4BFF] text-white shadow-xs ring-2 ring-[#2E4BFF]/20'
                     : 'bg-gray-200 text-gray-500'
                 }`}
               >
@@ -85,7 +85,7 @@ export function BookingStepProgress({ currentStep = 1, onStepClick, className = 
                   <span
                     className={`text-[10px] font-bold uppercase tracking-wider ${
                       isCurrent
-                        ? 'text-[#6850F4]'
+                        ? 'text-[#2E4BFF]'
                         : isDone
                         ? 'text-emerald-700'
                         : 'text-gray-400'
@@ -97,7 +97,7 @@ export function BookingStepProgress({ currentStep = 1, onStepClick, className = 
                 <span
                   className={`text-xs font-bold truncate ${
                     isCurrent
-                      ? 'text-[#0F0D26]'
+                      ? 'text-[#15140F]'
                       : isDone
                       ? 'text-emerald-900'
                       : 'text-gray-500'

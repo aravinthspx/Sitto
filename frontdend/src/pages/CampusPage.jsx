@@ -77,8 +77,8 @@ export function CampusPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <Building2 className="w-5 h-5 text-[#6850F4]" />
-            <h1 className="text-3xl font-extrabold tracking-tight font-heading text-[#0F0D26]">
+            <Building2 className="w-5 h-5 text-[#2E4BFF]" />
+            <h1 className="text-3xl font-extrabold tracking-tight font-heading text-[#15140F]">
               Campus Buildings
             </h1>
           </div>
@@ -95,7 +95,7 @@ export function CampusPage() {
             placeholder="Search blocks (CSE, Library...)" 
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full h-11 pl-10 pr-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6850F4]/30 focus:border-[#6850F4] text-sm text-[#0F0D26] shadow-xs"
+            className="w-full h-11 pl-10 pr-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2E4BFF]/30 focus:border-[#2E4BFF] text-sm text-[#15140F] shadow-xs"
           />
         </div>
       </div>
@@ -114,10 +114,10 @@ export function CampusPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredBuildings.map(b => (
             <Link key={b.id} to={`/campus/${b.id}`} className="block group">
-              <Card className="rounded-[22px] border border-[#E8EBF2] bg-white p-6 shadow-[0_4px_20px_rgba(15,13,38,0.03)] hover:shadow-[0_12px_32px_rgba(104,80,244,0.12)] hover:border-[#6850F4]/40 transition-all duration-200 flex flex-col justify-between h-full">
+              <Card className="rounded-[22px] border border-[#E6E1D6] bg-white p-6 shadow-[0_4px_20px_rgba(21,20,15,0.03)] hover:shadow-[0_12px_32px_rgba(46,75,255,0.12)] hover:border-[#2E4BFF]/40 transition-all duration-200 flex flex-col justify-between h-full">
                 <div>
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-[#F1EDFF] text-[#6850F4] flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-[#E7EBFF] text-[#2E4BFF] flex items-center justify-center group-hover:scale-105 transition-transform">
                       <Building2 className="w-6 h-6" />
                     </div>
                     <span className="text-xs font-mono font-semibold text-gray-400 bg-gray-50 px-2.5 py-1 rounded-lg">
@@ -125,7 +125,7 @@ export function CampusPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold font-heading text-[#0F0D26] group-hover:text-[#6850F4] transition-colors leading-tight">
+                  <h3 className="text-xl font-bold font-heading text-[#15140F] group-hover:text-[#2E4BFF] transition-colors leading-tight">
                     {b.name}
                   </h3>
                   <div className="flex items-center space-x-1.5 text-xs text-gray-500 mt-2">
@@ -134,7 +134,7 @@ export function CampusPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-[#6850F4]">
+                <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-[#2E4BFF]">
                   <span>Explore Floors & Labs</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>

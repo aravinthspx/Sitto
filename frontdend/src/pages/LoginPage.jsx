@@ -163,14 +163,40 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8 relative overflow-hidden">
+    <div className="min-h-screen grid lg:grid-cols-[1.1fr_1fr]">
 
+      {/* Editorial brand panel (large screens) */}
+      <aside className="liquid-dark relative hidden lg:flex flex-col justify-between overflow-hidden m-3 rounded-[28px] p-12 text-white">
+        <div className="flex items-center gap-3">
+          <SITTOIcon className="w-11 h-11 ring-1 ring-white/15" alt="" />
+          <span className="font-heading font-bold text-xl tracking-tight">SITTO</span>
+          <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-[#D7FF3A] text-[#15140F]">Space Hub</span>
+        </div>
+        <div>
+          <p className="inline-flex items-center gap-2 text-[11px] font-mono text-[#D7FF3A] mb-6">
+            <span className="live-dot" /> Live seat availability
+          </p>
+          <h1 className="font-heading font-extrabold">
+            Find a seat<br />before the <span className="hero-mark">bell.</span>
+          </h1>
+          <p className="mt-6 max-w-md text-white/60 text-lg leading-relaxed">
+            Book library desks and lab workstations, check in with a QR pass, and get a nudge on your phone before your slot starts.
+          </p>
+        </div>
+        <dl className="grid grid-cols-3 gap-6 border-t border-white/10 pt-6 font-mono text-xs text-white/50">
+          <div><dt>Booking</dt><dd className="mt-1 font-heading text-2xl text-white">08–17h</dd></div>
+          <div><dt>Check-in</dt><dd className="mt-1 font-heading text-2xl text-white">15 min</dd></div>
+          <div><dt>Max slot</dt><dd className="mt-1 font-heading text-2xl text-white">3 hrs</dd></div>
+        </dl>
+      </aside>
+
+      <div className="flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-[440px] relative z-10">
         {/* Brand Header */}
-        <div className="flex flex-col items-center justify-center text-center mb-7">
-          <SITTOIcon className="w-20 h-20 sm:w-[88px] sm:h-[88px] mb-4 ios-float" alt="SITTO" />
-          <h1 className="text-[32px] leading-none font-heading font-bold tracking-[-0.03em] text-[#0B0A1F]">SITTO</h1>
-          <p className="mt-2 text-[13px] sm:text-sm text-[#4B4670] font-medium">
+        <div className="flex flex-col items-center justify-center text-center mb-7 lg:items-start lg:text-left">
+          <SITTOIcon className="w-16 h-16 sm:w-[72px] sm:h-[72px] mb-4 lg:hidden" alt="SITTO" />
+          <h1 className="text-[34px] leading-none font-heading font-bold tracking-[-0.04em] text-[#15140F]">SITTO</h1>
+          <p className="mt-2 text-[12px] font-mono text-[#6E6A60]">
             Smart Campus Seating · SRM KTR
           </p>
         </div>
@@ -194,10 +220,10 @@ export function LoginPage() {
                   aria-selected={role === 'student'}
                   onClick={() => handleRoleSwitch('student')}
                   className={`py-2 text-[13px] font-semibold rounded-[9px] flex items-center justify-center gap-1.5 focus:outline-none ${
-                    role === 'student' ? 'text-[#0B0A1F]' : 'text-[#4B4670]'
+                    role === 'student' ? 'text-[#15140F]' : 'text-[#45423A]'
                   }`}
                 >
-                  <GraduationCap className="w-4 h-4 text-[#6B3DF5]" />
+                  <GraduationCap className="w-4 h-4 text-[#2E4BFF]" />
                   <span>Student</span>
                 </button>
 
@@ -207,10 +233,10 @@ export function LoginPage() {
                   aria-selected={role === 'admin'}
                   onClick={() => handleRoleSwitch('admin')}
                   className={`py-2 text-[13px] font-semibold rounded-[9px] flex items-center justify-center gap-1.5 focus:outline-none ${
-                    role === 'admin' ? 'text-[#0B0A1F]' : 'text-[#4B4670]'
+                    role === 'admin' ? 'text-[#15140F]' : 'text-[#45423A]'
                   }`}
                 >
-                  <Shield className="w-4 h-4 text-[#6B3DF5]" />
+                  <Shield className="w-4 h-4 text-[#2E4BFF]" />
                   <span>Admin / Staff</span>
                 </button>
               </div>
@@ -218,7 +244,7 @@ export function LoginPage() {
 
             {/* Sub-Header */}
             <div className="px-6 pt-4 pb-2 text-center">
-              <h2 className="text-xl font-bold font-heading text-[#0F0D26]">
+              <h2 className="text-xl font-bold font-heading text-[#15140F]">
                 {mode === 'signup'
                   ? 'Create Student Account'
                   : mode === 'forgot'
@@ -227,7 +253,7 @@ export function LoginPage() {
                   ? 'Staff Sign In'
                   : 'Welcome Back'}
               </h2>
-              <p className="text-xs sm:text-sm text-[#4B4670] mt-1">
+              <p className="text-xs sm:text-sm text-[#45423A] mt-1">
                 {mode === 'signup'
                   ? 'Register with your institutional email to book campus seats.'
                   : mode === 'forgot'
@@ -277,7 +303,7 @@ export function LoginPage() {
                         maxLength={100}
                         placeholder="e.g. Maya Sharma"
                         required
-                        className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
+                        className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#15140F] placeholder-[#6E6A60] text-sm focus:border-[#2E4BFF] focus:ring-2 focus:ring-[#2E4BFF]/20 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -301,7 +327,7 @@ export function LoginPage() {
                       placeholder={role === 'admin' ? 'staff@srmist.edu.in' : 'you@srmist.edu.in'}
                       autoComplete="email"
                       required
-                      className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
+                      className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#15140F] placeholder-[#6E6A60] text-sm focus:border-[#2E4BFF] focus:ring-2 focus:ring-[#2E4BFF]/20 outline-none transition-all"
                     />
                   </div>
                   {emailError && (
@@ -322,7 +348,7 @@ export function LoginPage() {
                         <button
                           type="button"
                           onClick={() => switchMode('forgot')}
-                          className="text-xs font-medium text-[#6B3DF5] hover:text-[#5a32d6] transition-colors focus:outline-none"
+                          className="text-xs font-medium text-[#2E4BFF] hover:text-[#1F37E0] transition-colors focus:outline-none"
                         >
                           Forgot password?
                         </button>
@@ -341,7 +367,7 @@ export function LoginPage() {
                         autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
                         placeholder="••••••••"
                         required
-                        className="w-full h-11 pl-10 pr-11 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
+                        className="w-full h-11 pl-10 pr-11 rounded-xl glass-input text-[#15140F] placeholder-[#6E6A60] text-sm focus:border-[#2E4BFF] focus:ring-2 focus:ring-[#2E4BFF]/20 outline-none transition-all"
                       />
                       <button
                         type="button"
@@ -353,7 +379,7 @@ export function LoginPage() {
                       </button>
                     </div>
                     {mode === 'signup' && password && !passwordStrongEnough && (
-                      <p className="text-xs font-medium text-[#4B4670] mt-1 ml-1">
+                      <p className="text-xs font-medium text-[#45423A] mt-1 ml-1">
                         Use at least 8 characters with letters and numbers.
                       </p>
                     )}
@@ -383,7 +409,7 @@ export function LoginPage() {
                         autoComplete="new-password"
                         placeholder="••••••••"
                         required
-                        className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#0F0D26] placeholder-[#7C7899] text-sm focus:border-[#6B3DF5] focus:ring-2 focus:ring-[#6B3DF5]/20 outline-none transition-all"
+                        className="w-full h-11 pl-10 pr-4 rounded-xl glass-input text-[#15140F] placeholder-[#6E6A60] text-sm focus:border-[#2E4BFF] focus:ring-2 focus:ring-[#2E4BFF]/20 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -402,11 +428,11 @@ export function LoginPage() {
                       checked={acceptedPrivacy}
                       onChange={(e) => setAcceptedPrivacy(e.target.checked)}
                       required
-                      className="mt-0.5 w-4 h-4 rounded border-gray-300 cursor-pointer accent-[#6B3DF5]"
+                      className="mt-0.5 w-4 h-4 rounded border-gray-300 cursor-pointer accent-[#2E4BFF]"
                     />
                     <label htmlFor="privacy-checkbox" className="text-xs font-medium text-gray-600 cursor-pointer">
                       I have read the{' '}
-                      <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#6B3DF5] underline">Privacy Policy</Link>{' '}
+                      <Link to="/privacy" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#2E4BFF] underline">Privacy Policy</Link>{' '}
                       and agree to SITTO processing my data as described there.
                     </label>
                   </div>
@@ -420,9 +446,9 @@ export function LoginPage() {
                       type="checkbox"
                       checked={rememberEmail}
                       onChange={(e) => setRememberEmail(e.target.checked)}
-                      className="w-4 h-4 rounded border-gray-300 text-[#6B3DF5] focus:ring-[#6B3DF5] cursor-pointer accent-[#6B3DF5]"
+                      className="w-4 h-4 rounded border-gray-300 text-[#2E4BFF] focus:ring-[#2E4BFF] cursor-pointer accent-[#2E4BFF]"
                     />
-                    <label htmlFor="remember-checkbox" className="text-xs font-medium text-gray-600 cursor-pointer hover:text-[#0F0D26] transition-colors">
+                    <label htmlFor="remember-checkbox" className="text-xs font-medium text-gray-600 cursor-pointer hover:text-[#15140F] transition-colors">
                       Remember email on this device
                     </label>
                   </div>
@@ -437,7 +463,7 @@ export function LoginPage() {
                     (mode === 'forgot' && !isValidForgot) ||
                     loading
                   }
-                  className="w-full h-11 mt-2 rounded-xl text-white bg-gradient-to-r from-[#6B3DF5] to-[#8B6BFF] hover:from-[#5a32d6] hover:to-[#7a5af0] shadow-[0_8px_24px_rgba(107,61,245,0.35)] font-semibold text-sm transition-all shadow-sm hover:shadow btn-press disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full h-12 mt-2 rounded-xl text-white bg-[#15140F] hover:bg-[#24231C] font-semibold text-sm transition-all btn-press disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>
@@ -460,7 +486,7 @@ export function LoginPage() {
               </form>
 
               {/* Mode Switching Links */}
-              <div className="mt-4 pt-3 border-t border-white/50 text-center">
+              <div className="mt-4 pt-3 border-t border-[#E6E1D6] text-center">
                 {mode === 'login' ? (
                   role === 'student' && (
                     <p className="text-xs text-gray-500">
@@ -468,7 +494,7 @@ export function LoginPage() {
                       <button
                         type="button"
                         onClick={() => switchMode('signup')}
-                        className="font-semibold text-[#6B3DF5] hover:underline focus:outline-none"
+                        className="font-semibold text-[#2E4BFF] hover:underline focus:outline-none"
                       >
                         Create Student Account
                       </button>
@@ -478,7 +504,7 @@ export function LoginPage() {
                   <button
                     type="button"
                     onClick={() => switchMode('login')}
-                    className="text-xs font-semibold text-[#6B3DF5] hover:underline focus:outline-none"
+                    className="text-xs font-semibold text-[#2E4BFF] hover:underline focus:outline-none"
                   >
                     ← Back to Sign In
                   </button>
@@ -490,6 +516,7 @@ export function LoginPage() {
         </div>
 
         <LegalLinks className="mt-5 justify-center" />
+      </div>
       </div>
     </div>
   );

@@ -1,0 +1,293 @@
+/* src/styles/paper.css
+ *
+ * "Campus paper" theme: warm paper ground, ink type, a cobalt accent and a
+ * lime highlight. Flat surfaces with hairline rules instead of glass.
+ *
+ * Rules here are unlayered on purpose so they win over Tailwind utilities
+ * without !important.
+ */
+
+:root {
+  --paper: #F3F0E8;
+  --paper-deep: #ECE8DE;
+  --ink: #15140F;
+  --ink-soft: #24231C;
+  --rule: #E6E1D6;
+  --rule-strong: #D3CDBF;
+  --cobalt: #2E4BFF;
+  --lime: #D7FF3A;
+  --card-shadow: 0 1px 0 rgb(21 20 15 / 0.04), 0 1px 2px rgb(21 20 15 / 0.04);
+  --card-shadow-hover: 0 1px 0 rgb(21 20 15 / 0.04), 0 12px 28px -12px rgb(21 20 15 / 0.22);
+}
+
+/* ─── Ground: paper with a faint dot grid ─────────────────────────────────── */
+html {
+  background-color: var(--paper);
+  background-image: radial-gradient(rgb(21 20 15 / 0.075) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-attachment: fixed;
+}
+body {
+  min-height: 100vh;
+  background: transparent;
+}
+::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+* {
+  scrollbar-color: rgb(21 20 15 / 0.25) transparent;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.03em;
+}
+h1.font-extrabold, h2.font-extrabold {
+  font-weight: 750;
+}
+
+/* Small uppercase labels read as data: set them in mono */
+.uppercase:is(.tracking-wider, .tracking-widest, .tracking-wide) {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Surfaces ────────────────────────────────────────────────────────────── */
+.glass-panel {
+  background-color: #fff;
+  border: 1px solid var(--rule);
+  box-shadow: var(--card-shadow);
+}
+.glass-bar {
+  background-color: rgb(243 240 232 / 0.86);
+  border-color: var(--rule);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+.glass-input {
+  background-color: #fff;
+  border: 1px solid var(--rule-strong);
+}
+.glass-input:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgb(46 75 255 / 0.18);
+}
+
+/* Cards lift a touch and sharpen their edge on hover */
+.glass-panel:is([class*="hover:"], .hover-lift):hover {
+  border-color: var(--rule-strong);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Soft card shadows written inline in pages become crisp paper shadows */
+[class*="shadow-[0_4px_20px_rgba(21,20,15"] {
+  box-shadow: var(--card-shadow);
+}
+
+/* Dark "ink" panels (pass headers, seat details, check-in camera) */
+[class*="from-[#15140F]"] {
+  background-image: none;
+  background-color: var(--ink);
+}
+
+/* ─── Ink hero (dashboard welcome) ────────────────────────────────────────── */
+.liquid-dark {
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1.2px);
+  background-size: 18px 18px;
+  color: #fff;
+  isolation: isolate;
+}
+.liquid-dark > .absolute.rounded-full {
+  display: none; /* the old blurred glow blobs */
+}
+.liquid-dark::after {
+  /* Lime corner tab */
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  border: 1px solid rgb(215 255 58 / 0.45);
+  box-shadow: 0 0 0 28px rgb(215 255 58 / 0.05), 0 0 0 56px rgb(215 255 58 / 0.03);
+  animation: paper-orbit 18s linear infinite;
+  z-index: -1;
+}
+@keyframes paper-orbit {
+  to { transform: rotate(360deg) translateX(6px); }
+}
+.liquid-dark h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+.liquid-dark .hero-mark {
+  background: var(--lime);
+  color: var(--ink);
+  padding: 0 0.18em;
+  border-radius: 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ─── Primary actions ─────────────────────────────────────────────────────── */
+.btn-lime {
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+}
+.btn-lime:hover {
+  background: #C8F21F;
+}
+
+/* Focus rings: cobalt, visible on paper and ink */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+/* ─── Live dot ────────────────────────────────────────────────────────────── */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--lime);
+}
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid var(--lime);
+  animation: live-ping 1.8s var(--ease-ios) infinite;
+}
+.live-dot--green,
+.live-dot--green::after {
+  background-color: #12A150;
+  border-color: #12A150;
+}
+.live-dot--green::after {
+  background-color: transparent;
+}
+@keyframes live-ping {
+  from { transform: scale(0.6); opacity: 1; }
+  to   { transform: scale(1.8); opacity: 0; }
+}
+
+/* ─── Header nav: ink pill for the active tab ─────────────────────────────── */
+.paper-nav-pill {
+  background: var(--ink);
+  box-shadow: 0 6px 16px -8px rgb(21 20 15 / 0.6);
+}
+
+/* ─── Bottom tab bar (phones): floating ink capsule ───────────────────────── */
+.ios-tabbar {
+  inset: auto 12px calc(10px + env(safe-area-inset-bottom)) 12px;
+  padding: 6px;
+  border-radius: 22px;
+  background: var(--ink);
+  border: 0;
+  box-shadow: 0 18px 40px -16px rgb(21 20 15 / 0.55);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.ios-tab {
+  border-radius: 16px;
+  padding: 7px 0 6px;
+  color: rgb(255 255 255 / 0.55);
+}
+.ios-tab[aria-current="page"] {
+  color: var(--ink);
+  background: var(--lime);
+}
+.ios-tab svg {
+  width: 22px;
+  height: 22px;
+}
+.ios-tab-badge {
+  background: var(--cobalt);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+/* Segmented control on paper */
+.ios-segmented {
+  background: var(--paper-deep);
+}
+.ios-segmented-thumb {
+  background: #fff;
+  box-shadow: 0 1px 0 rgb(21 20 15 / 0.06), 0 2px 6px rgb(21 20 15 / 0.08);
+}
+
+/* ─── Legal pages (Privacy / Cookie Policy) ───────────────────────────────── */
+.legal-prose {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.legal-prose h1 {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  font-weight: 750;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.legal-prose .legal-meta {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #6E6A60;
+}
+.legal-prose h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p { margin-bottom: 0.85rem; }
+.legal-prose ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.85rem; }
+.legal-prose li { margin-bottom: 0.35rem; }
+.legal-prose a { color: var(--cobalt); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.legal-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.35rem;
+  background: var(--paper-deep);
+}
+.legal-prose table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.85rem;
+}
+.legal-prose th,
+.legal-prose td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  min-width: 8rem;
+}
+.legal-prose th {
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--paper-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-dark::after,
+  .live-dot::after {
+    animation: none !important;
+  }
+}
